@@ -4,6 +4,18 @@
  */
 package com.c1212l.fs.ui;
 
+import com.c1212l.fs.bean.Customer;
+import com.c1212l.fs.bean.Permission;
+import com.c1212l.fs.bll.CustomerBUS;
+import com.c1212l.fs.bll.PermissionBUS;
+import com.c1212l.fs.util.KeyValue;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luu Bi
@@ -26,17 +38,163 @@ public class PermissionPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtPermissionID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtPermissionName = new javax.swing.JTextField();
+        lblProductManager = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblPermission = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Permission ID:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, 10));
+
+        txtPermissionID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPermissionIDActionPerformed(evt);
+            }
+        });
+        add(txtPermissionID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 110, -1));
+
+        jLabel2.setText("Permission Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+        add(txtPermissionName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 110, -1));
+
+        lblProductManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblProductManager.setText("Permission Manager");
+        add(lblProductManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+
+        jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 180, 60, -1));
+
+        jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+
+        jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
+
+        tblPermission.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblPermission);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 360, 190));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtPermissionIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPermissionIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPermissionIDActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            String permissionName = txtPermissionName.getText();
+            permissionBUS.addPermission(permissionName);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PermissionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PermissionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblProductManager;
+    private javax.swing.JTable tblPermission;
+    private javax.swing.JTextField txtPermissionID;
+    private javax.swing.JTextField txtPermissionName;
     // End of variables declaration//GEN-END:variables
+    private PermissionBUS permissionBUS = new PermissionBUS();
+    DefaultTableModel tblModel;
+    ArrayList<Customer> lstPermission;    
+
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("Permission ID ");
+        header.add("Permission Name");
+        tblModel = new DefaultTableModel(header, 0);
+        tblPermission.setModel(tblModel);
+    }
+
+    private void fillData(ArrayList<Permission> lst) {
+        if (lst != null) {
+            for (Permission permission : lst) {
+                tblModel.addRow(permission.getVector());
+            }
+        }
+    }
+
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(permissionBUS.getAllPermission());
+            initTextField();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     private void initTextField() {
+        txtPermissionID.setText("");
+        txtPermissionName.setText("");
+    }
 }
