@@ -25,7 +25,7 @@ public class PermissionBUS {
        }
        public void addPermission(String permissionName) throws ClassNotFoundException, Exception{
         Permission permission=new Permission();
-        permission.setPermissionID(permissionName);
+        permission.setPermissionName(permissionName);
         permissionDAO.addPermission(permission);
     }
       public void updatePermission(String permissionID,String permissionName) throws ClassNotFoundException, Exception{
