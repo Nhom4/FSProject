@@ -113,6 +113,11 @@ public class ProductPanel extends javax.swing.JPanel {
         add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
 
         btnDelete.setText("Delete");
@@ -139,6 +144,11 @@ public class ProductPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblProduct);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 410, 200));
@@ -157,9 +167,37 @@ public class ProductPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbVendorActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            Category category = productBUS.getCategoryID(cmbCategory.getSelectedItem().toString());
+            Vendor   vendor = productBUS.getVendorID(cmbVendor.getSelectedItem().toString());
+            System.out.println(cmbVendor.getSelectedItem());
+            String productName = txtProductName.getText();
+            String productDetail = txtProductDetail.getText();
+            String categoryID = category.getCategoryID();
+            String vendorID = vendor.getVendorID();
+            productBUS.addProduct(productName, productDetail, categoryID, vendorID);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = tblProduct.getSelectedRow();
+        txtProductID.setText(tblProduct.getValueAt(selectedRow, 0).toString());
+        txtProductName.setText(tblProduct.getValueAt(selectedRow, 1).toString());
+        txtProductDetail.setText(tblProduct.getValueAt(selectedRow, 2).toString());
+        cmbCategory.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 3).toString()));
+        cmbVendor.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 4).toString()));
+    }//GEN-LAST:event_tblProductMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -228,8 +266,9 @@ public class ProductPanel extends javax.swing.JPanel {
             cmbCategory.addItem(new KeyValue(-1, ""));
             CategoryBUS categoryBUS = new CategoryBUS();
             ArrayList<Category> arrCategory = categoryBUS.getAllCategory();
-            for (Category category : arrCategory) {
-                cmbCategory.addItem( category.getCategoryName());
+            for (int i=0;i<arrCategory.size();i++) {
+                Category category = arrCategory.get(i);
+                cmbCategory.addItem(new KeyValue(i, category.getCategoryName()));
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,8 +282,9 @@ public class ProductPanel extends javax.swing.JPanel {
         cmbVendor.addItem(new KeyValue(-1, ""));
         VendorBUS vendorBUS = new VendorBUS();
         ArrayList<Vendor> arrVendor = vendorBUS.getAllVendor();
-        for (Vendor vendor : arrVendor) {
-            cmbVendor.addItem(vendor.getVendorName());
+        for (int i =0;i<arrVendor.size();i++) {
+            Vendor vendor = arrVendor.get(i);
+            cmbVendor.addItem(new KeyValue(i,vendor.getVendorName()));
         }
     }
 }

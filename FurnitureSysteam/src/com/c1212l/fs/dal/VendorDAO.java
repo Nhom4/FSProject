@@ -51,7 +51,7 @@ public class VendorDAO extends ConnectionTool {
         try {
             initConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Vendor where cVenID = " + vendorID);
+            ResultSet rs = stmt.executeQuery("select * from Vendor where cVenID = " +"'"+ vendorID+"'");
             Vendor vendor = null;
             if (rs.next()) {
                 vendor = new Vendor();

@@ -28,8 +28,8 @@ public class ProductDAO extends ConnectionTool {
             product.setProductID(rs.getString("cProID"));
             product.setProductName(rs.getString("vProName"));
             product.setProductDetail(rs.getString("vProDetails"));
-            product.setCategoryId(rs.getString("cVenID"));
-            product.setVendorID(rs.getString("cCatID"));
+            product.setVendorID(rs.getString("cVenID"));
+            product.setCategoryId(rs.getString("cCatID"));
             result.add(product);
         }
         closeConnection();
@@ -40,8 +40,8 @@ public class ProductDAO extends ConnectionTool {
             CallableStatement cs = conn.prepareCall("{call prcInsertProduct(?,?,?,?)}");
             cs.setString(1, product.getProductName() );
             cs.setString(2,product.getProductDetail());
-            cs.setString(3,product.getCategoryId());
-            cs.setString(4, product.getVendorID());
+            cs.setString(3, product.getVendorID());
+            cs.setString(4,product.getCategoryId());
             cs.executeUpdate();
             closeConnection();
     }
@@ -51,8 +51,8 @@ public class ProductDAO extends ConnectionTool {
         cs.setString(1, product.getProductID());
         cs.setString(2, product.getProductName());
         cs.setString(3, product.getProductDetail());
-        cs.setString(4, product.getCategoryId());
-        cs.setString(5, product.getVendorID());
+        cs.setString(4, product.getVendorID());
+        cs.setString(5, product.getCategoryId());
         cs.executeUpdate();
         closeConnection();
     }
@@ -80,4 +80,30 @@ public class ProductDAO extends ConnectionTool {
             return null;
         }
      }
+         public Category getCategoryID (String categoryName) throws ClassNotFoundException,SQLException
+     {
+         initConnection();
+         Statement stt = conn.createStatement();
+         ResultSet rs = stt.executeQuery("Select * from Category where vCatName="+"'"+categoryName+"'");
+         Category category = new Category();
+         while(rs.next())
+         {
+              category.setCategoryID(rs.getString("cCatID"));
+         }
+         closeConnection();
+         return category;
+                 
+     }
+         public Vendor getVendorID(String vendorName) throws ClassNotFoundException,Exception{
+            initConnection();
+            Statement stt = conn.createStatement();
+            ResultSet rs = stt.executeQuery("Select * from Vendor where  vVenName="+"'"+vendorName+"'");
+            Vendor vendor = new Vendor();
+            while(rs.next()){
+                vendor.setVendorID(rs.getString("cVenID"));
+            }
+            closeConnection();
+            return vendor;
+             
+         }
 }

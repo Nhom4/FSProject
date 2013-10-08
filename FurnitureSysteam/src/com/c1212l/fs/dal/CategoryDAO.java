@@ -57,7 +57,7 @@ public class CategoryDAO extends ConnectionTool{
         try {
             initConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Category where cCatID = " + categoryID);
+            ResultSet rs = stmt.executeQuery("select * from Category where cCatID = " + "'"+categoryID+"'");
             Category category = null;
             if (rs.next()) {
                 category = new Category();
