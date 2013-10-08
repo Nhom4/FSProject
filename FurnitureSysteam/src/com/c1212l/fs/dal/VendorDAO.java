@@ -4,6 +4,7 @@
  */
 package com.c1212l.fs.dal;
 
+import com.c1212l.fs.bean.Category;
 import com.c1212l.fs.bean.Customer;
 import com.c1212l.fs.bean.Vendor;
 import java.sql.CallableStatement;
@@ -45,5 +46,22 @@ public class VendorDAO extends ConnectionTool {
        cs.setString(5, vendor.getVendorEmail());
        cs.executeUpdate();
        closeConnection();
+    }
+       public Vendor getVendorById(String vendorID) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from Vendor where cVenID = " + vendorID);
+            Vendor vendor = null;
+            if (rs.next()) {
+                vendor = new Vendor();
+                vendor.setVendorID(rs.getString("cVenID"));
+                vendor.setVendorName(rs.getString("vVenName"));
+            }
+            closeConnection();
+            return vendor;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 }

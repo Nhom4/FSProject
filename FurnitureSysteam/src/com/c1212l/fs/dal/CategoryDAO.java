@@ -40,7 +40,7 @@ public class CategoryDAO extends ConnectionTool{
     }
        public void updateCategory(Category category) throws ClassNotFoundException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call prcUpdatePermission(?,?)}");
+        CallableStatement cs = conn.prepareCall("{call prcUpdateCategory(?,?)}");
         cs.setString(1, category.getCategoryID());
         cs.setString(2, category.getCategoryName());
         cs.executeUpdate();
@@ -52,5 +52,22 @@ public class CategoryDAO extends ConnectionTool{
             cs.setString(1,category.getCategoryID());
             cs.executeUpdate();
         closeConnection();
+    }
+    public Category getCategoryById(String categoryID) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from Category where cCatID = " + categoryID);
+            Category category = null;
+            if (rs.next()) {
+                category = new Category();
+                category.setCategoryID(rs.getString("cCatID"));
+                category.setCategoryName(rs.getString("vCatName"));
+            }
+            closeConnection();
+            return category;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 }
