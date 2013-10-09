@@ -5,6 +5,7 @@
 package com.c1212l.fs.dal;
 
 import com.c1212l.fs.bean.Customer;
+import com.c1212l.fs.bean.Employee;
 import com.c1212l.fs.bean.Permission;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -53,4 +54,21 @@ public class PermissionDAO extends ConnectionTool {
             cs.executeUpdate();
         closeConnection();
     }
+     public Permission getPermissionById(String permissionID) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from Permission where cPerID = " + "'"+ permissionID+"'");
+            Permission permission = null;
+            if (rs.next()) {
+                permission = new Permission();
+                permission.setPermissionID(rs.getString("cPerID"));
+                permission.setPermissionName(rs.getString("vPerName"));
+            }
+            closeConnection();
+            return permission;
+        } catch (Exception ex) {
+            return null;
+        }
+     } 
 }

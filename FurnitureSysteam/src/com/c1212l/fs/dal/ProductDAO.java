@@ -8,6 +8,7 @@ import com.c1212l.fs.bean.Category;
 import com.c1212l.fs.bean.Product;
 import com.c1212l.fs.bean.Vendor;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,12 +38,22 @@ public class ProductDAO extends ConnectionTool {
     }
      public void addProduct(Product product) throws ClassNotFoundException, Exception {
             initConnection();
-            CallableStatement cs = conn.prepareCall("{call prcInsertProduct(?,?,?,?)}");
-            cs.setString(1, product.getProductName() );
-            cs.setString(2,product.getProductDetail());
-            cs.setString(3, product.getVendorID());
-            cs.setString(4,product.getCategoryId());
-            cs.executeUpdate();
+            String error = "";
+            PreparedStatement pstmt = conn.prepareStatement("select * from Product where vProName = ?");
+            pstmt.setString(1, product.getProductName());
+            if (pstmt.executeQuery().next()) {
+                error += "Error: Duplicate product name\n";
+            }
+            if (error.equals("")) {
+                CallableStatement cs = conn.prepareCall("{call prcInsertProduct(?,?,?,?)}");
+                cs.setString(1, product.getProductName() );
+                cs.setString(2,product.getProductDetail());
+                cs.setString(3, product.getVendorID());
+                cs.setString(4,product.getCategoryId());
+                cs.executeUpdate();
+            } else {
+                throw new Exception(error);
+            }
             closeConnection();
     }
      public void updateProduct(Product product) throws ClassNotFoundException, Exception {
@@ -58,9 +69,29 @@ public class ProductDAO extends ConnectionTool {
     }
      public void deleteProduct(Product product) throws ClassNotFoundException, Exception {
         initConnection();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from PurDetails where  cProID = ?");
+        pstmt.setString(1, product.getProductID());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: This product made at least one PurDetails\n";
+        }
+        pstmt = conn.prepareStatement("select * from OrdDetails where  cProID = ?");
+        pstmt.setString(1, product.getProductID());
+         if (pstmt.executeQuery().next()) {
+             error+="Error: This product made at least one OrdDetails";
+         }
+        pstmt = conn.prepareStatement("select * from Stock where  cProID = ?");
+        pstmt.setString(1, product.getProductID());
+        if (pstmt.executeQuery().next()) {
+             error+="Error: This product made at least one Stock";
+        }
+        if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcDeleteProduct(?)}");
             cs.setString(1,product.getProductID());
             cs.executeUpdate();
+        } else {
+            throw new Exception(error);
+        }
         closeConnection();
     }
      public Product getProductById(String productID) {

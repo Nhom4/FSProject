@@ -4,6 +4,8 @@
  */
 package com.c1212l.fs.bean;
 
+import com.c1212l.fs.dal.CategoryDAO;
+import com.c1212l.fs.dal.PermissionDAO;
 import java.util.Vector;
 
 /**
@@ -78,7 +80,8 @@ public class Employee {
      public Vector getVector() {
         Vector result = new Vector();
         result.add(empID);
-        result.add(perID);
+        Permission permission = new PermissionDAO().getPermissionById(perID);
+        result.add(permission.getPermissionName()); 
         result.add(empName);
         result.add(empAddress);
         result.add(empPhone);
