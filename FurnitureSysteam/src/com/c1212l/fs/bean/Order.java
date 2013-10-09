@@ -4,6 +4,7 @@
  */
 package com.c1212l.fs.bean;
 
+import java.sql.Date;
 import java.util.Vector;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Vector;
 public class Order {
     private String ordID;
     private String cusID;
-    private String ordDate;
+    private Date ordDate;
     private int ordTotalPrice;
     private int VAT;
     private String Status;
@@ -35,11 +36,11 @@ public class Order {
         this.cusID = cusID;
     }
 
-    public String getOrdDate() {
+    public Date getOrdDate() {
         return ordDate;
     }
 
-    public void setOrdDate(String ordDate) {
+    public void setOrdDate(Date ordDate) {
         this.ordDate = ordDate;
     }
 
