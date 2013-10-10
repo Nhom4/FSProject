@@ -10,13 +10,19 @@ package com.c1212l.fs.bean;
  */
 public class PurchaseDetail {
     private String purID;
+    private String proID;
     private int purQuantity;
     private int purPrice;
 
-    public PurchaseDetail(String purID, int purQuantity, int purPrice) {
+    public PurchaseDetail(String purID,String proID, int purQuantity, int purPrice) {
         this.purID = purID;
+        this.proID = proID;
         this.purQuantity = purQuantity;
         this.purPrice = purPrice;
+    }
+
+    public PurchaseDetail() {
+ 
     }
 
     public String getPurID() {
@@ -41,6 +47,14 @@ public class PurchaseDetail {
 
     public void setPurPrice(int purPrice) {
         this.purPrice = purPrice;
+    }
+
+    public String getProID() {
+        return proID;
+    }
+
+    public void setProID(String proID) {
+        this.proID = proID;
     }
     
     

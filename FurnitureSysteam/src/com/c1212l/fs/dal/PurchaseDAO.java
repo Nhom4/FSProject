@@ -31,7 +31,7 @@ public class PurchaseDAO extends ConnectionTool {
         while (rs.next()) {
             Purchase purchase = new Purchase();
             purchase.setPurID(rs.getString("cPurID"));
-            purchase.setPurDate(rs.getString("cPerDate"));
+            purchase.setPurDate(rs.getDate("cPerDate"));
             purchase.setPurTotalPrice(rs.getInt("vPurTotalPrice"));
             purchase.setVAT(rs.getInt("cVAT"));
             purchase.setStatus(rs.getString("cStatus"));
@@ -57,7 +57,7 @@ public class PurchaseDAO extends ConnectionTool {
             if (error.equals("")) {
                 CallableStatement cs = conn.prepareCall("{call prcInsertPurchase(?,?,?,?,?,?)}");
                 cs.setString(1,purchase.getPurID());
-                cs.setString(2,purchase.getPurDate());
+                cs.setDate(2,purchase.getPurDate());
                 cs.setInt(3,purchase.getPurTotalPrice());
                 cs.setInt(4,purchase.getVAT());
                 cs.setString(5,purchase.getStatus());
@@ -72,7 +72,7 @@ public class PurchaseDAO extends ConnectionTool {
         initConnection();
         CallableStatement cs = conn.prepareCall("{call prcUpdatePurchase(?,?,?,?,?)}");
                 cs.setString(1,purchase.getPurID());
-                cs.setString(2,purchase.getPurDate());
+                cs.setDate(2,purchase.getPurDate());
                 cs.setInt(3,purchase.getPurTotalPrice());
                 cs.setInt(4,purchase.getVAT());
                 cs.setString(5,purchase.getStatus());
@@ -111,7 +111,7 @@ public class PurchaseDAO extends ConnectionTool {
             if (rs.next()) {
                 purchase = new Purchase();
                 purchase.setPurID(rs.getString("cPurID"));
-                purchase.setPurDate(rs.getString("cPurDate"));
+                purchase.setPurDate(rs.getDate("cPurDate"));
             }
             closeConnection();
             return purchase;

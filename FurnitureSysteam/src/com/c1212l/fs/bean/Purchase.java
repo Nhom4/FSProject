@@ -4,19 +4,21 @@
  */
 package com.c1212l.fs.bean;
 
+import java.sql.Date;
+
 /**
  *
  * @author Win 8 64Bit VS7
  */
 public class Purchase {
     private String purID;
-    private String purDate;
+    private Date purDate;
     private int purTotalPrice;
     private int VAT;
     private String Status;
     private String empID;
 
-    public Purchase(String purID, String purDate, int purTotalPrice, int VAT, String Status, String empID) {
+    public Purchase(String purID, Date purDate, int purTotalPrice, int VAT, String Status, String empID) {
         this.purID = purID;
         this.purDate = purDate;
         this.purTotalPrice = purTotalPrice;
@@ -34,7 +36,7 @@ public class Purchase {
         return purID;
     }
 
-    public String getPurDate() {
+    public Date getPurDate() {
         return purDate;
     }
 
@@ -58,7 +60,7 @@ public class Purchase {
         this.purID = purID;
     }
 
-    public void setPurDate(String purDate) {
+    public void setPurDate(Date purDate) {
         this.purDate = purDate;
     }
 
