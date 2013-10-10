@@ -48,6 +48,11 @@ public class Login extends javax.swing.JFrame {
         lblPassword.setText("Password :");
 
         btnOK.setText("Login");
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
 
@@ -109,6 +114,10 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOKActionPerformed
 
     /**
      * @param args the command line arguments
