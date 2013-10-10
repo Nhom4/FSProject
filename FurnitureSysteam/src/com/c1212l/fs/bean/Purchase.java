@@ -26,6 +26,10 @@ public class Purchase {
         
     }
 
+    public Purchase() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getPurID() {
         return purID;
     }
