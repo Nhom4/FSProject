@@ -32,4 +32,11 @@ public class VendorBUS {
         vendor.setVendorEmail(vendorEmail);
         vendorDAO.addVendor(vendor);
     }
+      public ArrayList<Vendor> searchVendorName(String vendorName) throws ClassNotFoundException, SQLException {
+        return vendorDAO.searchVendorName(vendorName);
+    }
+      public ArrayList<Vendor> searchVendorID(String vendorID) throws ClassNotFoundException, SQLException {
+        return vendorDAO.searchVendorID(vendorID);
+    }
+
 }

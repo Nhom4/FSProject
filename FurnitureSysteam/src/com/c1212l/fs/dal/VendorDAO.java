@@ -47,7 +47,7 @@ public class VendorDAO extends ConnectionTool {
        cs.executeUpdate();
        closeConnection();
     }
-       public Vendor getVendorById(String vendorID) {
+   public Vendor getVendorById(String vendorID) {
         try {
             initConnection();
             Statement stmt = conn.createStatement();
@@ -63,5 +63,41 @@ public class VendorDAO extends ConnectionTool {
         } catch (Exception ex) {
             return null;
         }
+    }
+    public ArrayList<Vendor> searchVendorName(String vendorName) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Vendor " + vendorName);
+        ArrayList<Vendor> result = new ArrayList<Vendor>();
+        while (rs.next()) {
+            Vendor vendor = new Vendor();
+            vendor.setVendorID(rs.getString("cVenID"));
+            vendor.setVendorName(rs.getString("vVenName"));
+            vendor.setVendorAddress(rs.getString("vVenAddress"));
+            vendor.setVendorPhone(rs.getString("cVenPhone"));
+            vendor.setVendorFax(rs.getString("cVenFax"));
+            vendor.setVendorEmail(rs.getString("cVenEmail"));
+            result.add(vendor);
+        }
+        closeConnection();
+        return result;
+    }  
+      public ArrayList<Vendor> searchVendorID(String vendorID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Vendor " + vendorID);
+        ArrayList<Vendor> result = new ArrayList<Vendor>();
+        while (rs.next()) {
+            Vendor vendor = new Vendor();
+            vendor.setVendorID(rs.getString("cVenID"));
+            vendor.setVendorName(rs.getString("vVenName"));
+            vendor.setVendorAddress(rs.getString("vVenAddress"));
+            vendor.setVendorPhone(rs.getString("cVenPhone"));
+            vendor.setVendorFax(rs.getString("cVenFax"));
+            vendor.setVendorEmail(rs.getString("cVenEmail"));
+            result.add(vendor);
+        }
+        closeConnection();
+        return result;
     }
 }

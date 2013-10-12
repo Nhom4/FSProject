@@ -58,7 +58,7 @@ public class VendorPanel extends javax.swing.JPanel {
         lblPosition = new javax.swing.JLabel();
         lblSearch = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
-        cbbSearch = new javax.swing.JComboBox();
+        cmbSearch = new javax.swing.JComboBox();
         btnSearch = new javax.swing.JButton();
         txtVendorEmail = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -134,10 +134,16 @@ public class VendorPanel extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
         jPanel1.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 49, 52, -1));
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 46, 201, -1));
 
-        cbbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
-        jPanel1.add(cbbSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 46, 68, -1));
+        cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
+        jPanel1.add(cmbSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 46, 68, -1));
 
         btnSearch.setText("Search");
         jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 45, -1, -1));
@@ -204,12 +210,30 @@ public class VendorPanel extends javax.swing.JPanel {
         txtVendorEmail.setText(tblVendor.getValueAt(row, 5).toString());
     }//GEN-LAST:event_tblVendorMouseClicked
 
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+            try {
+                 if (cmbSearch.getSelectedIndex()==0) {
+   
+                    loadSearchVendorID();
+                 }
+                 else if(cmbSearch.getSelectedIndex()==1)
+                 {
+                     loadSearchVendorName();
+                 }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cbbSearch;
+    private javax.swing.JComboBox cmbSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -233,7 +257,7 @@ public class VendorPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private VendorBUS vendorBUS = new VendorBUS();
     DefaultTableModel tblModel;
-    ArrayList<Customer> lstVendor;    
+    ArrayList<Vendor> lstVendor;    
 
     private void initTable() {
         Vector header = new Vector();
@@ -258,6 +282,7 @@ public class VendorPanel extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
+            initCmbSearch();
             fillData(vendorBUS.getAllVendor());
             initTextField();
         } catch (ClassNotFoundException ex) {
@@ -274,4 +299,36 @@ public class VendorPanel extends javax.swing.JPanel {
         txtVendorFax.setText("");
         txtVendorEmail.setText("");
     }
+    private void initCmbSearch() {
+        cmbSearch.removeAllItems();
+//        cmbSearch.addItem(new KeyValue(-1, ""));
+        cmbSearch.addItem(new KeyValue(0, "by ID"));
+        cmbSearch.addItem(new KeyValue(1, "by Name"));
+    }
+    private void loadSearchVendorName() throws ClassNotFoundException, SQLException {
+        String vendorName = "";
+        if (!txtSearch.getText().equals("")) {
+            if (!vendorName.contains("where")) {
+                vendorName += " where vVenName like '%" + txtSearch.getText() + "%'";
+            } else {
+                vendorName += " and vVenName like '%" + txtSearch.getText() + "%'";
+            }
+        }
+        initTable();
+        lstVendor = vendorBUS.searchVendorName(vendorName);
+        fillData(lstVendor);
+    }
+      private void loadSearchVendorID() throws ClassNotFoundException, SQLException {
+        String vendorID = "";
+        if (!txtSearch.getText().equals("")) {
+            if (!vendorID.contains("where")) {
+                vendorID += " where cVenID like '%" + txtSearch.getText() + "%'";
+            } else {
+                vendorID += " and cVenID like '%" + txtSearch.getText() + "%'";
+            }
+        }
+        initTable();
+        lstVendor = vendorBUS.searchVendorID(vendorID);
+        fillData(lstVendor);
+    }   
 }
