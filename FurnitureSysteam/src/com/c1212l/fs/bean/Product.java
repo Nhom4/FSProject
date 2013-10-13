@@ -18,6 +18,7 @@ public class Product {
     private String productDetail;
     private String categoryID;
     private String vendorID;
+    private int    inventory;
 
     public String getProductID() {
         return productID;
@@ -58,6 +59,23 @@ public class Product {
     public void setVendorID(String vendorID) {
         this.vendorID = vendorID;
     }
+
+    public String getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(String categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
+    
     public Vector getVector() {
         Vector result = new Vector();
         result.add(productID);
@@ -67,6 +85,7 @@ public class Product {
         result.add(category.getCategoryName()); 
         Vendor vendor = new VendorDAO().getVendorById(vendorID);
         result.add(vendor.getVendorName()); 
+        result.add(inventory);
         return result;
     }
 }

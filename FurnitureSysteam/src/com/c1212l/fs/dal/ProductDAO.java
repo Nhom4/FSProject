@@ -31,6 +31,7 @@ public class ProductDAO extends ConnectionTool {
             product.setProductDetail(rs.getString("vProDetails"));
             product.setVendorID(rs.getString("cVenID"));
             product.setCategoryId(rs.getString("cCatID"));
+            product.setInventory(rs.getInt("iInventory"));
             result.add(product);
         }
         closeConnection();

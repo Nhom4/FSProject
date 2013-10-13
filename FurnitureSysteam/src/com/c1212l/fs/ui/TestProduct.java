@@ -30,7 +30,6 @@ public class TestProduct extends javax.swing.JFrame {
      */
     public TestProduct() {
         initComponents();
-        reloadData();
     }
 
     /**
@@ -42,176 +41,29 @@ public class TestProduct extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtProductID = new javax.swing.JTextField();
-        txtProductName = new javax.swing.JTextField();
-        cmbCategory = new javax.swing.JComboBox();
-        cmbVendor = new javax.swing.JComboBox();
-        btnAdd = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtProductDetail = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblProduct = new javax.swing.JTable();
+        productPanel1 = new com.c1212l.fs.ui.ProductPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Product ID:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
-
-        jLabel2.setText("Product Name:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
-
-        jLabel3.setText("Product Detail:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, 20));
-
-        jLabel4.setText("Category:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
-
-        jLabel5.setText("Vendor:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
-        jPanel1.add(txtProductID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 110, -1));
-
-        txtProductName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 110, -1));
-
-        cmbCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCategoryActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cmbCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 110, -1));
-
-        cmbVendor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbVendor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbVendorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cmbVendor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 110, -1));
-
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
-        btnUpdate.setText("Update");
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
-
-        btnDelete.setText("Delete");
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Product Manager");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, -1));
-
-        txtProductDetail.setColumns(20);
-        txtProductDetail.setRows(5);
-        jScrollPane1.setViewportView(txtProductDetail);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, 70));
-
-        tblProduct.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblProduct.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblProductMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblProduct);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 410, 200));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(productPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(productPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductNameActionPerformed
-
-    private void cmbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbCategoryActionPerformed
-
-    private void cmbVendorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVendorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbVendorActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        try {
-            // TODO add your handling code here:
-            Category category = productBUS.getCategoryID(cmbCategory.getSelectedItem().toString());
-            Vendor   vendor = productBUS.getVendorID(cmbVendor.getSelectedItem().toString());
-            System.out.println(cmbVendor.getSelectedItem());
-            String productName = txtProductName.getText();
-            String productDetail = txtProductDetail.getText();
-            String categoryID = category.getCategoryID();
-            String vendorID = vendor.getVendorID();
-            productBUS.addProduct(productName, productDetail, categoryID, vendorID);
-            reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductMouseClicked
-        // TODO add your handling code here:
-        int selectedRow = tblProduct.getSelectedRow();
-        txtProductID.setText(tblProduct.getValueAt(selectedRow, 0).toString());
-        txtProductName.setText(tblProduct.getValueAt(selectedRow, 1).toString());
-        txtProductDetail.setText(tblProduct.getValueAt(selectedRow, 2).toString());
-        cmbCategory.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 3).toString()));
-        cmbVendor.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 4).toString()));
-    }//GEN-LAST:event_tblProductMouseClicked
 
     /**
      * @param args the command line arguments
@@ -248,91 +100,8 @@ public class TestProduct extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cmbCategory;
-    private javax.swing.JComboBox cmbVendor;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblProduct;
-    private javax.swing.JTextArea txtProductDetail;
-    private javax.swing.JTextField txtProductID;
-    private javax.swing.JTextField txtProductName;
+    private com.c1212l.fs.ui.ProductPanel productPanel1;
     // End of variables declaration//GEN-END:variables
-   private ProductBUS productBUS = new ProductBUS();
-    DefaultTableModel tblModel;
-    ArrayList<Customer> lstProduct;    
 
-    private void initTable() {
-        Vector header = new Vector();
-        header.add("Product ID ");
-        header.add("Product Name");
-        header.add("Product Detail");
-        header.add("Category ");
-        header.add("Vendor ");
-        tblModel = new DefaultTableModel(header, 0);
-        tblProduct.setModel(tblModel);
-    }
 
-    private void fillData(ArrayList<Product> lst) {
-        if (lst != null) {
-            for (Product product : lst) {
-                tblModel.addRow(product.getVector());
-            }
-        }
-    }
-
-    private void reloadData() {
-        try {
-            initTable();
-            initCmbCategory();
-            initCmbVendor();
-            fillData(productBUS.getAllProduct());
-            initTextField();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-     private void initTextField() {
-        txtProductID.setText("");
-        txtProductName.setText("");
-        txtProductDetail.setText("");
-    }
-     private void initCmbCategory() {
-        try {
-            cmbCategory.removeAllItems();
-            cmbCategory.addItem(new KeyValue(-1, ""));
-            CategoryBUS categoryBUS = new CategoryBUS();
-            ArrayList<Category> arrCategory = categoryBUS.getAllCategory();
-            for (int i=0;i<arrCategory.size();i++) {
-                Category category = arrCategory.get(i);
-                cmbCategory.addItem(new KeyValue(i, category.getCategoryName()));
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void initCmbVendor() throws ClassNotFoundException, SQLException {
-        cmbVendor.removeAllItems();
-        cmbVendor.addItem(new KeyValue(-1, ""));
-        VendorBUS vendorBUS = new VendorBUS();
-        ArrayList<Vendor> arrVendor = vendorBUS.getAllVendor();
-        for (int i =0;i<arrVendor.size();i++) {
-            Vendor vendor = arrVendor.get(i);
-            cmbVendor.addItem(new KeyValue(i,vendor.getVendorName()));
-        }
-    }
 }

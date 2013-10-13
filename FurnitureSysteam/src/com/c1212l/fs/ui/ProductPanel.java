@@ -230,6 +230,7 @@ public class ProductPanel extends javax.swing.JPanel {
         header.add("Product Detail");
         header.add("Category ");
         header.add("Vendor ");
+        header.add("Inventory");
         tblModel = new DefaultTableModel(header, 0);
         tblProduct.setModel(tblModel);
     }
