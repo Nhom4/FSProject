@@ -54,4 +54,12 @@ public class EmployeeBUS {
      public Permission getPermissionID(String permissionID) throws ClassNotFoundException,Exception{
             return employeeDAO.getPermissionID(permissionID);   
      } 
+     
+    public ArrayList<Employee> searchEmployeeName(String empName) throws ClassNotFoundException, SQLException {
+        return employeeDAO.searchEmployeeName(empName);
+    }
+    
+    public ArrayList<Employee> searchEmployeeID(String empID) throws ClassNotFoundException, SQLException {
+        return employeeDAO.searchEmployeeID(empID);
+    }
 }

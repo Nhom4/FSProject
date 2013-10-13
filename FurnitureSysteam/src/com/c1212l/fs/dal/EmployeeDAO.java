@@ -133,5 +133,45 @@ public class EmployeeDAO extends ConnectionTool {
          return permission;
                  
      }
+    
+     public ArrayList<Employee> searchEmployeeID(String empID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Employee " + empID);
+        ArrayList<Employee> result = new ArrayList<Employee>();
+        while (rs.next()) {
+            Employee employee = new Employee();
+            employee.setEmpID(rs.getString("cEmpID"));
+            employee.setPerID(rs.getString("cPerID"));
+            employee.setEmpName(rs.getString("vEmpName"));
+            employee.setEmpAddress(rs.getString("vEmpAddress"));
+            employee.setEmpPhone(rs.getString("cEmpPhone"));
+            employee.setEmpEmail(rs.getString("cEmpEmail"));
+            employee.setEmpPassword(rs.getString("cEmpPassword"));
+            result.add(employee);
+        }
+        closeConnection();
+        return result;
+    }
+     
+     public ArrayList<Employee> searchEmployeeName(String empName) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Employee " + empName);
+        ArrayList<Employee> result = new ArrayList<Employee>();
+        while (rs.next()) {
+            Employee employee = new Employee();
+            employee.setEmpID(rs.getString("cEmpID"));
+            employee.setPerID(rs.getString("cPerID"));
+            employee.setEmpName(rs.getString("vEmpName"));
+            employee.setEmpAddress(rs.getString("vEmpAddress"));
+            employee.setEmpPhone(rs.getString("cEmpPhone"));
+            employee.setEmpEmail(rs.getString("cEmpEmail"));
+            employee.setEmpPassword(rs.getString("cEmpPassword"));
+            result.add(employee);
+        }
+        closeConnection();
+        return result;
+    }
 
 }

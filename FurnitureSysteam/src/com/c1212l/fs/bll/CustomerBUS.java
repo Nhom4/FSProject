@@ -46,4 +46,10 @@ public class CustomerBUS {
         customer.setCustomerID(customerID);
         customerDAO.deleteCustomer(customer);
     }
+      
+   
+    
+    public ArrayList<Customer> searchCustomerID(String customerID) throws ClassNotFoundException, SQLException {
+        return customerDAO.searchCustomerID(customerID);
+    }
 }

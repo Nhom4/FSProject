@@ -65,4 +65,42 @@ public class CustomerDAO extends ConnectionTool{
             cs.executeUpdate();
         closeConnection();
     }
+     
+     public ArrayList<Customer> searchCustomerID(String customerID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Customer " + customerID);
+        ArrayList<Customer> result = new ArrayList<Customer>();
+        while (rs.next()) {
+            Customer customer = new Customer();
+            customer.setCustomerID(rs.getString("cCusID"));
+            customer.setCustomerName(rs.getString("vCusName"));
+            customer.setGender(rs.getString("cCusSex"));
+            customer.setAddress(rs.getString("vCusAddress"));
+            customer.setPhone(rs.getString("cCusPhone"));
+            customer.setEmail(rs.getString("cCusEmail"));
+            result.add(customer);
+        }
+        closeConnection();
+        return result;
+    }
+     
+     public ArrayList<Customer> searchCustomerName(String customerName) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Customer " + customerName);
+        ArrayList<Customer> result = new ArrayList<Customer>();
+        while (rs.next()) {
+            Customer customer = new Customer();
+            customer.setCustomerID(rs.getString("cCusID"));
+            customer.setCustomerName(rs.getString("vCusName"));
+            customer.setGender(rs.getString("cCusSex"));
+            customer.setAddress(rs.getString("vCusAddress"));
+            customer.setPhone(rs.getString("cCusPhone"));
+            customer.setEmail(rs.getString("cCusEmail"));
+            result.add(customer);
+        }
+        closeConnection();
+        return result;
+    }
 }
