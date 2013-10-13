@@ -14,7 +14,6 @@ import java.util.Vector;
  */
 public class Employee {
     private String empID;
-    private String perID;
     private String empName;
     private String empAddress;
     private String empPhone;
@@ -28,15 +27,6 @@ public class Employee {
     public void setEmpID(String empID) {
         this.empID = empID;
     }
-
-    public String getPerID() {
-        return perID;
-    }
-
-    public void setPerID(String perID) {
-        this.perID = perID;
-    }
-
     public String getEmpName() {
         return empName;
     }
@@ -79,9 +69,7 @@ public class Employee {
     
      public Vector getVector() {
         Vector result = new Vector();
-        result.add(empID);
-        Permission permission = new PermissionDAO().getPermissionById(perID);
-        result.add(permission.getPermissionName()); 
+        result.add(empID); 
         result.add(empName);
         result.add(empAddress);
         result.add(empPhone);

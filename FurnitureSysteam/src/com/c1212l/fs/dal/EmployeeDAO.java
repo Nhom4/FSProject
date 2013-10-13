@@ -29,7 +29,6 @@ public class EmployeeDAO extends ConnectionTool {
         while (rs.next()) {
             Employee employee = new Employee();
             employee.setEmpID(rs.getString("cEmpID"));
-            employee.setPerID(rs.getString("cPerID"));
             employee.setEmpName(rs.getString("vEmpName"));
             employee.setEmpAddress(rs.getString("vEmpAddress"));
             employee.setEmpPhone(rs.getString("cEmpPhone"));
@@ -54,13 +53,12 @@ public class EmployeeDAO extends ConnectionTool {
                 error += "Error: Duplicate employee email\n";
             }
             if (error.equals("")) {
-                CallableStatement cs = conn.prepareCall("{call prcInsertEmployee(?,?,?,?,?,?)}");
-                cs.setString(1, employee.getPerID());
-                cs.setString(2,employee.getEmpName());
-                cs.setString(3,employee.getEmpAddress());
-                cs.setString(4,employee.getEmpPhone());
-                cs.setString(5,employee.getEmpEmail());
-                cs.setString(6,employee.getEmpPassword());
+                CallableStatement cs = conn.prepareCall("{call prcInsertEmployee(?,?,?,?,?)}");
+                cs.setString(1,employee.getEmpName());
+                cs.setString(2,employee.getEmpAddress());
+                cs.setString(3,employee.getEmpPhone());
+                cs.setString(4,employee.getEmpEmail());
+                cs.setString(5,employee.getEmpPassword());
                 cs.executeUpdate();
             } else {
                 throw new Exception(error);
@@ -69,14 +67,13 @@ public class EmployeeDAO extends ConnectionTool {
     }
      public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call prcUpdateEmployee(?,?,?,?,?)}");
+        CallableStatement cs = conn.prepareCall("{call prcUpdateEmployee(?,?,?,?,?,?)}");
         cs.setString(1,employee.getEmpID());
-        cs.setString(2, employee.getPerID());
-        cs.setString(3,employee.getEmpName());
-        cs.setString(4,employee.getEmpAddress());
-        cs.setString(5,employee.getEmpPhone());
-        cs.setString(6,employee.getEmpEmail());
-        cs.setString(7,employee.getEmpPassword());
+        cs.setString(2,employee.getEmpName());
+        cs.setString(3,employee.getEmpAddress());
+        cs.setString(4,employee.getEmpPhone());
+        cs.setString(5,employee.getEmpEmail());
+        cs.setString(6,employee.getEmpPassword());
         cs.executeUpdate();
         closeConnection();
     }
@@ -119,20 +116,7 @@ public class EmployeeDAO extends ConnectionTool {
             return null;
         }
      }
-    public Permission getPermissionID (String permissionName) throws ClassNotFoundException,SQLException
-     {
-         initConnection();
-         Statement stt = conn.createStatement();
-         ResultSet rs = stt.executeQuery("Select * from Permission where vPerName="+"'"+permissionName+"'");
-         Permission permission = new Permission();
-         while(rs.next())
-         {
-              permission.setPermissionID(rs.getString("cPerID"));
-         }
-         closeConnection();
-         return permission;
-                 
-     }
+ 
     
      public ArrayList<Employee> searchEmployeeID(String empID) throws ClassNotFoundException, SQLException {
         initConnection();
@@ -142,7 +126,6 @@ public class EmployeeDAO extends ConnectionTool {
         while (rs.next()) {
             Employee employee = new Employee();
             employee.setEmpID(rs.getString("cEmpID"));
-            employee.setPerID(rs.getString("cPerID"));
             employee.setEmpName(rs.getString("vEmpName"));
             employee.setEmpAddress(rs.getString("vEmpAddress"));
             employee.setEmpPhone(rs.getString("cEmpPhone"));
@@ -162,7 +145,6 @@ public class EmployeeDAO extends ConnectionTool {
         while (rs.next()) {
             Employee employee = new Employee();
             employee.setEmpID(rs.getString("cEmpID"));
-            employee.setPerID(rs.getString("cPerID"));
             employee.setEmpName(rs.getString("vEmpName"));
             employee.setEmpAddress(rs.getString("vEmpAddress"));
             employee.setEmpPhone(rs.getString("cEmpPhone"));

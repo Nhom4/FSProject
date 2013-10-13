@@ -175,9 +175,9 @@ public class CategoryPanel extends javax.swing.JPanel {
             categoryBUS.addCategory(categoryName);
             reloadData();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PermissionPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(PermissionPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

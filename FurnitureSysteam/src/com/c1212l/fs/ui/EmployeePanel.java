@@ -55,12 +55,10 @@ public class EmployeePanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txtEmployeeId = new javax.swing.JTextField();
         txtEmployeeName = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
         txtPhoneNumber = new javax.swing.JTextField();
-        cmbPermission = new javax.swing.JComboBox();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -105,16 +103,10 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         jLabel7.setText("Password:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
-
-        jLabel8.setText("Permission");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, 20));
         add(txtEmployeeId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 130, -1));
         add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 130, -1));
         add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 130, -1));
         add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 130, -1));
-
-        cmbPermission.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(cmbPermission, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 130, -1));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +114,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -130,10 +122,15 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, 20));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, 20));
 
         btnDelete.setText("Delete");
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
         tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,7 +150,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblEmployee);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 460, 220));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 460, 220));
         add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 130, -1));
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -162,14 +159,12 @@ public class EmployeePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
            try {
             // TODO add your handling code here:
-            Permission permission = employeeBUS.getPermissionID(cmbPermission.getSelectedItem().toString());
             String employeeName = txtEmployeeName.getText();
             String address = txtAddress.getText();
             String phoneNumber = txtPhoneNumber.getText();
             String email = txtEmail.getText();
             String password = new String(txtPassword.getPassword());
-            String permissionID = permission.getPermissionID();
-            employeeBUS.addEmployee(permissionID, employeeName, employeeName, employeeName, employeeName, password);
+            employeeBUS.addEmployee(employeeName, address, phoneNumber, email, password);
             reloadData();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -181,6 +176,21 @@ public class EmployeePanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+             try {
+            // TODO add your handling code here:
+            String employeeID = txtEmployeeId.getText();
+            String employeeName = txtEmployeeName.getText();
+            String address = txtAddress.getText();
+            String phoneNumber = txtPhoneNumber.getText();
+            String email = txtEmail.getText();
+            String password = new String(txtPassword.getPassword());
+            employeeBUS.updateEmployee(employeeID, employeeName, address, phoneNumber, email, password);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -188,19 +198,31 @@ public class EmployeePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = tblEmployee.getSelectedRow();
         txtEmployeeId.setText(tblEmployee.getValueAt(selectedRow, 0).toString());
-        cmbPermission.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 1).toString()));
-        txtEmployeeName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
-        txtAddress.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
-        txtPhoneNumber.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
-        txtEmail.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
-        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 6).toString());
+        txtEmployeeName.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
+        txtAddress.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
+        txtPhoneNumber.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
+        txtEmail.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
+        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
     }//GEN-LAST:event_tblEmployeeMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+             try {
+            // TODO add your handling code here:
+            String employeeID = txtEmployeeId.getText();
+            employeeBUS.deleteEmployee(employeeID);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cmbPermission;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -208,7 +230,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -227,7 +248,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private void initTable() {
         Vector header = new Vector();
         header.add("Employee ID ");
-        header.add("Permission");
         header.add("Employee Name");
         header.add("Address ");
         header.add("Phone Number ");
@@ -248,7 +268,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
-            initCmbPermission();
             fillData(employeeBUS.getAllEmployee());
             initTextField();
         } catch (ClassNotFoundException ex) {
@@ -264,21 +283,5 @@ public class EmployeePanel extends javax.swing.JPanel {
         txtPhoneNumber.setText("");
         txtEmail.setText("");
         txtPassword.setText("");
-    }
-     private void initCmbPermission() {
-        try {
-            cmbPermission.removeAllItems();
-            cmbPermission.addItem(new KeyValue(-1, ""));
-            PermissionBUS permissionBUS = new PermissionBUS();
-            ArrayList<Permission> arrPermission = permissionBUS.getAllPermission();
-            for (int i=0;i<arrPermission.size();i++) {
-                Permission permission = arrPermission.get(i);
-                cmbPermission.addItem(new KeyValue(i, permission.getPermissionName()));
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

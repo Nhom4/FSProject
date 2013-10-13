@@ -5,8 +5,6 @@
 
 use master
 go
-drop database FS
-go
 create database FS
 go
 use FS

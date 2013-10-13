@@ -25,9 +25,8 @@ public class EmployeeBUS {
        public ArrayList<Employee> getAllEmployee() throws ClassNotFoundException, SQLException{
         return employeeDAO.getAllEmployee();
        }
-       public void addEmployee(String permissionID,String employeeName,String employeAddress,String employeePhone,String employeeEmail,String password) throws ClassNotFoundException, Exception{
+       public void addEmployee(String employeeName,String employeAddress,String employeePhone,String employeeEmail,String password) throws ClassNotFoundException, Exception{
         Employee employee=new Employee();
-        employee.setPerID(permissionID);
         employee.setEmpName(employeeName);
         employee.setEmpAddress(employeAddress);
         employee.setEmpPhone(employeePhone);
@@ -35,10 +34,9 @@ public class EmployeeBUS {
         employee.setEmpPassword(password);
         employeeDAO.addEmployee(employee);
     }
-      public void updateEmployee(String employeeID,String permissionID,String employeeName,String employeAddress,String employeePhone,String employeeEmail,String password) throws ClassNotFoundException, Exception{
+      public void updateEmployee(String employeeID,String employeeName,String employeAddress,String employeePhone,String employeeEmail,String password) throws ClassNotFoundException, Exception{
         Employee employee=new Employee();
         employee.setEmpID(employeeID);
-        employee.setPerID(permissionID);
         employee.setEmpName(employeeName);
         employee.setEmpAddress(employeAddress);
         employee.setEmpPhone(employeePhone);
@@ -49,12 +47,8 @@ public class EmployeeBUS {
       public void deleteEmployee(String employeeID) throws ClassNotFoundException, Exception{
         Employee employee = new Employee();
         employee.setEmpID(employeeID);
-        employeeDAO.addEmployee(employee);
+        employeeDAO.deleteEmployee(employee);
     } 
-     public Permission getPermissionID(String permissionID) throws ClassNotFoundException,Exception{
-            return employeeDAO.getPermissionID(permissionID);   
-     } 
-     
     public ArrayList<Employee> searchEmployeeName(String empName) throws ClassNotFoundException, SQLException {
         return employeeDAO.searchEmployeeName(empName);
     }
