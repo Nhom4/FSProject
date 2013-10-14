@@ -4,6 +4,8 @@
  */
 package com.c1212l.fs.bean;
 
+import java.util.Vector;
+
 /**
  *
  * @author KimDong
@@ -57,5 +59,12 @@ public class PurchaseDetail {
         this.proID = proID;
     }
     
-    
+    public Vector getVector() {
+        Vector result = new Vector();
+        result.add(purID);
+        result.add(proID);
+        result.add(purQuantity);
+        result.add(purPrice);
+        return result;
+    }
 }

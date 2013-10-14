@@ -133,6 +133,25 @@ public class PurchaseDAO extends ConnectionTool {
          return permission;
                  
      }
+    
+    public ArrayList<Purchase> searchPurchaseID(String purchaseID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Purchase " + purchaseID);
+        ArrayList<Purchase> result = new ArrayList<Purchase>();
+        while (rs.next()) {
+            Purchase purchase = new Purchase();
+            purchase.setPurID(rs.getString("cPurID"));
+            purchase.setPurDate(rs.getDate("dPurDate"));
+            purchase.setPurTotalPrice(rs.getInt("iPurTotalPrice"));
+            purchase.setVAT(rs.getInt("iVAt"));
+            purchase.setStatus(rs.getString("cStatus"));
+            purchase.setEmpID(rs.getString("cEmpID"));
+            result.add(purchase);
+        }
+        closeConnection();
+        return result;
+    }
 }
 
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * @author KimDong
  */
 public class PurchaseBUS {
+
     PurchaseDAO purchaseDAO = null;
     public PurchaseBUS(){
         purchaseDAO = new PurchaseDAO();
@@ -33,7 +34,7 @@ public class PurchaseBUS {
         purchaseDAO.addPurchase(purchase);
     }
     
-    public void purPurchase(Date purDate,int purTotalPrice,int VAT,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void updatePurchase(Date purDate,int purTotalPrice,int VAT,String Status, String empID) throws ClassNotFoundException, Exception{
         Purchase purchase = new Purchase();
         purchase.setPurDate(purDate);
         purchase.setPurTotalPrice(purTotalPrice);
@@ -47,5 +48,9 @@ public class PurchaseBUS {
         Purchase purchase= new Purchase();
         purchase.setPurID(purID);
         purchaseDAO.deletePurchase(purchase);
+    }
+    
+    public ArrayList<Purchase> searchPurchaseID(String purchaseID) throws ClassNotFoundException, SQLException {
+        return purchaseDAO.searchPurchaseID(purchaseID);
     }
 }

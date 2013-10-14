@@ -5,6 +5,7 @@
 package com.c1212l.fs.bean;
 
 import java.sql.Date;
+import java.util.Vector;
 
 /**
  *
@@ -80,6 +81,15 @@ public class Purchase {
         this.empID = empID;
     }
     
-    
+    public Vector getVector() {
+        Vector result = new Vector();
+        result.add(purID);
+        result.add(purDate);
+        result.add(purTotalPrice);
+        result.add(VAT);
+        result.add(Status);
+        result.add(empID);
+        return result;
+    }
     
 }

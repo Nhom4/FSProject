@@ -24,50 +24,17 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="lblSearch" min="-2" pref="52" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtSearch" min="-2" pref="189" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbbSearch" min="-2" pref="79" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnSearch" min="-2" pref="65" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cmbSearch" min="-2" pref="79" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="0" pref="798" max="32767" attributes="0"/>
                           <Component id="jSeparator1" alignment="0" pref="798" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblPurchaseID" min="-2" pref="71" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="lblTypeProductID" max="32767" attributes="0"/>
-                                      <Component id="lblProductID" max="32767" attributes="0"/>
-                                      <Component id="lblQuantity" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblPurchaseID" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtPurchaseID" alignment="0" min="-2" pref="265" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTextField2" pref="265" max="32767" attributes="0"/>
-                                              <Component id="txtTypeProductID" max="32767" attributes="0"/>
-                                              <Component id="txtQuantity" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblDate" max="32767" attributes="0"/>
-                                          <Component id="lblTypeProduct" max="32767" attributes="0"/>
-                                          <Component id="lblProduct" max="32767" attributes="0"/>
-                                          <Component id="lblPrice" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtDate" max="32767" attributes="0"/>
-                                          <Component id="txtTypeProduct" max="32767" attributes="0"/>
-                                          <Component id="txtProduct" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtPrice" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnAdd" min="-2" pref="96" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
@@ -76,13 +43,56 @@
                                       <Component id="btnReport" min="-2" pref="96" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtPurchaseID" min="-2" pref="265" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblEmployeeID" max="32767" attributes="0"/>
+                                          <Component id="lblVAT" max="32767" attributes="0"/>
+                                          <Component id="lblDate" pref="71" max="32767" attributes="0"/>
+                                          <Component id="lblPrice" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtDate" max="32767" attributes="0"/>
+                                          <Component id="txtPrice" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtVAT" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtEmployeeID" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
-                      <Component id="lblPurchaseManager" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
+                              <Component id="lblPurchaseManager" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblStatus" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtStatus" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblProductID" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtProductID" min="-2" pref="265" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblQuantity" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtQuantity" min="-2" pref="265" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -98,8 +108,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbbSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="193" max="-2" attributes="0"/>
@@ -114,32 +123,32 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTypeProductID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTypeProduct" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTypeProduct" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblProductID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTypeProductID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblProduct" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtProduct" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtProductID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblVAT" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtVAT" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmployeeID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEmployeeID" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnReport" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -160,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtSearch">
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbbSearch">
+    <Component class="javax.swing.JComboBox" name="cmbSearch">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
@@ -169,11 +178,6 @@
             <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSearch">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -204,11 +208,6 @@
         <Property name="text" type="java.lang.String" value="Purchase ID :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblTypeProductID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Type Product ID :"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblProductID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Product ID :"/>
@@ -226,9 +225,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtPurchaseID">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtTypeProductID">
+    <Component class="javax.swing.JTextField" name="txtProductID">
     </Component>
     <Component class="javax.swing.JTextField" name="txtQuantity">
     </Component>
@@ -241,24 +238,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtDate">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblTypeProduct">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Type Product :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtTypeProduct">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblProduct">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Product :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtProduct">
-    </Component>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnUpdate">
       <Properties>
@@ -269,6 +255,27 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Report"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Status :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtStatus">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblVAT">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="VAT :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtVAT">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmployeeID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Employee ID :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEmployeeID">
     </Component>
   </SubComponents>
 </Form>
