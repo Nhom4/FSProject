@@ -22,7 +22,7 @@ public class CustomerBUS {
        public ArrayList<Customer> getAllCustomer() throws ClassNotFoundException, SQLException{
         return customerDAO.getAllCustomer();
        }
-       public void addVendor(String customerName,String gender,String address,String phone,String email) throws ClassNotFoundException, Exception{
+       public void addCustomer(String customerName,String gender,String address,String phone,String email) throws ClassNotFoundException, Exception{
         Customer customer=new Customer();
         customer.setCustomerName(customerName);
         customer.setGender(gender);

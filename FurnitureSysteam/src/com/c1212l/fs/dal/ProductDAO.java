@@ -30,7 +30,7 @@ public class ProductDAO extends ConnectionTool {
             product.setProductName(rs.getString("vProName"));
             product.setProductDetail(rs.getString("vProDetails"));
             product.setVendorID(rs.getString("cVenID"));
-            product.setCategoryId(rs.getString("cCatID"));
+            product.setCategoryID(rs.getString("cCatID"));
             product.setInventory(rs.getInt("iInventory"));
             result.add(product);
         }
@@ -50,7 +50,7 @@ public class ProductDAO extends ConnectionTool {
                 cs.setString(1, product.getProductName() );
                 cs.setString(2,product.getProductDetail());
                 cs.setString(3, product.getVendorID());
-                cs.setString(4,product.getCategoryId());
+                cs.setString(4,product.getCategoryID());
                 cs.executeUpdate();
             } else {
                 throw new Exception(error);
@@ -64,7 +64,7 @@ public class ProductDAO extends ConnectionTool {
         cs.setString(2, product.getProductName());
         cs.setString(3, product.getProductDetail());
         cs.setString(4, product.getVendorID());
-        cs.setString(5, product.getCategoryId());
+        cs.setString(5, product.getCategoryID());
         cs.executeUpdate();
         closeConnection();
     }
@@ -133,4 +133,42 @@ public class ProductDAO extends ConnectionTool {
             return vendor;
              
          }
+         
+     public ArrayList<Product> searchProductID(String productID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Producct " + productID);
+        ArrayList<Product> result = new ArrayList<Product>();
+        while (rs.next()) {
+            Product product = new Product();
+            product.setProductID(rs.getString("cProID"));
+            product.setProductName(rs.getString("vProName"));
+            product.setProductDetail(rs.getString("vProDetail"));
+            product.setVendorID(rs.getString("cVenID"));
+            product.setCategoryID(rs.getString("cCatID"));
+            product.setInventory(rs.getInt("iInventory"));
+            result.add(product);
+        }
+        closeConnection();
+        return result;
+    }
+         
+       public ArrayList<Product> searchProductName(String productName) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Product " + productName);
+        ArrayList<Product> result = new ArrayList<Product>();
+        while (rs.next()) {
+            Product product = new Product();
+            product.setProductID(rs.getString("cProID"));
+            product.setProductName(rs.getString("vProName"));
+            product.setProductDetail(rs.getString("vProDetail"));
+            product.setVendorID(rs.getString("cVenID"));
+            product.setCategoryID(rs.getString("cCatID"));
+            product.setInventory(rs.getInt("iInventory"));
+            result.add(product);
+        }
+        closeConnection();
+        return result;
+    }
 }

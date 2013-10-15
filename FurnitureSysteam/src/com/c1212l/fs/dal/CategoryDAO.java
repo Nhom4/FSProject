@@ -70,4 +70,34 @@ public class CategoryDAO extends ConnectionTool{
             return null;
         }
     }
+    
+    public ArrayList<Category> searchCategoryID(String categoryID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Category " + categoryID);
+        ArrayList<Category> result = new ArrayList<Category>();
+        while (rs.next()) {
+            Category category = new Category();
+            category.setCategoryID(rs.getString("cCatID"));
+            category.setCategoryName(rs.getString("vCatName"));
+            result.add(category);
+        }
+        closeConnection();
+        return result;
+    }
+    
+    public ArrayList<Category> searchCategoryName(String categoryName) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Category " + categoryName);
+        ArrayList<Category> result = new ArrayList<Category>();
+        while (rs.next()) {
+            Category category = new Category();
+            category.setCategoryID(rs.getString("cCatID"));
+            category.setCategoryName(rs.getString("vCatName"));
+            result.add(category);
+        }
+        closeConnection();
+        return result;
+    }
 }

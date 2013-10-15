@@ -20,7 +20,7 @@ public class OrderDetailDAO extends ConnectionTool {
     public ArrayList<OrderDetail> getAllOrderDetail() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("select * from OrderDetail");
+        ResultSet rs = stt.executeQuery("select * from OrdDetails");
         ArrayList<OrderDetail> result = new ArrayList<OrderDetail>();
         while(rs.next()){
             OrderDetail orderdetail = new OrderDetail();

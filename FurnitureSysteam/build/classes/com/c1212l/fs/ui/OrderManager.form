@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -26,11 +26,11 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtSearch" min="-2" pref="189" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="cmbSearch" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Component id="cmbSearch" min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="296" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
                       <Component id="lblOrderManager" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -56,10 +56,10 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtDate" max="32767" attributes="0"/>
                                   <Component id="txtTotalPrice" max="32767" attributes="0"/>
                                   <Component id="txtStatus" max="32767" attributes="0"/>
                                   <Component id="txtEmpID" pref="195" max="32767" attributes="0"/>
+                                  <Component id="txtDate" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -166,10 +166,9 @@
     <Component class="javax.swing.JComboBox" name="cmbSearch">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="2">
             <StringItem index="0" value="by ID"/>
-            <StringItem index="1" value="by Name"/>
-            <StringItem index="2" value=" "/>
+            <StringItem index="1" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -183,7 +182,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblPurchase">
+        <Component class="javax.swing.JTable" name="tblOrder">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -228,16 +227,20 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtOrdID">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCusID">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtDate">
     </Component>
     <Component class="javax.swing.JTextField" name="txtTotalPrice">
     </Component>
     <Component class="javax.swing.JTextField" name="txtStatus">
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmpID">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -257,20 +260,16 @@
                       <Component id="jScrollPane2" alignment="0" pref="476" max="32767" attributes="0"/>
                       <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblQuantity" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblProIDDetail" alignment="0" pref="65" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblQuantity" alignment="0" pref="65" max="32767" attributes="0"/>
                               <Component id="lblOrdIDDetail" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblProIDDetail" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtPurIDDetail" pref="130" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtQuantity" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cmbProID" alignment="0" pref="130" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtOrdIDDetail" pref="130" max="32767" attributes="0"/>
+                              <Component id="txtQuantity" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cmbProID" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -305,7 +304,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblOrdIDDetail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPurIDDetail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtOrdIDDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -361,7 +360,7 @@
             <Property name="text" type="java.lang.String" value="Order ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPurIDDetail">
+        <Component class="javax.swing.JTextField" name="txtOrdIDDetail">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -407,6 +406,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Update"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateDetailActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDeleteDetail">
           <Properties>
@@ -439,15 +441,28 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnUpdate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnReport">
       <Properties>
         <Property name="text" type="java.lang.String" value="Report"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtDate">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="yyyy/M/d" subtype="-1" type="1"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

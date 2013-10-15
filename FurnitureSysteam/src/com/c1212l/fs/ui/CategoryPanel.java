@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -173,13 +170,14 @@ public class CategoryPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
-            validateFieldAdd();  
             // TODO add your handling code here:
             String categoryName = txtCategoryName.getText();
             categoryBUS.addCategory(categoryName);
             reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -218,6 +216,8 @@ public class CategoryPanel extends javax.swing.JPanel {
         txtCategoryName.setText(tblCategory.getValueAt(row, 1).toString());
     }//GEN-LAST:event_tblCategoryMouseClicked
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -264,17 +264,5 @@ public class CategoryPanel extends javax.swing.JPanel {
      private void initTextField() {
         txtCategoryID.setText("");
         txtCategoryName.setText("");
-    }
-     private void validateFieldAdd() throws Exception {
-        if (txtCategoryName.getText().equals("")) {
-            throw new Exception("Please enter Category Name");
-        } 
-
-        /*Pattern ptEmplNumber = Pattern.compile("^E+[\\d]{4}$");
-         Matcher mcEmplNumber = ptEmplNumber.matcher(txtEmployeeNumber.getText());
-         if (!mcEmplNumber.find()) {
-         throw new Exception("Employee Number is not valid");
-         }*/
-
     }
 }

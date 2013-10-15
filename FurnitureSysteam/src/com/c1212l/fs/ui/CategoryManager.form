@@ -24,12 +24,10 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="lblSearch" min="-2" pref="52" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtSearch" min="-2" pref="189" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbbSearch" min="-2" pref="79" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnSearch" min="-2" pref="65" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cmbSearch" min="-2" pref="92" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="1" pref="798" max="32767" attributes="0"/>
                           <Component id="jSeparator1" alignment="0" pref="798" max="32767" attributes="0"/>
@@ -44,16 +42,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblTypeInfo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblTypeName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblTypeName" alignment="0" pref="86" max="32767" attributes="0"/>
                                   <Component id="lblTypeID" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtTypeID" max="32767" attributes="0"/>
-                                      <Component id="txtTypeName" max="32767" attributes="0"/>
-                                      <Component id="jScrollPane2" alignment="0" pref="241" max="32767" attributes="0"/>
+                                      <Component id="txtCategoryID" pref="241" max="32767" attributes="0"/>
+                                      <Component id="txtCategoryName" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnAdd" min="-2" pref="96" max="-2" attributes="0"/>
@@ -61,11 +57,13 @@
                                       <Component id="btnUpdate" min="-2" pref="96" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                                       <Component id="btnReport" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Component id="btnDelete" min="-2" pref="96" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -80,8 +78,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbbSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="193" max="-2" attributes="0"/>
@@ -90,27 +87,23 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTypeID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTypeID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCategoryID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTypeName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTypeName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCategoryName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblTypeInfo" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="76" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnReport" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,7 +124,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtSearch">
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbbSearch">
+    <Component class="javax.swing.JComboBox" name="cmbSearch">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
@@ -140,11 +133,6 @@
             <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSearch">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -172,52 +160,46 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblTypeID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Type ID :"/>
+        <Property name="text" type="java.lang.String" value="Category ID :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTypeName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Type Name :"/>
+        <Property name="text" type="java.lang.String" value="Category Name :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblTypeInfo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Type Infomation :"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtCategoryID">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTypeID">
+    <Component class="javax.swing.JTextField" name="txtCategoryName">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTypeName">
-    </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="txtTypeInfo">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnUpdate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnReport">
       <Properties>
         <Property name="text" type="java.lang.String" value="Report"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDelete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

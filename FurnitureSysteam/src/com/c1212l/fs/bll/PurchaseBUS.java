@@ -33,8 +33,9 @@ public class PurchaseBUS {
         purchaseDAO.addPurchase(purchase);
     }
     
-    public void updatePurchase(Date purDate,int purTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void updatePurchase(String purID, Date purDate,int purTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
         Purchase purchase = new Purchase();
+        purchase.setPurID(purID);
         purchase.setPurDate(purDate);
         purchase.setPurTotalPrice(purTotalPrice);
         purchase.setStatus(Status);

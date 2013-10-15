@@ -20,7 +20,7 @@ public class OrderDAO extends ConnectionTool {
     public ArrayList<Order> getAllOrder() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("select * from Order");
+        ResultSet rs = stt.executeQuery("select * from Orders");
         ArrayList<Order> result = new ArrayList<Order>();
         while(rs.next()){
             Order order = new Order();

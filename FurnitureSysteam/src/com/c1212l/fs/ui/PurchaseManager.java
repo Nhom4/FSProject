@@ -30,6 +30,8 @@ public class PurchaseManager extends javax.swing.JPanel {
      */
     public PurchaseManager() {
         initComponents();
+        reloadData();
+        reloadDataDetail();
     }
 
     /**
@@ -85,7 +87,7 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
 
-        cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
+        cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", " " }));
 
         tblPurchase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,6 +110,11 @@ public class PurchaseManager extends javax.swing.JPanel {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnReport.setText("Report");
 
@@ -116,6 +123,8 @@ public class PurchaseManager extends javax.swing.JPanel {
         lblDate.setText("Date :");
 
         lblTotalPrice.setText("Total Price :");
+
+        txtPurID.setEnabled(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Purchase Detail"));
 
@@ -158,6 +167,11 @@ public class PurchaseManager extends javax.swing.JPanel {
         });
 
         btnUpdateDetail.setText("Update");
+        btnUpdateDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateDetailActionPerformed(evt);
+            }
+        });
 
         btnDeleteDetail.setText("Delete");
 
@@ -234,6 +248,11 @@ public class PurchaseManager extends javax.swing.JPanel {
         );
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Status :");
 
@@ -256,7 +275,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
@@ -378,6 +397,53 @@ public class PurchaseManager extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddDetailActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            String purID = txtPurID.getText();
+             Date date = Date.valueOf(txtDate.getText());
+           // int Quantity = Integer.valueOf(txtQuantity.getText());
+            int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
+            String Status = txtStatus.getText();
+            String empID = txtEmpID.getText();
+            purchaseBUS.updatePurchase(purID, date, TotalPrice, Status, empID);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        try {
+            String purID = txtPurID.getText();
+            purchaseBUS.deletePurchase(purID);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateDetailActionPerformed
+        // TODO add your handling code here:
+        try {
+            String purIDDetail = txtPurIDDetail.getText();
+            int Quantity = Integer.valueOf(txtQuantity.getText());
+            int Price = Integer.valueOf(txtPrice.getText());
+            int VAT = Integer.valueOf(txtVAT.getText());
+            purDetailBUS.updatePurchaseDetail(purIDDetail, TOOL_TIP_TEXT_KEY, Quantity, Price, VAT);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUpdateDetailActionPerformed
+
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
         // TODO add your handling code here:
             try {
@@ -395,6 +461,27 @@ public class PurchaseManager extends javax.swing.JPanel {
                 Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
             }
     }   
+    
+    private void tblPurchaseMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        // TODO add your handling code here:
+        int row = tblPurchase.rowAtPoint(evt.getPoint());
+        txtPurID.setText(tblPurchase.getValueAt(row, 0).toString());
+        txtDate.setText(tblPurchase.getValueAt(row, 1).toString());
+        txtTotalPrice.setText(tblPurchase.getValueAt(row, 2).toString());
+        txtStatus.setText(tblPurchase.getValueAt(row, 3).toString());
+        txtEmpID.setText(tblPurchase.getValueAt(row, 4).toString());
+    }
+    
+    private void tblOrderDetailMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        // TODO add your handling code here:
+        int row = tblPurDetail.rowAtPoint(evt.getPoint());
+        txtPurID.setText(tblPurDetail.getValueAt(row, 0).toString());
+        cmbProID.setSelectedItem(tblPurDetail.getValueAt(row, 1).toString());
+        txtQuantity.setText(tblPurDetail.getValueAt(row, 2).toString());
+        txtPrice.setText(tblPurDetail.getValueAt(row, 3).toString());
+        txtVAT.setText(tblPurDetail.getValueAt(row, 4).toString());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAddDetail;
@@ -527,7 +614,8 @@ public class PurchaseManager extends javax.swing.JPanel {
 
     private void reloadDataDetail() {
         try {
-            initTable();
+            initTableDetail();
+            initCmbProID();
             initCmbSearch();
             fillDataDetail(purDetailBUS.getAllPurDetails());
             initTextField();

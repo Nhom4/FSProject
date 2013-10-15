@@ -39,4 +39,12 @@ public class CategoryBUS {
         category.setCategoryID(categoryID);
         categoryDAO.deleteCategory(category);
     }
+      
+    public ArrayList<Category> searchCategoryID(String categoryID) throws ClassNotFoundException, SQLException {
+        return categoryDAO.searchCategoryID(categoryID);
+    }
+      
+       public ArrayList<Category> searchCategoryName(String categoryName) throws ClassNotFoundException, SQLException {
+        return categoryDAO.searchCategoryName(categoryName);
+    }
 }

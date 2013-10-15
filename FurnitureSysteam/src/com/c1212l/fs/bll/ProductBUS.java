@@ -29,7 +29,7 @@ public class ProductBUS {
         Product product=new Product();
         product.setProductName(productName);
         product.setProductDetail(productDetail);
-        product.setCategoryId(categoryID);
+        product.setCategoryID(categoryID);
         product.setVendorID(vendorID);
         productDAO.addProduct(product);
     }
@@ -39,7 +39,7 @@ public class ProductBUS {
         product.setProductName(productName);
         product.setProductDetail(productDetail);
         product.setVendorID(vendorID);
-        product.setCategoryId(categoryID);
+        product.setCategoryID(categoryID);
         productDAO.updateProduct(product);
     }  
       public void deleteProduct(String productID) throws ClassNotFoundException, Exception{
@@ -53,4 +53,12 @@ public class ProductBUS {
       public Vendor getVendorID(String vendorName) throws ClassNotFoundException,Exception{
             return productDAO.getVendorID(vendorName);
      }
+      
+      public ArrayList<Product> searchProductID(String productID) throws ClassNotFoundException, SQLException {
+        return productDAO.searchProductID(productID);
+    }
+      
+      public ArrayList<Product> searchProductName(String productName) throws ClassNotFoundException, SQLException {
+        return productDAO.searchProductName(productName);
+    }
 }

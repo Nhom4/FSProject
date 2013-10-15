@@ -44,14 +44,6 @@ public class Product {
         this.productDetail = productDetail;
     }
 
-    public String getCategoryId() {
-        return categoryID;
-    }
-
-    public void setCategoryId(String categoryId) {
-        this.categoryID = categoryId;
-    }
-
     public String getVendorID() {
         return vendorID;
     }
