@@ -41,7 +41,7 @@ public class CustomerPanel extends javax.swing.JPanel {
         lblCustomerManager = new javax.swing.JLabel();
         lblSearch = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
-        cbbSearch = new javax.swing.JComboBox();
+        cmbSearch = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomer = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
@@ -64,7 +64,6 @@ public class CustomerPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
 
         lblCustomerManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -72,7 +71,13 @@ public class CustomerPanel extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
 
-        cbbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
+        cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
 
         tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,8 +138,6 @@ public class CustomerPanel extends javax.swing.JPanel {
 
         btnReport.setText("Report");
 
-        btnSearch.setText("Search");
-
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,9 +160,8 @@ public class CustomerPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -219,8 +221,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSearch)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
+                    .addComponent(cmbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -276,9 +277,9 @@ public class CustomerPanel extends javax.swing.JPanel {
             .addGap(0, 502, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 1, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 2, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -347,15 +348,32 @@ public class CustomerPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+             try {
+                 if (cmbSearch.getSelectedIndex()==0) {
+   
+                    loadSearchCustomerID();
+                 }
+                 else if(cmbSearch.getSelectedIndex()==1)
+                 {
+                     loadSearchCustomerName();
+                 }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnReport;
-    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox cbbSearch;
     private javax.swing.JComboBox cbbTypeProduct;
     private javax.swing.JComboBox cmbGender;
+    private javax.swing.JComboBox cmbSearch;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -405,6 +423,7 @@ public class CustomerPanel extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
+            initCmbSearch();
             fillData(customerBUS.getAllCustomer());
             initTextField();
         } catch (ClassNotFoundException ex) {
@@ -427,5 +446,36 @@ public class CustomerPanel extends javax.swing.JPanel {
         txtAddress.setText("");
         txtPhoneNumber.setText("");;
     }
-
+    private void loadSearchCustomerName() throws ClassNotFoundException, SQLException {
+        String customerName = "";
+        if (!txtSearch.getText().equals("")) {
+            if (!customerName.contains("where")) {
+                customerName += " where vCusName like '%" + txtSearch.getText() + "%'";
+            } else {
+                customerName += " and vCusName like '%" + txtSearch.getText() + "%'";
+            }
+        }
+        initTable();
+        lstCustomer = customerBUS.searchCustomerName(customerName);
+        fillData(lstCustomer);
+    }
+      private void loadSearchCustomerID() throws ClassNotFoundException, SQLException {
+        String customerID = "";
+        if (!txtSearch.getText().equals("")) {
+            if (!customerID.contains("where")) {
+                customerID += " where cCusID like '%" + txtSearch.getText() + "%'";
+            } else {
+                customerID += " and cCusID like '%" + txtSearch.getText() + "%'";
+            }
+        }
+        initTable();
+        lstCustomer = customerBUS.searchCustomerID(customerID);
+        fillData(lstCustomer);
+      }
+       private void initCmbSearch() {
+        cmbSearch.removeAllItems();
+//        cmbSearch.addItem(new KeyValue(-1, ""));
+        cmbSearch.addItem(new KeyValue(0, "by ID"));
+        cmbSearch.addItem(new KeyValue(1, "by Name"));
+    }   
 }

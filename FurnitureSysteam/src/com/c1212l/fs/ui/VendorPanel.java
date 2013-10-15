@@ -63,6 +63,7 @@ public class VendorPanel extends javax.swing.JPanel {
         txtVendorEmail = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtVendorAddress = new javax.swing.JTextArea();
+        btnDelete = new javax.swing.JButton();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -115,7 +116,7 @@ public class VendorPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, 80, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 80, -1));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +124,7 @@ public class VendorPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(624, 460, 80, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, 80, -1));
 
         btnReport.setText("Report");
         jPanel1.add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 460, 80, -1));
@@ -155,6 +156,14 @@ public class VendorPanel extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 260, 90));
 
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,7 +187,21 @@ public class VendorPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+                String vendorID = txtVendorID.getText();
+                String vendorName = txtVendorName.getText();
+                String vendorAddress = txtVendorAddress.getText();
+                String vendorPhone = txtVendorPhone.getText();
+                String vendorFax = txtVendorFax.getText();
+                String vendorEmail = txtVendorEmail.getText();
+                vendorBUS.updateVendor(vendorID, vendorName, vendorAddress, vendorPhone, vendorFax, vendorEmail);
+                reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -228,8 +251,22 @@ public class VendorPanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        try {
+            // TODO add your handling code here:
+            String vendorID = txtVendorID.getText();
+            vendorBUS.deleteVendor(vendorID);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;

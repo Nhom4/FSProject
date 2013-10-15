@@ -66,6 +66,9 @@ public class EmployeePanel extends javax.swing.JPanel {
         tblEmployee = new javax.swing.JTable();
         txtPassword = new javax.swing.JPasswordField();
         txtEmail = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
+        cmbSearch = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,26 +90,26 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
         jLabel2.setText("Employee ID:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
 
         jLabel3.setText("Employee Name:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, 10));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, 10));
 
         jLabel4.setText("Address:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
         jLabel5.setText("Phone Number:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
 
         jLabel6.setText("Email:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
         jLabel7.setText("Password:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
-        add(txtEmployeeId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 130, -1));
-        add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 130, -1));
-        add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 130, -1));
-        add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 130, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+        add(txtEmployeeId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 130, -1));
+        add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 130, -1));
+        add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 130, -1));
+        add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 130, -1));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +117,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +125,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, 20));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, 20));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +133,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, -1));
 
         tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,9 +153,22 @@ public class EmployeePanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblEmployee);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 460, 220));
-        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 130, -1));
-        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 130, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 460, 220));
+        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 130, -1));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 130, -1));
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 130, -1));
+
+        cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cmbSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
+
+        jLabel8.setText("Search:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -219,10 +235,29 @@ public class EmployeePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+              try {
+                 if (cmbSearch.getSelectedIndex()==0) {
+   
+                    loadSearchEmployeeID();
+                 }
+                 else if(cmbSearch.getSelectedIndex()==1)
+                 {
+                     loadSearchEmployeeName();
+                 }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox cmbSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -230,6 +265,7 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -240,10 +276,11 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmployeeName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
  private EmployeeBUS employeeBUS = new EmployeeBUS();
     DefaultTableModel tblModel;
-    ArrayList<Customer> lstProduct;    
+    ArrayList<Employee> lstEmployee;    
 
     private void initTable() {
         Vector header = new Vector();
@@ -268,6 +305,7 @@ public class EmployeePanel extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
+            initCmbSearch();
             fillData(employeeBUS.getAllEmployee());
             initTextField();
         } catch (ClassNotFoundException ex) {
@@ -284,4 +322,36 @@ public class EmployeePanel extends javax.swing.JPanel {
         txtEmail.setText("");
         txtPassword.setText("");
     }
+     private void loadSearchEmployeeName() throws ClassNotFoundException, SQLException {
+        String employeeName = "";
+        if (!txtSearch.getText().equals("")) {
+            if (!employeeName.contains("where")) {
+                employeeName += " where vEmpName like '%" + txtSearch.getText() + "%'";
+            } else {
+                employeeName += " and vEmpName like '%" + txtSearch.getText() + "%'";
+            }
+        }
+        initTable();
+        lstEmployee = employeeBUS.searchEmployeeName(employeeName);
+        fillData(lstEmployee);
+    }
+      private void loadSearchEmployeeID() throws ClassNotFoundException, SQLException {
+        String employeeID = "";
+        if (!txtSearch.getText().equals("")) {
+            if (!employeeID.contains("where")) {
+                employeeID += " where cEmpID like '%" + txtSearch.getText() + "%'";
+            } else {
+                employeeID += " and cEmpID like '%" + txtSearch.getText() + "%'";
+            }
+        }
+        initTable();
+        lstEmployee = employeeBUS.searchEmployeeID(employeeID);
+        fillData(lstEmployee);
+      } 
+      private void initCmbSearch() {
+        cmbSearch.removeAllItems();
+//        cmbSearch.addItem(new KeyValue(-1, ""));
+        cmbSearch.addItem(new KeyValue(0, "by ID"));
+        cmbSearch.addItem(new KeyValue(1, "by Name"));
+    }   
 }

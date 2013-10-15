@@ -6,8 +6,10 @@ package com.c1212l.fs.dal;
 
 import com.c1212l.fs.bean.Category;
 import com.c1212l.fs.bean.Customer;
+import com.c1212l.fs.bean.Product;
 import com.c1212l.fs.bean.Vendor;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,6 +48,35 @@ public class VendorDAO extends ConnectionTool {
        cs.setString(5, vendor.getVendorEmail());
        cs.executeUpdate();
        closeConnection();
+    }
+      public void updateVendor(Vendor vendor) throws ClassNotFoundException, Exception {
+        initConnection();
+        CallableStatement cs = conn.prepareCall("{call prcUpdateVendor(?,?,?,?,?,?)}");
+        cs.setString(1, vendor.getVendorID());
+        cs.setString(2,vendor.getVendorName());
+        cs.setString(3, vendor.getVendorAddress());
+        cs.setString(4, vendor.getVendorPhone());
+        cs.setString(5,vendor.getVendorFax());
+        cs.setString(6, vendor.getVendorEmail());
+        cs.executeUpdate();
+        closeConnection();
+    }
+     public void deleteVendor(Vendor vendor) throws ClassNotFoundException, Exception {
+        initConnection();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from Product where  cVenID = ?");
+        pstmt.setString(1, vendor.getVendorID());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: This vendor made at least one Product\n";
+        }
+        if (error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call prcDeleteVendor(?)}");
+            cs.setString(1,vendor.getVendorID());
+            cs.executeUpdate();
+        } else {
+            throw new Exception(error);
+        }
+        closeConnection();
     }
    public Vendor getVendorById(String vendorID) {
         try {

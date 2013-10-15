@@ -29,8 +29,8 @@ public class ProductBUS {
         Product product=new Product();
         product.setProductName(productName);
         product.setProductDetail(productDetail);
-        product.setVendorID(vendorID);
         product.setCategoryId(categoryID);
+        product.setVendorID(vendorID);
         productDAO.addProduct(product);
     }
       public void updateProduct(String productID,String productName,String productDetail,String categoryID,String vendorID) throws ClassNotFoundException, Exception{
@@ -42,7 +42,7 @@ public class ProductBUS {
         product.setCategoryId(categoryID);
         productDAO.updateProduct(product);
     }  
-      public void deleteCustomer(String productID) throws ClassNotFoundException, Exception{
+      public void deleteProduct(String productID) throws ClassNotFoundException, Exception{
         Product product=new Product();
         product.setProductID(productID);
         productDAO.deleteProduct(product);

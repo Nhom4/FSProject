@@ -42,7 +42,7 @@ public class EmployeeBUS {
         employee.setEmpPhone(employeePhone);
         employee.setEmpEmail(employeeEmail);
         employee.setEmpPassword(password);
-        employeeDAO.addEmployee(employee);
+        employeeDAO.updateEmployee(employee);
     }  
       public void deleteEmployee(String employeeID) throws ClassNotFoundException, Exception{
         Employee employee = new Employee();

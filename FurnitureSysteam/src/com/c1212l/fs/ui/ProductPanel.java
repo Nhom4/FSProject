@@ -121,6 +121,11 @@ public class ProductPanel extends javax.swing.JPanel {
         add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -187,6 +192,23 @@ public class ProductPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+   try {
+            // TODO add your handling code here:
+            String productID = txtProductID.getText();
+            Category category = productBUS.getCategoryID(cmbCategory.getSelectedItem().toString());
+            Vendor   vendor = productBUS.getVendorID(cmbVendor.getSelectedItem().toString());
+            System.out.println(cmbVendor.getSelectedItem());
+            String productName = txtProductName.getText();
+            String productDetail = txtProductDetail.getText();
+            String categoryID = category.getCategoryID();
+            String vendorID = vendor.getVendorID();
+            productBUS.updateProduct(productID, productName, productDetail, categoryID, vendorID);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductMouseClicked
@@ -198,6 +220,19 @@ public class ProductPanel extends javax.swing.JPanel {
         cmbCategory.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 3).toString()));
         cmbVendor.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 4).toString()));
     }//GEN-LAST:event_tblProductMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        try {
+            // TODO add your handling code here:
+            String productID = txtProductID.getText();
+            productBUS.deleteProduct(productID);
+            reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -264,7 +299,6 @@ public class ProductPanel extends javax.swing.JPanel {
      private void initCmbCategory() {
         try {
             cmbCategory.removeAllItems();
-            cmbCategory.addItem(new KeyValue(-1, ""));
             CategoryBUS categoryBUS = new CategoryBUS();
             ArrayList<Category> arrCategory = categoryBUS.getAllCategory();
             for (int i=0;i<arrCategory.size();i++) {
@@ -280,7 +314,6 @@ public class ProductPanel extends javax.swing.JPanel {
 
     private void initCmbVendor() throws ClassNotFoundException, SQLException {
         cmbVendor.removeAllItems();
-        cmbVendor.addItem(new KeyValue(-1, ""));
         VendorBUS vendorBUS = new VendorBUS();
         ArrayList<Vendor> arrVendor = vendorBUS.getAllVendor();
         for (int i =0;i<arrVendor.size();i++) {

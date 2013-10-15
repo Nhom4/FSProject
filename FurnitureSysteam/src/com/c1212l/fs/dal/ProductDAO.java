@@ -81,11 +81,6 @@ public class ProductDAO extends ConnectionTool {
          if (pstmt.executeQuery().next()) {
              error+="Error: This product made at least one OrdDetails";
          }
-        pstmt = conn.prepareStatement("select * from Stock where  cProID = ?");
-        pstmt.setString(1, product.getProductID());
-        if (pstmt.executeQuery().next()) {
-             error+="Error: This product made at least one Stock";
-        }
         if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcDeleteProduct(?)}");
             cs.setString(1,product.getProductID());

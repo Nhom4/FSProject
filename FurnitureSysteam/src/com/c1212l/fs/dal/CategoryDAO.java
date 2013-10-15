@@ -48,7 +48,7 @@ public class CategoryDAO extends ConnectionTool{
     }
      public void deleteCategory(Category category) throws ClassNotFoundException, Exception {
         initConnection();
-            CallableStatement cs = conn.prepareCall("{call prcDeletePermission(?)}");
+            CallableStatement cs = conn.prepareCall("{call prcDeleteCategory(?)}");
             cs.setString(1,category.getCategoryID());
             cs.executeUpdate();
         closeConnection();
