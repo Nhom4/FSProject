@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -189,6 +192,7 @@ public class VendorPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             // TODO add your handling code here:
+                validateFieldAdd();  
                 String vendorID = txtVendorID.getText();
                 String vendorName = txtVendorName.getText();
                 String vendorAddress = txtVendorAddress.getText();
@@ -197,10 +201,8 @@ public class VendorPanel extends javax.swing.JPanel {
                 String vendorEmail = txtVendorEmail.getText();
                 vendorBUS.updateVendor(vendorID, vendorName, vendorAddress, vendorPhone, vendorFax, vendorEmail);
                 reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -368,4 +370,34 @@ public class VendorPanel extends javax.swing.JPanel {
         lstVendor = vendorBUS.searchVendorID(vendorID);
         fillData(lstVendor);
     }   
+      private void validateFieldAdd() throws Exception {
+        if (txtVendorName.getText().equals("")) {
+            throw new Exception("Please enter Vendor Name");
+        }
+        Pattern ptVendorName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcVendorName = ptVendorName.matcher(txtVendorName.getText());
+        if (!mcVendorName.find()) {
+            throw new Exception("Vendor Name is not valid");
+        }
+        if (txtVendorAddress.getText().equals("")) {
+            throw new Exception("Please enter Vendor Address");
+        }
+        if (txtVendorPhone.getText().equals("")) {
+            throw new Exception("Please enter Phone Number");
+        }
+        Pattern ptPhoneNumber = Pattern.compile("^[\\d]{10,11}$");
+        Matcher mcPhoneNumber = ptPhoneNumber.matcher(txtVendorPhone.getText());
+        if (!mcPhoneNumber.find()) {
+            throw new Exception(" Phone number is not valid");
+        }
+   
+        if (txtVendorEmail.getText().equals("")) {
+            throw new Exception("Please enter Email");
+        }
+        Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+        Matcher mcemail = ptemail.matcher(txtVendorEmail.getText());
+        if (!mcemail.find()) {
+            throw new Exception("Email is not valid");
+        }
+    }
 }

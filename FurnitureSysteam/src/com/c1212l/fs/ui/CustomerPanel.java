@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -290,6 +292,7 @@ public class CustomerPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             // TODO add your handling code here:
+            validateFieldAdd();  
             String customerName = txtCustomerName.getText();
             String phone = txtPhoneNumber.getText();
             String address = txtAddress.getText();
@@ -297,10 +300,8 @@ public class CustomerPanel extends javax.swing.JPanel {
             String gender = cmbGender.getSelectedItem().toString();   
             customerBUS.addVendor( customerName, gender, address, email, phone);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -478,4 +479,35 @@ public class CustomerPanel extends javax.swing.JPanel {
         cmbSearch.addItem(new KeyValue(0, "by ID"));
         cmbSearch.addItem(new KeyValue(1, "by Name"));
     }   
-}
+       private void validateFieldAdd() throws Exception {
+        if (txtCustomerName.getText().equals("")) {
+            throw new Exception("Please enter Customer Name");
+        }
+          Pattern ptCustomerName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcCustomerName = ptCustomerName.matcher(txtCustomerName.getText());
+        if (!mcCustomerName.find()) {
+            throw new Exception("Customer Name is not valid");
+        }
+        if (txtBirthday.getText().equals("")) {
+            throw new Exception("Please enter Birthday");
+        }
+        if (txtEmail.getText().equals("")) {
+            throw new Exception("Please enter Email");
+        }
+        Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+        Matcher mcemail = ptemail.matcher(txtEmail.getText());
+        if (!mcemail.find()) {
+            throw new Exception("Email is not valid");
+        }
+        if (txtAddress.getText().equals("")){
+            throw new Exception("Please enter Address");
+        }
+        if (txtPhoneNumber.getText().equals("")) {
+            throw new Exception("Please enter Phone Number");
+        }
+        Pattern ptPhoneNumber = Pattern.compile("^[\\d]{10,11}$");
+        Matcher mcPhoneNumber = ptPhoneNumber.matcher(txtPhoneNumber.getText());
+        if (!mcPhoneNumber.find()) {
+            throw new Exception(" Phone number is not valid");
+        }
+}}
