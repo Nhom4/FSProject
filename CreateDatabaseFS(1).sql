@@ -71,7 +71,6 @@ create table Purchase
 	cPurID char(6) primary key not null,
 	dPurDate datetime not null,
 	iPurTotalPrice int not null,
-	iVAT int not null,
 	cStatus char(100) not null,
 	cEmpID char(6) not null
 )
@@ -81,7 +80,8 @@ create table PurDetails
 	cPurID char(6) not null,
 	cProID char(6) not null,
 	iPurQuantity int not null,
-	iPurPrice int not null
+	iPurPrice int not null,
+    iVAT int not null,
 	primary key (cPurID, cProID)
 )
 
@@ -91,7 +91,6 @@ create table Orders
 	cCusID char(6) not null,
 	dOrdDate datetime not null,
 	iOrdTotalPrice int not null,
-	iVAT int not null,
 	cStatus char(100) not null,
 	cEmpID char(6) not null
 )
@@ -101,7 +100,8 @@ create table OrdDetails
 	cOrdID char(6) not null,
 	cProID char(6) not null,
 	iOrdQuantity int not null,
-	iOrdPrice int not null
+	iOrdPrice int not null,
+	iVAT int not null,
 	primary key (cOrdID, cProID)
 )
 

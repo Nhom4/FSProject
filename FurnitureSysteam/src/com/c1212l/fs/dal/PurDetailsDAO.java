@@ -26,7 +26,8 @@ public class PurDetailsDAO extends ConnectionTool {
             PurchaseDetail purdetails = new PurchaseDetail();
             purdetails.setPurID(rs.getString("cPurID"));
             purdetails.setPurQuantity(rs.getInt("iPurQuantity"));
-            purdetails.setPurPrice(rs.getInt("cPurPrice"));
+            purdetails.setPurPrice(rs.getInt("iPurPrice"));
+            purdetails.setVAT(rs.getInt("iVAT"));
             result.add(purdetails);
         }
         closeConnection();
@@ -41,6 +42,7 @@ public class PurDetailsDAO extends ConnectionTool {
             cs.setString(2, purDetail.getProID());
             cs.setInt(3, purDetail.getPurQuantity());
             cs.setInt(4, purDetail.getPurPrice());
+            cs.setInt(5, purDetail.getVAT());
             cs.executeUpdate();
             closeConnection();
     }
@@ -52,6 +54,7 @@ public class PurDetailsDAO extends ConnectionTool {
             cs.setString(2, purDetail.getProID());
             cs.setInt(3, purDetail.getPurQuantity());
             cs.setInt(4, purDetail.getPurPrice());
+            cs.setInt(5, purDetail.getVAT());
             cs.executeUpdate();
             closeConnection();
     }

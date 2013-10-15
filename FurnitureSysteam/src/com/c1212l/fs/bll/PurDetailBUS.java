@@ -22,21 +22,23 @@ public class PurDetailBUS {
         return purDetailDAO.getAllPurDetails();
     }
     
-    public void addPurchaseDetail(String purID, String proID, int purQuantity, int purPrice) throws ClassNotFoundException, Exception{
+    public void addPurchaseDetail(String purID, String proID, int purQuantity, int purPrice, int VAT) throws ClassNotFoundException, Exception{
         PurchaseDetail purchasedetail = new PurchaseDetail();
         purchasedetail.setPurID(purID);
         purchasedetail.setProID(proID);
         purchasedetail.setPurQuantity(purQuantity);
         purchasedetail.setPurPrice(purPrice);
+        purchasedetail.setVAT(VAT);
         purDetailDAO.addPurDetail(purchasedetail);
     }
     
-    public void updatePurchaseDetail(String purID, String proID, int purQuantity, int purPrice) throws ClassNotFoundException, Exception{
+    public void updatePurchaseDetail(String purID, String proID, int purQuantity, int purPrice, int VAT) throws ClassNotFoundException, Exception{
         PurchaseDetail purchasedetail = new PurchaseDetail();
         purchasedetail.setPurID(purID);
         purchasedetail.setProID(proID);
         purchasedetail.setPurQuantity(purQuantity);
         purchasedetail.setPurPrice(purPrice);
+        purchasedetail.setVAT(VAT);
         purDetailDAO.addPurDetail(purchasedetail);
     }
     

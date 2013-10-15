@@ -15,12 +15,14 @@ public class PurchaseDetail {
     private String proID;
     private int purQuantity;
     private int purPrice;
+    private int VAT;
 
-    public PurchaseDetail(String purID,String proID, int purQuantity, int purPrice) {
+    public PurchaseDetail(String purID,String proID, int purQuantity, int purPrice,int VAT) {
         this.purID = purID;
         this.proID = proID;
         this.purQuantity = purQuantity;
         this.purPrice = purPrice;
+        this.VAT = VAT;
     }
 
     public PurchaseDetail() {
@@ -58,6 +60,15 @@ public class PurchaseDetail {
     public void setProID(String proID) {
         this.proID = proID;
     }
+
+    public int getVAT() {
+        return VAT;
+    }
+
+    public void setVAT(int VAT) {
+        this.VAT = VAT;
+    }
+    
     
     public Vector getVector() {
         Vector result = new Vector();
@@ -65,6 +76,7 @@ public class PurchaseDetail {
         result.add(proID);
         result.add(purQuantity);
         result.add(purPrice);
+        result.add(VAT);
         return result;
     }
 }

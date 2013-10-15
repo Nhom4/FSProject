@@ -15,15 +15,13 @@ public class Purchase {
     private String purID;
     private Date purDate;
     private int purTotalPrice;
-    private int VAT;
     private String Status;
     private String empID;
 
-    public Purchase(String purID, Date purDate, int purTotalPrice, int VAT, String Status, String empID) {
+    public Purchase(String purID, Date purDate, int purTotalPrice, String Status, String empID) {
         this.purID = purID;
         this.purDate = purDate;
         this.purTotalPrice = purTotalPrice;
-        this.VAT = VAT;
         this.Status = Status;
         this.empID = empID;
         
@@ -45,9 +43,6 @@ public class Purchase {
         return purTotalPrice;
     }
 
-    public int getVAT() {
-        return VAT;
-    }
 
     public String getStatus() {
         return Status;
@@ -69,9 +64,6 @@ public class Purchase {
         this.purTotalPrice = purTotalPrice;
     }
 
-    public void setVAT(int VAT) {
-        this.VAT = VAT;
-    }
 
     public void setStatus(String Status) {
         this.Status = Status;
@@ -86,7 +78,6 @@ public class Purchase {
         result.add(purID);
         result.add(purDate);
         result.add(purTotalPrice);
-        result.add(VAT);
         result.add(Status);
         result.add(empID);
         return result;

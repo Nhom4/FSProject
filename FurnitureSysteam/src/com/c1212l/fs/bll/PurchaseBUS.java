@@ -24,21 +24,19 @@ public class PurchaseBUS {
         return purchaseDAO.getAllPurchase();
     }
     
-    public void addPurchase(Date purDate,int purTotalPrice,int VAT,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void addPurchase(Date purDate,int purTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
         Purchase purchase = new Purchase();
         purchase.setPurDate(purDate);
         purchase.setPurTotalPrice(purTotalPrice);
-        purchase.setVAT(VAT);
         purchase.setStatus(Status);
         purchase.setEmpID(empID);
         purchaseDAO.addPurchase(purchase);
     }
     
-    public void updatePurchase(Date purDate,int purTotalPrice,int VAT,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void updatePurchase(Date purDate,int purTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
         Purchase purchase = new Purchase();
         purchase.setPurDate(purDate);
         purchase.setPurTotalPrice(purTotalPrice);
-        purchase.setVAT(VAT);
         purchase.setStatus(Status);
         purchase.setEmpID(empID);
         purchaseDAO.addPurchase(purchase);

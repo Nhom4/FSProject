@@ -33,7 +33,6 @@ public class PurchaseDAO extends ConnectionTool {
             purchase.setPurID(rs.getString("cPurID"));
             purchase.setPurDate(rs.getDate("cPerDate"));
             purchase.setPurTotalPrice(rs.getInt("vPurTotalPrice"));
-            purchase.setVAT(rs.getInt("cVAT"));
             purchase.setStatus(rs.getString("cStatus"));
             purchase.setEmpID(rs.getString("cEmpID"));
             result.add(Purchase);
@@ -55,13 +54,12 @@ public class PurchaseDAO extends ConnectionTool {
                 error += "Error: Duplicate purchase status\n";
             }
             if (error.equals("")) {
-                CallableStatement cs = conn.prepareCall("{call prcInsertPurchase(?,?,?,?,?,?)}");
+                CallableStatement cs = conn.prepareCall("{call prcInsertPurchase(?,?,?,?,?)}");
                 cs.setString(1,purchase.getPurID());
                 cs.setDate(2,purchase.getPurDate());
                 cs.setInt(3,purchase.getPurTotalPrice());
-                cs.setInt(4,purchase.getVAT());
-                cs.setString(5,purchase.getStatus());
-                cs.setString(6,purchase.getEmpID());
+                cs.setString(4,purchase.getStatus());
+                cs.setString(5,purchase.getEmpID());
                 cs.executeUpdate();
             } else {
                 throw new Exception(error);
@@ -74,9 +72,8 @@ public class PurchaseDAO extends ConnectionTool {
                 cs.setString(1,purchase.getPurID());
                 cs.setDate(2,purchase.getPurDate());
                 cs.setInt(3,purchase.getPurTotalPrice());
-                cs.setInt(4,purchase.getVAT());
-                cs.setString(5,purchase.getStatus());
-                cs.setString(6,purchase.getEmpID());
+                cs.setString(4,purchase.getStatus());
+                cs.setString(5,purchase.getEmpID());
                 cs.executeUpdate();
         closeConnection();
     }
@@ -144,7 +141,6 @@ public class PurchaseDAO extends ConnectionTool {
             purchase.setPurID(rs.getString("cPurID"));
             purchase.setPurDate(rs.getDate("dPurDate"));
             purchase.setPurTotalPrice(rs.getInt("iPurTotalPrice"));
-            purchase.setVAT(rs.getInt("iVAt"));
             purchase.setStatus(rs.getString("cStatus"));
             purchase.setEmpID(rs.getString("cEmpID"));
             result.add(purchase);
