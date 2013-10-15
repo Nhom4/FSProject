@@ -66,5 +66,7 @@ public class PurDetailsDAO extends ConnectionTool {
             cs.executeUpdate();
         closeConnection();
     }
+    
+  
 }
 

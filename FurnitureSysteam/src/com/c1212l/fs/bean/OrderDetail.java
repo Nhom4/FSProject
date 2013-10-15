@@ -15,6 +15,7 @@ public class OrderDetail {
     private String proID;
     private int ordQuantity;
     private int ordPrice;
+    private int VAT;
 
     public String getOrdID() {
         return ordID;
@@ -47,6 +48,15 @@ public class OrderDetail {
     public void setOrdPrice(int ordPrice) {
         this.ordPrice = ordPrice;
     }
+
+    public int getVAT() {
+        return VAT;
+    }
+
+    public void setVAT(int VAT) {
+        this.VAT = VAT;
+    }
+    
     
      public Vector getVector() {
         Vector result = new Vector();
@@ -54,6 +64,7 @@ public class OrderDetail {
         result.add(proID);
         result.add(ordQuantity);
         result.add(ordPrice);
+        result.add(VAT);
         return result;
     }
 }

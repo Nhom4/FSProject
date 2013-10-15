@@ -28,7 +28,6 @@ public class OrderDAO extends ConnectionTool {
             order.setCusID(rs.getString("cCusID"));
             order.setOrdDate(rs.getDate("dOrdDate"));
             order.setOrdTotalPrice(rs.getInt("iOrdTotalPrice"));
-            order.setVAT(rs.getInt("iVAT"));
             order.setStatus(rs.getString("cStatus"));
             order.setEmpID(rs.getString("cEmpID"));
             result.add(order);
@@ -45,7 +44,6 @@ public class OrderDAO extends ConnectionTool {
             cs.setString(2, order.getCusID());
             cs.setDate(3, order.getOrdDate());
             cs.setInt(4, order.getOrdTotalPrice());
-            cs.setInt(5, order.getVAT());
             cs.setString(6, order.getStatus());
             cs.setString(7, order.getEmpID());
             cs.executeUpdate();
@@ -59,7 +57,6 @@ public class OrderDAO extends ConnectionTool {
         cs.setString(2, order.getCusID());
         cs.setDate(3, order.getOrdDate());
         cs.setInt(4, order.getOrdTotalPrice());
-        cs.setInt(5, order.getVAT());
         cs.setString(6, order.getStatus());
         cs.setString(7, order.getEmpID());
         cs.executeUpdate();
@@ -72,5 +69,24 @@ public class OrderDAO extends ConnectionTool {
             cs.setString(1, order.getOrdID());
             cs.executeUpdate();
         closeConnection();
+    }
+    
+    public ArrayList<Order> searchPurchaseID(String orderID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from Orders " + orderID);
+        ArrayList<Order> result = new ArrayList<Order>();
+        while (rs.next()) {
+            Order order = new Order();
+            order.setOrdID(rs.getString("cOrdID"));
+            order.setCusID(rs.getString("cCusID"));
+            order.setOrdDate(rs.getDate("dOrdDate"));
+            order.setOrdTotalPrice(rs.getInt("iOrdTotalPrice"));
+            order.setStatus(rs.getString("cStatus"));
+            order.setEmpID(rs.getString("cEmpID"));
+            result.add(order);
+        }
+        closeConnection();
+        return result;
     }
 }

@@ -16,7 +16,6 @@ public class Order {
     private String cusID;
     private Date ordDate;
     private int ordTotalPrice;
-    private int VAT;
     private String Status;
     private String empID;
 
@@ -52,14 +51,6 @@ public class Order {
         this.ordTotalPrice = ordTotalPrice;
     }
 
-    public int getVAT() {
-        return VAT;
-    }
-
-    public void setVAT(int VAT) {
-        this.VAT = VAT;
-    }
-
     public String getStatus() {
         return Status;
     }
@@ -82,7 +73,6 @@ public class Order {
         result.add(cusID);
         result.add(ordDate);
         result.add(ordTotalPrice);
-        result.add(VAT);
         result.add(Status);
         result.add(empID);
         return result;

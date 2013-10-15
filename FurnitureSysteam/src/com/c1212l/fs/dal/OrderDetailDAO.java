@@ -4,6 +4,7 @@
  */
 package com.c1212l.fs.dal;
 
+import com.c1212l.fs.bean.Order;
 import com.c1212l.fs.bean.OrderDetail;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -27,6 +28,7 @@ public class OrderDetailDAO extends ConnectionTool {
             orderdetail.setProID(rs.getString("cProID"));
             orderdetail.setOrdQuantity(rs.getInt("iOrdQuantity"));
             orderdetail.setOrdPrice(rs.getInt("iOrdPrice"));
+            orderdetail.setVAT(rs.getInt("iVAT"));
             result.add(orderdetail);
         }
         closeConnection();
@@ -41,6 +43,7 @@ public class OrderDetailDAO extends ConnectionTool {
             cs.setString(2, orderdetail.getProID());
             cs.setInt(3, orderdetail.getOrdQuantity());
             cs.setInt(4, orderdetail.getOrdPrice());
+            cs.setInt(5, orderdetail.getVAT());
             cs.executeUpdate();
             closeConnection();
     }
@@ -52,6 +55,7 @@ public class OrderDetailDAO extends ConnectionTool {
             cs.setString(2, orderdetail.getProID());
             cs.setInt(3, orderdetail.getOrdQuantity());
             cs.setInt(4, orderdetail.getOrdPrice());
+            cs.setInt(5, orderdetail.getVAT());
             cs.executeUpdate();
             closeConnection();
     }
@@ -63,4 +67,8 @@ public class OrderDetailDAO extends ConnectionTool {
             cs.executeUpdate();
         closeConnection();
     }
+    
+  
+    
+    
 }

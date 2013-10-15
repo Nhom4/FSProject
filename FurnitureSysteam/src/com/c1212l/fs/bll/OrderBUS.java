@@ -23,24 +23,22 @@ public class OrderBUS {
         return orderDAO.getAllOrder();
     }
     
-    public void addOrder(String cusID,Date ordDate,int ordTotalPrice,int VAT,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void addOrder(String cusID,Date ordDate,int ordTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
         Order order = new Order();
         order.setCusID(cusID);
         order.setOrdDate(ordDate);
         order.setOrdTotalPrice(ordTotalPrice);
-        order.setVAT(VAT);
         order.setStatus(Status);
         order.setEmpID(empID);
         orderDAO.addOrder(order);
     }
     
-    public void updateOrder(String ordID,String cusID,Date ordDate,int ordTotalPrice,int VAT,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void updateOrder(String ordID,String cusID,Date ordDate,int ordTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
         Order order = new Order();
         order.setOrdID(ordID);
         order.setCusID(cusID);
         order.setOrdDate(ordDate);
         order.setOrdTotalPrice(ordTotalPrice);
-        order.setVAT(VAT);
         order.setStatus(Status);
         order.setEmpID(empID);
         orderDAO.addOrder(order);
@@ -50,5 +48,9 @@ public class OrderBUS {
         Order order= new Order();
         order.setOrdID(ordID);
         orderDAO.deleteOrder(order);
+    }
+    
+    public ArrayList<Order> searchOrderID(String orderID) throws ClassNotFoundException, SQLException {
+        return orderDAO.searchPurchaseID(orderID);
     }
 }
