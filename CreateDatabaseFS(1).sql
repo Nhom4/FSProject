@@ -45,10 +45,10 @@ create table Employee
 	cEmpEmail char(50) not null,
 	cEmpPassword char(50) not null
 )
-
+DROP TABLE Adm
 create table Adm
 (
-	cAdmID char(6) primary key not null,
+	cAdmID int identity primary key  not null,
 	vAdmName varchar(50) not null,
 	vAdmAddress varchar(100) not null,
 	cAdmPhone char(15) not null,
@@ -645,3 +645,7 @@ as
 begin
 	Delete Vendor where cVenID = @cVenID
 end
+Select *from Adm
+insert into [Adm] Values('Admin1', 'Ha Noi', 0976208172, 'dongtv@gmail.com', '12345')
+
+select *from Employee

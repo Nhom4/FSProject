@@ -123,6 +123,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSearch">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbSearch">
       <Properties>
@@ -153,6 +156,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblCategoryMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

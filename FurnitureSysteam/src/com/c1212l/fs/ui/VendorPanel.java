@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,6 +70,12 @@ public class VendorPanel extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", " " }));
 
         tblVendor.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,6 +89,11 @@ public class VendorPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblVendor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVendorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblVendor);
 
         lblVendorID.setText("Vendor ID :");
@@ -219,17 +232,17 @@ public class VendorPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             // TODO add your handling code here:
-            String vendorName = txtVendorName.getText();
-            String address = txtVendorAddress.getText();
-            String phone = txtVendorPhone.getText();
-            String fax = txtVendorFax.getText();
-            String email = txtVendorEmail.getText();
-            vendorBUS.addVendor(vendorName, address, phone, fax, email);
-            reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+                validateFieldAdd();  
+                String vendorID = txtVendorID.getText();
+                String vendorName = txtVendorName.getText();
+                String vendorAddress = txtVendorAddress.getText();
+                String vendorPhone = txtVendorPhone.getText();
+                String vendorFax = txtVendorFax.getText();
+                String vendorEmail = txtVendorEmail.getText();
+                vendorBUS.updateVendor(vendorID, vendorName, vendorAddress, vendorPhone, vendorFax, vendorEmail);
+                reloadData();
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -264,7 +277,7 @@ public class VendorPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void tblCustomerMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    private void tblVendorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVendorMouseClicked
         // TODO add your handling code here:
         int row = tblVendor.rowAtPoint(evt.getPoint());
         txtVendorID.setText(tblVendor.getValueAt(row, 0).toString());
@@ -273,11 +286,11 @@ public class VendorPanel extends javax.swing.JPanel {
         txtVendorPhone.setText(tblVendor.getValueAt(row, 3).toString());
         txtVendorFax.setText(tblVendor.getValueAt(row, 4).toString());
         txtVendorEmail.setText(tblVendor.getValueAt(row, 5).toString());
-    }
-    
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
+    }//GEN-LAST:event_tblVendorMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-             try {
+        try {
                  if (cmbSearch.getSelectedIndex()==0) {
    
                     loadSearchVendorID();
@@ -291,7 +304,9 @@ public class VendorPanel extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -394,4 +409,34 @@ public class VendorPanel extends javax.swing.JPanel {
         lstVendor = vendorBUS.searchVendorID(vendorID);
         fillData(lstVendor);
     }   
+    private void validateFieldAdd() throws Exception {
+        if (txtVendorName.getText().equals("")) {
+            throw new Exception("Please enter Vendor Name");
+        }
+        Pattern ptVendorName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcVendorName = ptVendorName.matcher(txtVendorName.getText());
+        if (!mcVendorName.find()) {
+            throw new Exception("Vendor Name is not valid");
+        }
+        if (txtVendorAddress.getText().equals("")) {
+            throw new Exception("Please enter Vendor Address");
+        }
+        if (txtVendorPhone.getText().equals("")) {
+            throw new Exception("Please enter Phone Number");
+        }
+        Pattern ptPhoneNumber = Pattern.compile("^[\\d]{10,11}$");
+        Matcher mcPhoneNumber = ptPhoneNumber.matcher(txtVendorPhone.getText());
+        if (!mcPhoneNumber.find()) {
+            throw new Exception(" Phone number is not valid");
+        }
+   
+        if (txtVendorEmail.getText().equals("")) {
+            throw new Exception("Please enter Email");
+        }
+        Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+        Matcher mcemail = ptemail.matcher(txtVendorEmail.getText());
+        if (!mcemail.find()) {
+            throw new Exception("Email is not valid");
+        }
+    }
 }

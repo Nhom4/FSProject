@@ -25,6 +25,7 @@ public class EmployeeManager extends javax.swing.JPanel {
      */
     public EmployeeManager() {
         initComponents();
+        reloadData();
     }
 
     /**
@@ -74,6 +75,11 @@ public class EmployeeManager extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmployeeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblEmployee);
 
         btnAdd.setText("Add");
@@ -93,6 +99,12 @@ public class EmployeeManager extends javax.swing.JPanel {
         btnReport.setText("Report");
 
         lblSearch.setText("Search :");
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
         cmbSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -269,9 +281,20 @@ public class EmployeeManager extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
+    private void tblEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeeMouseClicked
         // TODO add your handling code here:
-              try {
+        int selectedRow = tblEmployee.getSelectedRow();
+        txtEmployeeID.setText(tblEmployee.getValueAt(selectedRow, 0).toString());
+        txtEmployeeName.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
+        txtAddress.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
+        txtPhoneNumber.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
+        txtEmail.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
+        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
+    }//GEN-LAST:event_tblEmployeeMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        try {
                  if (cmbSearch.getSelectedIndex()==0) {
    
                     loadSearchEmployeeID();
@@ -285,18 +308,10 @@ public class EmployeeManager extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-    } 
+    }//GEN-LAST:event_txtSearchKeyReleased
+ 
     
-    private void tblEmployeeMouseClicked(java.awt.event.MouseEvent evt) {                                         
-        // TODO add your handling code here:
-        int selectedRow = tblEmployee.getSelectedRow();
-        txtEmployeeID.setText(tblEmployee.getValueAt(selectedRow, 0).toString());
-        txtEmployeeName.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
-        txtAddress.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
-        txtPhoneNumber.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
-        txtEmail.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
-        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
-    } 
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

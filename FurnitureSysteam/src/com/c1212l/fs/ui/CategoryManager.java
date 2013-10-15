@@ -58,6 +58,12 @@ public class CategoryManager extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
 
         tblCategory.setModel(new javax.swing.table.DefaultTableModel(
@@ -71,6 +77,11 @@ public class CategoryManager extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCategoryMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCategory);
 
         lblTypeID.setText("Category ID :");
@@ -216,16 +227,16 @@ public class CategoryManager extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void tblCategoryMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    private void tblCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoryMouseClicked
         // TODO add your handling code here:
         int row = tblCategory.rowAtPoint(evt.getPoint());
         txtCategoryID.setText(tblCategory.getValueAt(row, 0).toString());
         txtCategoryName.setText(tblCategory.getValueAt(row, 1).toString());
-    }
-    
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
+    }//GEN-LAST:event_tblCategoryMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-             try {
+        try {
                  if (cmbSearch.getSelectedIndex()==0) {
    
                     loadSearchCategoryID();
@@ -239,7 +250,10 @@ public class CategoryManager extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

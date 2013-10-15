@@ -61,7 +61,12 @@ public class LoginPanel extends javax.swing.JFrame {
             }
         });
 
-        btnCancel.setText("Cancel");
+        btnCancel.setText("Exit");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,19 +135,30 @@ public class LoginPanel extends javax.swing.JFrame {
             Login loginAdmin = loginBUS.getAdmin(username, password);
             Employee loginEmpl = loginBUS.getEmployee(username, password);
             if (loginAdmin.getEmail()!= null) {
-
+                this.dispose();
+                Main main = new Main();
+                main.show();
+                return;
             }
             else if(loginEmpl.getEmpEmail()!=null){
-                
+                this.dispose();
+                MainEmployee mainEmployee = new MainEmployee();
+                mainEmployee.show();
+                return;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Login fail!");
+                return;
             }
             
        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnOKActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments

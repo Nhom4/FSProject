@@ -87,6 +87,12 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", " " }));
 
         tblPurchase.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,6 +106,11 @@ public class PurchaseManager extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPurchase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPurchaseMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPurchase);
 
         btnAdd.setText("Add");
@@ -139,6 +150,11 @@ public class PurchaseManager extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPurDetail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPurDetailMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblPurDetail);
 
         lblPurIDDetail.setText("Purchase ID :");
@@ -444,9 +460,29 @@ public class PurchaseManager extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUpdateDetailActionPerformed
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
+    private void tblPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPurchaseMouseClicked
         // TODO add your handling code here:
-            try {
+        int row = tblPurchase.rowAtPoint(evt.getPoint());
+        txtPurID.setText(tblPurchase.getValueAt(row, 0).toString());
+        txtDate.setText(tblPurchase.getValueAt(row, 1).toString());
+        txtTotalPrice.setText(tblPurchase.getValueAt(row, 2).toString());
+        txtStatus.setText(tblPurchase.getValueAt(row, 3).toString());
+        txtEmpID.setText(tblPurchase.getValueAt(row, 4).toString());
+    }//GEN-LAST:event_tblPurchaseMouseClicked
+
+    private void tblPurDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPurDetailMouseClicked
+        // TODO add your handling code here:
+        int row = tblPurDetail.rowAtPoint(evt.getPoint());
+        txtPurID.setText(tblPurDetail.getValueAt(row, 0).toString());
+        cmbProID.setSelectedItem(tblPurDetail.getValueAt(row, 1).toString());
+        txtQuantity.setText(tblPurDetail.getValueAt(row, 2).toString());
+        txtPrice.setText(tblPurDetail.getValueAt(row, 3).toString());
+        txtVAT.setText(tblPurDetail.getValueAt(row, 4).toString());
+    }//GEN-LAST:event_tblPurDetailMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        try {
                  if (cmbSearch.getSelectedIndex()==0) {
    
                     loadSearchPurchaseID();
@@ -460,27 +496,11 @@ public class PurchaseManager extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }   
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+   
     
-    private void tblPurchaseMouseClicked(java.awt.event.MouseEvent evt) {                                         
-        // TODO add your handling code here:
-        int row = tblPurchase.rowAtPoint(evt.getPoint());
-        txtPurID.setText(tblPurchase.getValueAt(row, 0).toString());
-        txtDate.setText(tblPurchase.getValueAt(row, 1).toString());
-        txtTotalPrice.setText(tblPurchase.getValueAt(row, 2).toString());
-        txtStatus.setText(tblPurchase.getValueAt(row, 3).toString());
-        txtEmpID.setText(tblPurchase.getValueAt(row, 4).toString());
-    }
     
-    private void tblOrderDetailMouseClicked(java.awt.event.MouseEvent evt) {                                         
-        // TODO add your handling code here:
-        int row = tblPurDetail.rowAtPoint(evt.getPoint());
-        txtPurID.setText(tblPurDetail.getValueAt(row, 0).toString());
-        cmbProID.setSelectedItem(tblPurDetail.getValueAt(row, 1).toString());
-        txtQuantity.setText(tblPurDetail.getValueAt(row, 2).toString());
-        txtPrice.setText(tblPurDetail.getValueAt(row, 3).toString());
-        txtVAT.setText(tblPurDetail.getValueAt(row, 4).toString());
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

@@ -40,15 +40,15 @@ public class MainEmployee extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        pnMain = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
+        jPanel1 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         btnCustomer = new javax.swing.JButton();
-        btnProduct = new javax.swing.JButton();
         btnCataloge = new javax.swing.JButton();
-        btnPurchase = new javax.swing.JButton();
+        btnProduct = new javax.swing.JButton();
         btnOrder = new javax.swing.JButton();
-        btnArthur = new javax.swing.JButton();
+        btnVendor = new javax.swing.JButton();
+        btnPurchase = new javax.swing.JButton();
+        pnMain = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -149,13 +149,10 @@ public class MainEmployee extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogout)
                     .addComponent(btnExit))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
-        pnMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnMain.setName("pnMain"); // NOI18N
-
-        jToolBar1.setRollover(true);
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/House_Circle_Green.png"))); // NOI18N
         btnHome.setText("Home");
@@ -166,7 +163,6 @@ public class MainEmployee extends javax.swing.JFrame {
                 btnHomeActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnHome);
 
         btnCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/customers.png"))); // NOI18N
         btnCustomer.setText("Customer");
@@ -177,18 +173,6 @@ public class MainEmployee extends javax.swing.JFrame {
                 btnCustomerActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnCustomer);
-
-        btnProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/product.png"))); // NOI18N
-        btnProduct.setText("Product");
-        btnProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnProduct);
 
         btnCataloge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/type-product.png"))); // NOI18N
         btnCataloge.setText("Category");
@@ -199,18 +183,16 @@ public class MainEmployee extends javax.swing.JFrame {
                 btnCatalogeActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnCataloge);
 
-        btnPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/buy.png"))); // NOI18N
-        btnPurchase.setText("Purchase");
-        btnPurchase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPurchase.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
+        btnProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/product.png"))); // NOI18N
+        btnProduct.setText("Product");
+        btnProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPurchaseActionPerformed(evt);
+                btnProductActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnPurchase);
 
         btnOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/order.png"))); // NOI18N
         btnOrder.setText("Order");
@@ -221,13 +203,68 @@ public class MainEmployee extends javax.swing.JFrame {
                 btnOrderActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnOrder);
 
-        btnArthur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/detail32.png"))); // NOI18N
-        btnArthur.setText("Arthur");
-        btnArthur.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnArthur.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnArthur);
+        btnVendor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/detail32.png"))); // NOI18N
+        btnVendor.setText("Vendor");
+        btnVendor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVendor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVendor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendorActionPerformed(evt);
+            }
+        });
+
+        btnPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/buy.png"))); // NOI18N
+        btnPurchase.setText("Purchase");
+        btnPurchase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPurchase.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPurchaseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCataloge)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPurchase)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVendor, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCataloge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPurchase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        pnMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnMain.setLayout(new javax.swing.BoxLayout(pnMain, javax.swing.BoxLayout.LINE_AXIS));
 
         jMenu1.setText("File");
 
@@ -262,8 +299,8 @@ public class MainEmployee extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnMain, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -277,10 +314,9 @@ public class MainEmployee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,6 +328,10 @@ public class MainEmployee extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
+        Home home = new Home();
+        pnMain.removeAll();
+        pnMain.add(home);
+        pnMain.updateUI();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
@@ -302,14 +342,6 @@ public class MainEmployee extends javax.swing.JFrame {
         pnMain.updateUI();
     }//GEN-LAST:event_btnCustomerActionPerformed
 
-    private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
-        // TODO add your handling code here:
-        ProductMananger product = new ProductMananger();
-        pnMain.removeAll();
-        pnMain.add(product);
-        pnMain.updateUI();
-    }//GEN-LAST:event_btnProductActionPerformed
-
     private void btnCatalogeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogeActionPerformed
         // TODO add your handling code here:
         CategoryManager category = new CategoryManager();
@@ -318,13 +350,13 @@ public class MainEmployee extends javax.swing.JFrame {
         pnMain.updateUI();
     }//GEN-LAST:event_btnCatalogeActionPerformed
 
-    private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
+    private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
         // TODO add your handling code here:
-        PurchaseManager purchase = new PurchaseManager();
+        ProductMananger product = new ProductMananger();
         pnMain.removeAll();
-        pnMain.add(purchase);
+        pnMain.add(product);
         pnMain.updateUI();
-    }//GEN-LAST:event_btnPurchaseActionPerformed
+    }//GEN-LAST:event_btnProductActionPerformed
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         // TODO add your handling code here:
@@ -333,6 +365,22 @@ public class MainEmployee extends javax.swing.JFrame {
         pnMain.add(order);
         pnMain.updateUI();
     }//GEN-LAST:event_btnOrderActionPerformed
+
+    private void btnVendorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendorActionPerformed
+        // TODO add your handling code here:
+        VendorPanel vendor = new VendorPanel();
+        pnMain.removeAll();
+        pnMain.add(vendor);
+        pnMain.updateUI();
+    }//GEN-LAST:event_btnVendorActionPerformed
+
+    private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
+        // TODO add your handling code here:
+        PurchaseManager purchase = new PurchaseManager();
+        pnMain.removeAll();
+        pnMain.add(purchase);
+        pnMain.updateUI();
+    }//GEN-LAST:event_btnPurchaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,13 +411,13 @@ public class MainEmployee extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainEmployee().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnArthur;
     private javax.swing.JButton btnCataloge;
     private javax.swing.JButton btnChangeInfo;
     private javax.swing.JButton btnCustomer;
@@ -379,6 +427,7 @@ public class MainEmployee extends javax.swing.JFrame {
     private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnProduct;
     private javax.swing.JButton btnPurchase;
+    private javax.swing.JButton btnVendor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -393,10 +442,10 @@ public class MainEmployee extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToolBar jToolBar1;
-    public javax.swing.JPanel pnMain;
+    private javax.swing.JPanel pnMain;
     // End of variables declaration//GEN-END:variables
 }

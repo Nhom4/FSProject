@@ -21,7 +21,7 @@ public class LoginDAO extends ConnectionTool {
     public Login getLogin(String email,String password) throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("Select * From Adm");
+        ResultSet rs = stt.executeQuery("Select * From Adm where cAdmEmail="+"'"+email+"'and cAdmPassword="+"'"+password+"'");
         Login login = new Login();
         while (rs.next()) {
             login.setEmail(rs.getString("cAdmEmail"));
@@ -33,7 +33,7 @@ public class LoginDAO extends ConnectionTool {
         public Employee getEmployee(String email,String password) throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("Select * From Employee");
+        ResultSet rs = stt.executeQuery("Select * From Employee where cEmpEmail = "+"'"+email+"'and cEmpPassword="+"'"+password+"'");
         Employee employee = new Employee();
         while (rs.next()) {
             employee.setEmpEmail(rs.getString("cEmpEmail"));

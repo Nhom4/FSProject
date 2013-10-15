@@ -67,10 +67,22 @@ public class ProductMananger extends javax.swing.JPanel {
         txtProductDetail = new javax.swing.JTextArea();
         btnDelete = new javax.swing.JButton();
 
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+
         lblProductManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblProductManager.setText("Products Manager");
 
         lblSearch.setText("Search :");
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
 
@@ -85,6 +97,11 @@ public class ProductMananger extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProduct);
 
         lblProductID.setText("Product ID :");
@@ -240,15 +257,6 @@ public class ProductMananger extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {                                        
-        // TODO add your handling code here:
-        int selectedRow = tblProduct.getSelectedRow();
-        txtProductID.setText(tblProduct.getValueAt(selectedRow, 0).toString());
-        txtProductName.setText(tblProduct.getValueAt(selectedRow, 1).toString());
-        txtProductDetail.setText(tblProduct.getValueAt(selectedRow, 2).toString());
-        cmbCategory.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 3).toString()));
-        cmbVendor.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 4).toString()));
-    }
     
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
@@ -302,9 +310,19 @@ public class ProductMananger extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-             try {
+        int selectedRow = tblProduct.getSelectedRow();
+        txtProductID.setText(tblProduct.getValueAt(selectedRow, 0).toString());
+        txtProductName.setText(tblProduct.getValueAt(selectedRow, 1).toString());
+        txtProductDetail.setText(tblProduct.getValueAt(selectedRow, 2).toString());
+        cmbCategory.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 3).toString()));
+        cmbVendor.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 4).toString()));
+    }//GEN-LAST:event_formMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        try {
                  if (cmbSearch.getSelectedIndex()==0) {
    
                     loadSearchProductID();
@@ -318,7 +336,19 @@ public class ProductMananger extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = tblProduct.getSelectedRow();
+        txtProductID.setText(tblProduct.getValueAt(selectedRow, 0).toString());
+        txtProductName.setText(tblProduct.getValueAt(selectedRow, 1).toString());
+        txtProductDetail.setText(tblProduct.getValueAt(selectedRow, 2).toString());
+        cmbCategory.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 3).toString()));
+        cmbVendor.setSelectedItem(new KeyValue(0, tblProduct.getValueAt(selectedRow, 4).toString()));
+    }//GEN-LAST:event_tblProductMouseClicked
+
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

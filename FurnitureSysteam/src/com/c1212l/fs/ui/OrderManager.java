@@ -89,6 +89,12 @@ public class OrderManager extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", " " }));
 
         tblOrder.setModel(new javax.swing.table.DefaultTableModel(
@@ -102,6 +108,11 @@ public class OrderManager extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrderMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblOrder);
 
         lblOrdID.setText("Order ID :");
@@ -114,11 +125,16 @@ public class OrderManager extends javax.swing.JPanel {
 
         lblStatus.setText("Status :");
 
-        lblEmpID.setText("Employee ID :");
+        lblEmpID.setText("Employee :");
 
         txtOrdID.setEnabled(false);
 
         txtEmpID.setEnabled(false);
+        txtEmpID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpIDActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Order Detail"));
 
@@ -133,6 +149,11 @@ public class OrderManager extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblOrdDetail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrdDetailMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblOrdDetail);
 
         lblOrdIDDetail.setText("Order ID :");
@@ -261,6 +282,11 @@ public class OrderManager extends javax.swing.JPanel {
         btnReport.setText("Report");
 
         txtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/M/d"))));
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -293,17 +319,17 @@ public class OrderManager extends javax.swing.JPanel {
                                     .addComponent(txtOrdID)
                                     .addComponent(txtCusID, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblEmpID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTotalPrice)
-                                    .addComponent(txtStatus)
-                                    .addComponent(txtEmpID, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                    .addComponent(txtDate)))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmpID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
@@ -455,9 +481,30 @@ public class OrderManager extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUpdateDetailActionPerformed
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
+    private void tblOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderMouseClicked
         // TODO add your handling code here:
-            try {
+        int row = tblOrder.rowAtPoint(evt.getPoint());
+        txtOrdID.setText(tblOrder.getValueAt(row, 0).toString());
+        txtCusID.setText(tblOrder.getValueAt(row, 1).toString());
+        txtDate.setText(tblOrder.getValueAt(row, 2).toString());
+        txtTotalPrice.setText(tblOrder.getValueAt(row, 3).toString());
+        txtStatus.setText(tblOrder.getValueAt(row, 4).toString());
+        txtEmpID.setText(tblOrder.getValueAt(row, 5).toString());
+    }//GEN-LAST:event_tblOrderMouseClicked
+
+    private void tblOrdDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdDetailMouseClicked
+        // TODO add your handling code here:
+        int row = tblOrdDetail.rowAtPoint(evt.getPoint());
+        txtOrdID.setText(tblOrdDetail.getValueAt(row, 0).toString());
+        cmbProID.setSelectedItem(tblOrdDetail.getValueAt(row, 1).toString());
+        txtQuantity.setText(tblOrdDetail.getValueAt(row, 2).toString());
+        txtPrice.setText(tblOrdDetail.getValueAt(row, 3).toString());
+        txtVAT.setText(tblOrdDetail.getValueAt(row, 4).toString());
+    }//GEN-LAST:event_tblOrdDetailMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        try {
                  if (cmbSearch.getSelectedIndex()==0) {
    
                     loadSearchOrderID();
@@ -471,28 +518,19 @@ public class OrderManager extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
-    
-    private void tblOrderMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
         // TODO add your handling code here:
-        int row = tblOrder.rowAtPoint(evt.getPoint());
-        txtOrdID.setText(tblOrder.getValueAt(row, 0).toString());
-        txtCusID.setText(tblOrder.getValueAt(row, 1).toString());
-        txtDate.setText(tblOrder.getValueAt(row, 2).toString());
-        txtTotalPrice.setText(tblOrder.getValueAt(row, 3).toString());
-        txtStatus.setText(tblOrder.getValueAt(row, 4).toString());
-        txtEmpID.setText(tblOrder.getValueAt(row, 5).toString());
-    }
-    
-    private void tblOrderDetailMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    }//GEN-LAST:event_txtDateActionPerformed
+
+    private void txtEmpIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpIDActionPerformed
         // TODO add your handling code here:
-        int row = tblOrdDetail.rowAtPoint(evt.getPoint());
-        txtOrdID.setText(tblOrdDetail.getValueAt(row, 0).toString());
-        cmbProID.setSelectedItem(tblOrdDetail.getValueAt(row, 1).toString());
-        txtQuantity.setText(tblOrdDetail.getValueAt(row, 2).toString());
-        txtPrice.setText(tblOrdDetail.getValueAt(row, 3).toString());
-        txtVAT.setText(tblOrdDetail.getValueAt(row, 4).toString());
-    }
+        
+    }//GEN-LAST:event_txtEmpIDActionPerformed
+
+    
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

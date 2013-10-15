@@ -48,18 +48,18 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblDate" max="32767" attributes="0"/>
-                                  <Component id="lblTotalPrice" max="32767" attributes="0"/>
                                   <Component id="lblStatus" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblTotalPrice" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblEmpID" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtTotalPrice" max="32767" attributes="0"/>
-                                  <Component id="txtStatus" max="32767" attributes="0"/>
-                                  <Component id="txtEmpID" pref="195" max="32767" attributes="0"/>
-                                  <Component id="txtDate" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtDate" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="txtTotalPrice" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="txtStatus" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="txtEmpID" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -162,6 +162,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSearch">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbSearch">
       <Properties>
@@ -193,6 +196,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblOrderMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -223,7 +229,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmpID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Employee ID :"/>
+        <Property name="text" type="java.lang.String" value="Employee :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtOrdID">
@@ -241,6 +247,9 @@
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmpIDActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -350,6 +359,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblOrdDetailMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -464,6 +476,9 @@
           <Format format="yyyy/M/d" subtype="-1" type="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDateActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

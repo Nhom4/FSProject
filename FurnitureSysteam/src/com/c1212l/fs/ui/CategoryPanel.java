@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -170,14 +171,13 @@ public class CategoryPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
+            validateFieldAdd();  
             // TODO add your handling code here:
             String categoryName = txtCategoryName.getText();
             categoryBUS.addCategory(categoryName);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -265,4 +265,8 @@ public class CategoryPanel extends javax.swing.JPanel {
         txtCategoryID.setText("");
         txtCategoryName.setText("");
     }
-}
+     private void validateFieldAdd() throws Exception {
+        if (txtCategoryName.getText().equals("")) {
+            throw new Exception("Please enter Category Name");
+        } 
+}}

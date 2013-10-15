@@ -26,6 +26,7 @@ public class CustomerManager extends javax.swing.JPanel {
      */
     public CustomerManager() {
         initComponents();
+        reloadData();
     }
 
     /**
@@ -66,6 +67,12 @@ public class CustomerManager extends javax.swing.JPanel {
 
         lblSearch.setText("Search :");
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "by ID", "by Name", " " }));
 
         tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
@@ -79,6 +86,11 @@ public class CustomerManager extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCustomerMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCustomer);
 
         btnAdd.setText("Add");
@@ -262,7 +274,7 @@ public class CustomerManager extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void tblCustomerMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    private void tblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomerMouseClicked
         // TODO add your handling code here:
         int row = tblCustomer.rowAtPoint(evt.getPoint());
         txtCustomerID.setText(tblCustomer.getValueAt(row, 0).toString());
@@ -271,11 +283,11 @@ public class CustomerManager extends javax.swing.JPanel {
         txtAddress.setText(tblCustomer.getValueAt(row, 3).toString());
         txtPhoneNumber.setText(tblCustomer.getValueAt(row, 4).toString());
         txtEmail.setText(tblCustomer.getValueAt(row, 5).toString());
-    }
-    
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {                                      
+    }//GEN-LAST:event_tblCustomerMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-             try {
+        try {
                  if (cmbSearch.getSelectedIndex()==0) {
    
                     loadSearchCustomerID();
@@ -289,7 +301,9 @@ public class CustomerManager extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
