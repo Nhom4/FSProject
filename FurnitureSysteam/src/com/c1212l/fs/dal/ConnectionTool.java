@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author OLDPC
+ * @author KimDong
  */
 public class ConnectionTool {
     
