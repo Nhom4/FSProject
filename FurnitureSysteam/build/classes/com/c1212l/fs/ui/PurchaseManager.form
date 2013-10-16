@@ -47,10 +47,7 @@
                                   <Component id="btnAdd" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnUpdate" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
-                                  <Component id="btnReport" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="btnUpdate" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -125,10 +122,7 @@
                           <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnReport" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -197,6 +191,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/c1212l/fs/image/add24.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
       <Events>
@@ -205,16 +202,14 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnUpdate">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/c1212l/fs/image/upgrade-24x24.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnReport">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Report"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPurID">
       <Properties>
@@ -331,7 +326,7 @@
                       <Component id="btnUpdateDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDeleteDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -404,6 +399,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAddDetail">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/c1212l/fs/image/add24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
           <Events>
@@ -412,6 +410,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnUpdateDetail">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/c1212l/fs/image/upgrade-24x24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Update"/>
           </Properties>
           <Events>
@@ -420,6 +421,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnDeleteDetail">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/c1212l/fs/image/delete-24x24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
         </Component>
@@ -439,6 +443,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/c1212l/fs/image/delete-24x24.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>

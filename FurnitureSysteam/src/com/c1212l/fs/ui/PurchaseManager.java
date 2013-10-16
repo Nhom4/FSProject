@@ -52,7 +52,6 @@ public class PurchaseManager extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnReport = new javax.swing.JButton();
         lblPurID = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
@@ -113,6 +112,7 @@ public class PurchaseManager extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblPurchase);
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/add24.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,14 +120,13 @@ public class PurchaseManager extends javax.swing.JPanel {
             }
         });
 
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/upgrade-24x24.png"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-
-        btnReport.setText("Report");
 
         lblPurID.setText("Purchase ID :");
 
@@ -175,6 +174,7 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         lblVAT.setText("VAT :");
 
+        btnAddDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/add24.png"))); // NOI18N
         btnAddDetail.setText("Add");
         btnAddDetail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +182,7 @@ public class PurchaseManager extends javax.swing.JPanel {
             }
         });
 
+        btnUpdateDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/upgrade-24x24.png"))); // NOI18N
         btnUpdateDetail.setText("Update");
         btnUpdateDetail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +190,7 @@ public class PurchaseManager extends javax.swing.JPanel {
             }
         });
 
+        btnDeleteDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/delete-24x24.png"))); // NOI18N
         btnDeleteDetail.setText("Delete");
 
         cmbProID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -260,9 +262,10 @@ public class PurchaseManager extends javax.swing.JPanel {
                     .addComponent(btnAddDetail)
                     .addComponent(btnUpdateDetail)
                     .addComponent(btnDeleteDetail))
-                .addGap(0, 40, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/delete-24x24.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,9 +309,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                                     .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -367,9 +368,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                             .addComponent(btnAdd)
                             .addComponent(btnUpdate))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDelete)
-                            .addComponent(btnReport))
+                        .addComponent(btnDelete)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -507,7 +506,6 @@ public class PurchaseManager extends javax.swing.JPanel {
     private javax.swing.JButton btnAddDetail;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeleteDetail;
-    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateDetail;
     private javax.swing.JComboBox cmbProID;
