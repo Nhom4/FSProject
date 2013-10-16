@@ -15,10 +15,21 @@ import java.sql.SQLException;
 public class ConnectionTool {
     
     Connection conn;
+    public static String HOST = "localhost";
+    public static int PORT = 1433;
+    public static String DATABASE = "FS";
+    public static String USERNAME = "sa";
+    public static String PASSWORD = "1234$";
     
-    public void initConnection() throws ClassNotFoundException, SQLException{
+    public void initConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        conn = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=FS","sa","1234$");        
+        String url = "jdbc:sqlserver://" + HOST + ":" + PORT + ";databaseName=" + DATABASE;
+        conn = DriverManager.getConnection(url, USERNAME, PASSWORD);
+    }
+    public static void testConnection(String host, int port, String database, String username, String password) throws ClassNotFoundException, SQLException {
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        String url = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database;
+        Connection _conn = DriverManager.getConnection(url, username, password);
     }
     
     public void closeConnection() throws SQLException{
@@ -27,5 +38,7 @@ public class ConnectionTool {
             conn = null;
         }
     }   
-    
+    public Connection getConnection() {
+        return conn;
+    }
 }
