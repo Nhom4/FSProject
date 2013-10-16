@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -289,6 +292,7 @@ public class ProductMananger extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             // TODO add your handling code here:
+            validateFieldAdd();
             Category category = productBUS.getCategoryID(cmbCategory.getSelectedItem().toString());
             Vendor   vendor = productBUS.getVendorID(cmbVendor.getSelectedItem().toString());
             System.out.println(cmbVendor.getSelectedItem());
@@ -298,10 +302,8 @@ public class ProductMananger extends javax.swing.JPanel {
             String vendorID = vendor.getVendorID();
             productBUS.addProduct(productName, productDetail, categoryID, vendorID);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -465,5 +467,23 @@ public class ProductMananger extends javax.swing.JPanel {
         initTable();
         lstProduct = productBUS.searchProductName(productID);
         fillData(lstProduct);
+    }
+    private void validateFieldAdd() throws Exception {
+        if (txtInventory.getText().equals("")) {
+            throw new Exception("Please enter Inventory");
+        }
+        if (txtProductName.getText().equals("")) {
+            throw new Exception("Please enter Product Name");
+        }
+        
+        Pattern ptProductName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcProductName = ptProductName.matcher(txtProductName.getText());
+        if (!mcProductName.find()) {
+            throw new Exception("Product Name is not valid");
+        }
+        
+        if (txtProductDetail.getText().equals("")) {
+            throw new Exception("Please enter Product Detail");
+        }
     }
 }
