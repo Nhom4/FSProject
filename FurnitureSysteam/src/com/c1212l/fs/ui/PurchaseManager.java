@@ -632,6 +632,7 @@ public class PurchaseManager extends javax.swing.JPanel {
     private void reloadDataDetail() {
         try {
             initTableDetail();
+            txtEmpID.setText(LoginFrame.id);
             initCmbProID();
             initCmbSearch();
             fillDataDetail(purDetailBUS.getAllPurDetails());

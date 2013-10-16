@@ -605,6 +605,8 @@ public class OrderManager extends javax.swing.JPanel {
         try {
             initTable();
             initCmbSearch();
+            txtEmpID.setText(LoginFrame.id);
+            
             fillData(orderBUS.getAllOrder());
             initTextField();
         } catch (ClassNotFoundException ex) {

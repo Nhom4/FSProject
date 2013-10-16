@@ -16,12 +16,12 @@ import javax.swing.WindowConstants;
  *
  * @author Win 8 64Bit VS7
  */
-public class LoginPanel extends javax.swing.JFrame {
+public class LoginFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public LoginPanel() {
+    public LoginFrame() {
         initComponents();
     }
 
@@ -156,18 +156,26 @@ public class LoginPanel extends javax.swing.JFrame {
             if (loginAdmin.getEmail()!= null) {
                 this.dispose();
                 Main main = new Main();
+                id = loginAdmin.getId();
+                email = loginAdmin.getEmail();
+                name = loginAdmin.getName();
+                address=loginAdmin.getAddress();
+                phone=loginAdmin.getPhone();
+                
                 main.show();
-                return;
             }
             else if(loginEmpl.getEmpEmail()!=null){
                 this.dispose();
                 MainEmployee mainEmployee = new MainEmployee();
+                id = loginAdmin.getId();
+                email = loginAdmin.getEmail();
+                name = loginAdmin.getName();
+                address=loginAdmin.getAddress();
+                phone=loginAdmin.getPhone();
                 mainEmployee.show();
-                return;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Login fail!");
-                return;
             }
             
        } catch (Exception ex) {
@@ -203,20 +211,20 @@ public class LoginPanel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPanel().setVisible(true);
+                new LoginFrame().setVisible(true);
             }
         });
     }
@@ -233,6 +241,7 @@ public class LoginPanel extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
         private LoginBUS loginBUS = new LoginBUS();
+        protected static String email,name,phone,id,address ;
     private void validateFieldAdd() throws Exception {
         if (txtEmail.getText().equals("")) {
             throw new Exception("Please enter Email");

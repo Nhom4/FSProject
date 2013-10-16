@@ -262,10 +262,8 @@ public class ProductMananger extends javax.swing.JPanel {
             String productID = txtProductID.getText();
             productBUS.deleteProduct(productID);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -282,10 +280,13 @@ public class ProductMananger extends javax.swing.JPanel {
             String vendorID = vendor.getVendorID();
             productBUS.updateProduct(productID, productName, productDetail, categoryID, vendorID);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY")) {
+                JOptionPane.showMessageDialog(null, "Error: Duplicate product name", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -469,9 +470,9 @@ public class ProductMananger extends javax.swing.JPanel {
         fillData(lstProduct);
     }
     private void validateFieldAdd() throws Exception {
-        if (txtInventory.getText().equals("")) {
-            throw new Exception("Please enter Inventory");
-        }
+//        if (txtInventory.getText().equals("")) {
+//            throw new Exception("Please enter Inventory");
+//        }
         if (txtProductName.getText().equals("")) {
             throw new Exception("Please enter Product Name");
         }

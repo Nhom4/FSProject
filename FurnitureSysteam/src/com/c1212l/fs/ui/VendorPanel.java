@@ -232,15 +232,13 @@ public class VendorPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             // TODO add your handling code here:
-                validateFieldAdd();  
-                String vendorID = txtVendorID.getText();
-                String vendorName = txtVendorName.getText();
-                String vendorAddress = txtVendorAddress.getText();
-                String vendorPhone = txtVendorPhone.getText();
-                String vendorFax = txtVendorFax.getText();
-                String vendorEmail = txtVendorEmail.getText();
-                vendorBUS.updateVendor(vendorID, vendorName, vendorAddress, vendorPhone, vendorFax, vendorEmail);
-                reloadData();
+            String vendorName = txtVendorName.getText();
+            String address = txtVendorAddress.getText();
+            String phone = txtVendorPhone.getText();
+            String fax = txtVendorFax.getText();
+            String email = txtVendorEmail.getText();
+            vendorBUS.addVendor(vendorName, address, phone, fax, email);
+            reloadData();
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
@@ -249,13 +247,15 @@ public class VendorPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             // TODO add your handling code here:
-            String vendorName = txtVendorName.getText();
-            String address = txtVendorAddress.getText();
-            String phone = txtVendorPhone.getText();
-            String fax = txtVendorFax.getText();
-            String email = txtVendorEmail.getText();
-            vendorBUS.addVendor(vendorName, address, phone, fax, email);
-            reloadData();
+            validateFieldAdd();  
+                String vendorID = txtVendorID.getText();
+                String vendorName = txtVendorName.getText();
+                String vendorAddress = txtVendorAddress.getText();
+                String vendorPhone = txtVendorPhone.getText();
+                String vendorFax = txtVendorFax.getText();
+                String vendorEmail = txtVendorEmail.getText();
+                vendorBUS.updateVendor(vendorID, vendorName, vendorAddress, vendorPhone, vendorFax, vendorEmail);
+                reloadData();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {

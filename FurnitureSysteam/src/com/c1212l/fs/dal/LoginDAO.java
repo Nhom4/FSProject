@@ -24,8 +24,12 @@ public class LoginDAO extends ConnectionTool {
         ResultSet rs = stt.executeQuery("Select * From Adm where cAdmEmail="+"'"+email+"'and cAdmPassword="+"'"+password+"'");
         Login login = new Login();
         while (rs.next()) {
+            login.setId(rs.getString("cAdmID"));
             login.setEmail(rs.getString("cAdmEmail"));
             login.setPassword(rs.getString("cAdmPassword"));
+            login.setAddress(rs.getString("vAdmAddress"));
+            login.setName(rs.getString("vAdmName"));
+            login.setPhone(rs.getString("cAdmPhone"));
         }
         closeConnection();
         return login;
@@ -36,8 +40,12 @@ public class LoginDAO extends ConnectionTool {
         ResultSet rs = stt.executeQuery("Select * From Employee where cEmpEmail = "+"'"+email+"'and cEmpPassword="+"'"+password+"'");
         Employee employee = new Employee();
         while (rs.next()) {
+            employee.setEmpID(rs.getString("cEmpID"));
             employee.setEmpEmail(rs.getString("cEmpEmail"));
             employee.setEmpPassword(rs.getString("cEmpPassword"));
+            employee.setEmpAddress(rs.getString("vEmpAddress"));
+            employee.setEmpName(rs.getString("vEmpName"));
+            employee.setEmpPhone(rs.getString("cEmpEmail"));
         }
         closeConnection();
         return employee;
