@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -186,6 +188,7 @@ public class CategoryManager extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
+            validateFieldAdd();
             // TODO add your handling code here:
             String categoryName = txtCategoryName.getText();
             categoryBUS.addCategory(categoryName);
@@ -331,5 +334,15 @@ public class CategoryManager extends javax.swing.JPanel {
         initTable();
         lstCategory = categoryBUS.searchCategoryName(categoryID);
         fillData(lstCategory);
+    }
+     private void validateFieldAdd() throws Exception {
+        if (txtCategoryName.getText().equals("")) {
+            throw new Exception("Please enter Category Name");
+        }
+          Pattern ptCategory = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcCategory = ptCategory.matcher(txtCategoryName.getText());
+        if (!mcCategory.find()) {
+            throw new Exception("Category Name is not valid");
+        }
     }
 }
