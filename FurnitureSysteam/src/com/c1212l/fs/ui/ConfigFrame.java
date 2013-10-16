@@ -47,7 +47,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         setTitle("Configuration");
         setResizable(false);
 
-        jLabel1.setText("Host name");
+        jLabel1.setText("Host");
 
         jLabel2.setText("Port");
 
@@ -57,7 +57,7 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Username");
 
-        btnTest.setText("Test");
+        btnTest.setText("Connect");
         btnTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTestActionPerformed(evt);
@@ -79,7 +79,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 126, Short.MAX_VALUE)
                         .addComponent(btnTest)
                         .addGap(14, 14, 14)
                         .addComponent(btnSave))
@@ -97,7 +97,7 @@ public class ConfigFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(29, 29, 29)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txpPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(txpPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                             .addComponent(txtUsername)
                             .addComponent(txtHostName)
                             .addComponent(txtPort)
@@ -131,10 +131,10 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTest)
                     .addComponent(btnSave))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(306, 249));
+        setSize(new java.awt.Dimension(306, 217));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
