@@ -10,6 +10,7 @@ use master
 go
 drop database FS
 go
+use master
 create database FS
 go
 use FS
@@ -655,7 +656,7 @@ end
 
 
 Select *from Adm
-insert into [Adm] Values('Admin1', 'Ha Noi', 0976208172, 'dongtv@gmail.com', '12345')
+insert into [Adm] Values('Admin', 'Ha Noi', 0976208172, 'dongtv@gmail.com', '12345')
 
 select *from Employee
 
@@ -667,19 +668,3 @@ select *from Employee
 
 
 
-
-
-//---------- Delete Database
-EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'FS'
-GO
-
-USE [master]
-GO
-ALTER DATABASE [FS] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
-GO
-
-USE [master]
-GO
-
-DROP DATABASE [FS]
-GO

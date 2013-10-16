@@ -84,6 +84,11 @@ public class MainEmployee extends javax.swing.JFrame {
         btnLogout.setText("Logout");
 
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         btnChangeInfo.setText("Change Information");
 
@@ -381,6 +386,11 @@ public class MainEmployee extends javax.swing.JFrame {
         pnMain.add(purchase);
         pnMain.updateUI();
     }//GEN-LAST:event_btnPurchaseActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
