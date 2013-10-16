@@ -32,7 +32,6 @@ public class Main extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnChangeInfo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -83,11 +82,15 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Hello, ...");
 
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/logout-32x32.png"))); // NOI18N
         btnLogout.setText("Logout");
+        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/exit32.png"))); // NOI18N
         btnExit.setText("Exit");
-
-        btnChangeInfo.setText("Change Information");
+        btnExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jLabel3.setText("Full name :");
 
@@ -111,7 +114,6 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnChangeInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -145,13 +147,11 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnChangeInfo)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogout)
                     .addComponent(btnExit))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -460,7 +460,6 @@ public class Main extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCataloge;
-    private javax.swing.JButton btnChangeInfo;
     private javax.swing.JButton btnCustomer;
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnExit;

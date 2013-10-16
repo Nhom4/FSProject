@@ -121,7 +121,7 @@ public class CustomerManager extends javax.swing.JPanel {
 
         lblGender.setText("Sex :");
 
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Famale" }));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -358,6 +358,7 @@ public class CustomerManager extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
+            initCmbGender();
             initCmbSearch();
             fillData(customerBUS.getAllCustomer());
             initTextField();

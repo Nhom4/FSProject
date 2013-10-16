@@ -44,7 +44,7 @@ public class ConfigFrame extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Configuration");
+        setTitle("ConectionTool");
         setResizable(false);
 
         jLabel1.setText("Host");
@@ -131,11 +131,11 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTest)
                     .addComponent(btnSave))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(306, 248));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-306)/2, (screenSize.height-248)/2, 306, 248);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
