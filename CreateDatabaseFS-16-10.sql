@@ -10,7 +10,6 @@ use master
 go
 drop database FS
 go
-use master
 create database FS
 go
 use FS
@@ -19,7 +18,7 @@ use FS
 create table Product
 (
 	cProID char(6) primary key not null,
-	vProName varchar(50) not null,
+	vProName varchar(50) not null unique,
 	vProDetails varchar(500) not null,
 	cVenID char(6) not null,
 	cCatID char(6) not null,
@@ -29,13 +28,13 @@ create table Product
 create table Category
 (
 	cCatID char(6) primary key not null,
-	vCatName varchar(50) not null
+	vCatName varchar(50) not null unique
 )
 
 create table Vendor
 (
 	cVenID char(6) primary key not null,
-	vVenName varchar(50) not null,
+	vVenName varchar(50) not null unique,
 	vVenAddress varchar(100) not null,
 	cVenPhone char(15) not null,
 	cVenFax char(15) not null,
@@ -45,7 +44,7 @@ create table Vendor
 create table Employee
 (
 	cEmpID char(6) primary key not null,
-	vEmpName varchar(50) not null,
+	vEmpName varchar(50) not null unique,
 	vEmpAddress varchar(100) not null,
 	cEmpPhone char(15) not null,
 	cEmpEmail char(50) not null,
@@ -55,7 +54,7 @@ create table Employee
 create table Adm
 (
 	cAdmID int identity primary key  not null,
-	vAdmName varchar(50) not null,
+	vAdmName varchar(50) not null ,
 	vAdmAddress varchar(100) not null,
 	cAdmPhone char(15) not null,
 	cAdmEmail char(50) not null,
@@ -68,8 +67,8 @@ create table Customer
 	vCusName varchar(50) not null,
 	cCusSex char(6) not null,
 	vCusAddress varchar(100) not null,
-	cCusPhone char(15) not null,
-	cCusEmail char(50) not null
+	cCusPhone char(15) not null unique,
+	cCusEmail char(50) not null unique
 )
 
 create table Purchase
@@ -656,7 +655,7 @@ end
 
 
 Select *from Adm
-insert into [Adm] Values('Admin', 'Ha Noi', 0976208172, 'dongtv@gmail.com', '12345')
+insert into [Adm] Values('Admin1', 'Ha Noi', 0976208172, 'dongtv@gmail.com', '12345')
 
 select *from Employee
 
@@ -668,3 +667,19 @@ select *from Employee
 
 
 
+
+
+//---------- Delete Database
+EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'FS'
+GO
+
+USE [master]
+GO
+ALTER DATABASE [FS] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+
+USE [master]
+GO
+
+DROP DATABASE [FS]
+GO
