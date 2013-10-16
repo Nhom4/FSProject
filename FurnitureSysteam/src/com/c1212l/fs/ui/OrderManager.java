@@ -702,7 +702,7 @@ public class OrderManager extends javax.swing.JPanel {
     }
     private void validateFieldAdd() throws Exception {
         if (txtDate.getText().equals("")) {
-            throw new Exception("Please enter Date Name");
+            throw new Exception("Please enter Date");
         }
         if (txtTotalPrice.getText().equals("")) {
             throw new Exception("Please enter Total Price");
