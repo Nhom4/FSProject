@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -401,15 +404,14 @@ public class OrderManager extends javax.swing.JPanel {
     private void btnAddDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDetailActionPerformed
         // TODO add your handling code here:
         try {
+            validateFieldAddOrderDetail();
             int Quantity = Integer.valueOf(txtQuantity.getText());
             int Price = Integer.valueOf(txtPrice.getText());
             int VAT = Integer.valueOf(txtVAT.getText());
             ordDetailBUS.addOrderDetail(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, Quantity, Price, VAT);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_btnAddDetailActionPerformed
@@ -417,6 +419,7 @@ public class OrderManager extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         try {
+            validateFieldAdd();
             String cusID = txtCusID.getText();
             Date date = Date.valueOf(txtDate.getText());
            // int Quantity = Integer.valueOf(txtQuantity.getText());
@@ -425,10 +428,8 @@ public class OrderManager extends javax.swing.JPanel {
             String empID = txtEmpID.getText();
             orderBUS.addOrder(cusID, date, TotalPrice, Status, empID);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -697,6 +698,28 @@ public class OrderManager extends javax.swing.JPanel {
             Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void validateFieldAdd() throws Exception {
+        if (txtDate.getText().equals("")) {
+            throw new Exception("Please enter Date Name");
+        }
+        if (txtTotalPrice.getText().equals("")) {
+            throw new Exception("Please enter Total Price");
+        }
+        if (txtStatus.getText().equals("")) {
+            throw new Exception("Please enter status");
+        }
+    }
+    private void validateFieldAddOrderDetail() throws Exception {
+        if (txtQuantity.getText().equals("")) {
+            throw new Exception("Please enter Quantity ");
+        }
+        if (txtPrice.getText().equals("")) {
+            throw new Exception("Please enter Price ");
+        }
+        if (txtVAT.getText().equals("")) {
+            throw new Exception("Please enter VAT ");
         }
     }
 }
