@@ -5,11 +5,9 @@
 ma chua sua procedure insert, update*/
 
 ----Tao CSDL
-
-use master
-go
 drop database FS
 go
+use master
 create database FS
 go
 use FS
@@ -18,7 +16,7 @@ use FS
 create table Product
 (
 	cProID char(6) primary key not null,
-	vProName varchar(50) not null unique,
+	vProName varchar(50) not null,
 	vProDetails varchar(500) not null,
 	cVenID char(6) not null,
 	cCatID char(6) not null,
@@ -28,13 +26,13 @@ create table Product
 create table Category
 (
 	cCatID char(6) primary key not null,
-	vCatName varchar(50) not null unique
+	vCatName varchar(50) not null
 )
 
 create table Vendor
 (
 	cVenID char(6) primary key not null,
-	vVenName varchar(50) not null unique,
+	vVenName varchar(50) not null,
 	vVenAddress varchar(100) not null,
 	cVenPhone char(15) not null,
 	cVenFax char(15) not null,
@@ -44,7 +42,7 @@ create table Vendor
 create table Employee
 (
 	cEmpID char(6) primary key not null,
-	vEmpName varchar(50) not null unique,
+	vEmpName varchar(50) not null,
 	vEmpAddress varchar(100) not null,
 	cEmpPhone char(15) not null,
 	cEmpEmail char(50) not null,
@@ -54,7 +52,7 @@ create table Employee
 create table Adm
 (
 	cAdmID int identity primary key  not null,
-	vAdmName varchar(50) not null ,
+	vAdmName varchar(50) not null,
 	vAdmAddress varchar(100) not null,
 	cAdmPhone char(15) not null,
 	cAdmEmail char(50) not null,
@@ -67,8 +65,8 @@ create table Customer
 	vCusName varchar(50) not null,
 	cCusSex char(6) not null,
 	vCusAddress varchar(100) not null,
-	cCusPhone char(15) not null unique,
-	cCusEmail char(50) not null unique
+	cCusPhone char(15) not null,
+	cCusEmail char(50) not null
 )
 
 create table Purchase
@@ -652,21 +650,148 @@ begin
 end
 
 
+---Bao cao tinh hinh mua hang trong 1 thang, nhieu thang, 1 nam, nhieu nam
+--1 thang
+go
+if exists (select name from sysobjects where name='prcReportPurchase_1Month' and type='p')
+drop proc prcReportPurchase_1Month
+go
+create proc prcReportPurchase_1Month(@dMonth int)
+as
+begin
+	select pr.cProID, pr.vProName, pd.iPurQuantity, pu.dPurDate
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(mm,pu.dPurDate) = @dMonth) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(pd.iPurQuantity) as PurchaseQuantity, sum(pd.iPurPrice) as TotalPrice
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(mm,pu.dPurDate) = @dMonth) group by pr.cProID, pr.vProName
+end
+
+--nhieu thang
+go
+if exists (select name from sysobjects where name='prcReportPurchase_Months' and type='p')
+drop proc prcReportPurchase_Months
+go
+create proc prcReportPurchase_Months(@dMonth1 int, @dMonth2 int)
+as
+begin
+	select pr.cProID, pr.vProName, pd.iPurQuantity, pu.dPurDate
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(mm,pu.dPurDate) between @dMonth1 and @dMonth2) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(pd.iPurQuantity) as PurchaseQuantity, sum(pd.iPurPrice) as TotalPrice
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(mm,pu.dPurDate) between @dMonth1 and @dMonth2) group by pr.cProID, pr.vProName
+end
+
+--1 nam
+go
+if exists (select name from sysobjects where name='prcReportPurchase_1Year' and type='p')
+drop proc prcReportPurchase_1Year
+go
+create proc prcReportPurchase_1Year(@dYear int)
+as
+begin
+	select pr.cProID, pr.vProName, pd.iPurQuantity, pu.dPurDate
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(yy,pu.dPurDate) = @dYear) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(pd.iPurQuantity) as PurchaseQuantity, sum(pd.iPurPrice) as TotalPrice
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(yy,pu.dPurDate) = @dYear) group by pr.cProID, pr.vProName
+end
+
+--nhieu nam
+go
+if exists (select name from sysobjects where name='prcReportPurchase_Years' and type='p')
+drop proc prcReportPurchase_Years
+go
+create proc prcReportPurchase_Years(@dYear1 int, @dYear2 int)
+as
+begin
+	select pr.cProID, pr.vProName, pd.iPurQuantity, pu.dPurDate
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(yy,pu.dPurDate) between @dYear1 and @dYear2) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(pd.iPurQuantity) as PurchaseQuantity, sum(pd.iPurPrice) as TotalPrice
+	from Product pr join PurDetails pd on pr.cProID=pd.cProID join Purchase pu on pd.cPurID=pu.cPurID
+	where (datepart(yy,pu.dPurDate) between @dYear1 and @dYear2) group by pr.cProID, pr.vProName
+end
+
+---Bao cao tinh hinh ban hang trong 1 thang, nhieu thang, 1 nam, nhieu nam
+--1 thang
+go
+if exists (select name from sysobjects where name='prcReportOrders_1Month' and type='p')
+drop proc prcReportOrders_1Month
+go
+create proc prcReportOrders_1Month(@dMonth int)
+as
+begin
+	select pr.cProID, pr.vProName, od.iOrdQuantity, ord.dOrdDate
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(mm,ord.dOrdDate) = @dMonth) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(od.iOrdQuantity) as OrdersQuantity, sum(od.iOrdPrice) as TotalPrice
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(mm,ord.dOrdDate) = @dMonth) group by pr.cProID, pr.vProName
+end
+
+--nhieu thang
+go
+if exists (select name from sysobjects where name='prcReportOrders_Months' and type='p')
+drop proc prcReportOrders_Months
+go
+create proc prcReportOrders_Months(@dMonth1 int, @dMonth2 int)
+as
+begin
+	select pr.cProID, pr.vProName, od.iOrdQuantity, ord.dOrdDate
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(mm,ord.dOrdDate) between @dMonth1 and @dMonth2) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(od.iOrdQuantity) as OrdersQuantity, sum(od.iOrdPrice) as TotalPrice
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(mm,ord.dOrdDate) between @dMonth1 and @dMonth2) group by pr.cProID, pr.vProName
+end
+
+--1 nam
+go
+if exists (select name from sysobjects where name='prcReportOrders_1Year' and type='p')
+drop proc prcReportOrders_1Year
+go
+create proc prcReportOrders_1Year(@dYear int)
+as
+begin
+	select pr.cProID, pr.vProName, od.iOrdQuantity, ord.dOrdDate
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(yy,ord.dOrdDate) = @dYear) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(od.iOrdQuantity) as OrdersQuantity, sum(od.iOrdPrice) as TotalPrice
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(yy,ord.dOrdDate) = @dYear) group by pr.cProID, pr.vProName
+end
+
+--nhieu nam
+go
+if exists (select name from sysobjects where name='prcReportOrders_Years' and type='p')
+drop proc prcReportOrders_Years
+go
+create proc prcReportOrders_Years(@dYear1 int, @dYear2 int)
+as
+begin
+	select pr.cProID, pr.vProName, od.iOrdQuantity, ord.dOrdDate
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(yy,ord.dOrdDate) between @dYear1 and @dYear2) order by pr.cProID
+	select pr.cProID, pr.vProName, sum(od.iOrdQuantity) as OrdersQuantity, sum(od.iOrdPrice) as TotalPrice
+	from Product pr join OrdDetails od on pr.cProID=od.cProID join Orders ord on od.cOrdID=ord.cOrdID
+	where (datepart(yy,ord.dOrdDate) between @dYear1 and @dYear2) group by pr.cProID, pr.vProName
+end
+
+
+--TEST
+exec prcReportPurchase_1Month '3'
+
+exec prcReportPurchase_Months '2','7'
+
 
 
 Select *from Adm
 insert into [Adm] Values('Admin1', 'Ha Noi', 0976208172, 'dongtv@gmail.com', '12345')
 
 select *from Employee
-
-
-
-
-
-
-
-
-
 
 
 //---------- Delete Database
@@ -683,3 +808,5 @@ GO
 
 DROP DATABASE [FS]
 GO
+
+
