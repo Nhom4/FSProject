@@ -185,7 +185,9 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(this, "You sure you want to exit program?", "Message", JOptionPane.OK_CANCEL_OPTION)) {
+            System.exit(0);  
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed

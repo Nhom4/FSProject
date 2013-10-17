@@ -4,6 +4,8 @@
  */
 package com.c1212l.fs.ui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Win 8 64Bit VS7
@@ -416,16 +418,19 @@ public class Main extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(this, "You sure you want to exit program?", "Message", JOptionPane.OK_CANCEL_OPTION)) {
+            System.exit(0);  
+        }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(this, "You sure you want to exit your account?", "Message", JOptionPane.OK_CANCEL_OPTION)) {
         this.dispose();
         LoginFrame login = new LoginFrame();
         login.show();
     }//GEN-LAST:event_btnLogoutActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
