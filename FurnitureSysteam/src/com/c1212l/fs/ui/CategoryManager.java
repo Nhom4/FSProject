@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -183,7 +182,7 @@ public class CategoryManager extends javax.swing.JPanel {
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(btnAdd))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -194,8 +193,10 @@ public class CategoryManager extends javax.swing.JPanel {
             String categoryName = txtCategoryName.getText();
             categoryBUS.addCategory(categoryName);
             reloadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

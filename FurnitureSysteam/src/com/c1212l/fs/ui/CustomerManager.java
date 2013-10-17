@@ -122,8 +122,6 @@ public class CustomerManager extends javax.swing.JPanel {
 
         lblGender.setText("Sex :");
 
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Famale" }));
-
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/delete-24x24.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +213,7 @@ public class CustomerManager extends javax.swing.JPanel {
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblGender)
                     .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
@@ -277,7 +275,7 @@ public class CustomerManager extends javax.swing.JPanel {
         int row = tblCustomer.rowAtPoint(evt.getPoint());
         txtCustomerID.setText(tblCustomer.getValueAt(row, 0).toString());
         txtCustomerName.setText(tblCustomer.getValueAt(row, 1).toString());
-        cmbGender.setSelectedItem(tblCustomer.getValueAt(row, 2).toString());
+        cmbGender.setSelectedItem(new KeyValue(0, tblCustomer.getValueAt(row, 2).toString()));
         txtAddress.setText(tblCustomer.getValueAt(row, 3).toString());
         txtPhoneNumber.setText(tblCustomer.getValueAt(row, 4).toString());
         txtEmail.setText(tblCustomer.getValueAt(row, 5).toString());
@@ -367,7 +365,6 @@ public class CustomerManager extends javax.swing.JPanel {
     }
     private void initCmbGender() {
         cmbGender.removeAllItems();
-        cmbGender.addItem(new KeyValue(-1, ""));
         cmbGender.addItem(new KeyValue(1, "Male"));
         cmbGender.addItem(new KeyValue(0, "Female"));
     }

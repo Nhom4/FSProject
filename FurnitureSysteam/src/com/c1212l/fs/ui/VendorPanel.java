@@ -225,7 +225,7 @@ public class VendorPanel extends javax.swing.JPanel {
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
-                .addGap(0, 77, Short.MAX_VALUE))
+                .addGap(0, 105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
