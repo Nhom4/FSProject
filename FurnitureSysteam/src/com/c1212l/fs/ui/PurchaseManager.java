@@ -198,6 +198,7 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         cmbProID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
         jButton2.setText("Reset");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +293,7 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         txtEmpID.setEnabled(false);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
         jButton1.setText("Reset");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

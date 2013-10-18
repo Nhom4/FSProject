@@ -118,7 +118,7 @@ public class CategoryManager extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/logout-32x32.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
         jButton1.setText("Reset");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,7 +198,7 @@ public class CategoryManager extends javax.swing.JPanel {
                     .addComponent(btnDelete)
                     .addComponent(btnAdd)
                     .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

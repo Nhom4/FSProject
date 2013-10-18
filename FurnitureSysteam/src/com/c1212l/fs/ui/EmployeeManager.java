@@ -137,6 +137,7 @@ public class EmployeeManager extends javax.swing.JPanel {
             }
         });
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +200,7 @@ public class EmployeeManager extends javax.swing.JPanel {
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(78, 78, 78)
                                 .addComponent(btnReset)))
-                        .addGap(0, 48, Short.MAX_VALUE)))
+                        .addGap(0, 44, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
