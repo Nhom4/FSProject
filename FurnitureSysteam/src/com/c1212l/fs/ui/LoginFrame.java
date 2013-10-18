@@ -154,25 +154,31 @@ public class LoginFrame extends javax.swing.JFrame {
             Login loginAdmin = loginBUS.getAdmin(username, password);
             Employee loginEmpl = loginBUS.getEmployee(username, password);
             if (loginAdmin.getEmail()!= null) {
-                this.dispose();
-                Main main = new Main();
                 id = loginAdmin.getId();
                 email = loginAdmin.getEmail();
                 name = loginAdmin.getName();
                 address=loginAdmin.getAddress();
                 phone=loginAdmin.getPhone();
-                
+                this.dispose();
+                Main main = new Main(); 
                 main.show();
+                
             }
             else if(loginEmpl.getEmpEmail()!=null){
                 this.dispose();
                 MainEmployee mainEmployee = new MainEmployee();
-                id = loginAdmin.getId();
-                email = loginAdmin.getEmail();
-                name = loginAdmin.getName();
-                address=loginAdmin.getAddress();
-                phone=loginAdmin.getPhone();
+//                id = loginEmpl.getEmpID();
+//                email = loginEmpl.getEmpEmail();
+//                name = loginEmpl.getEmpName();
+//                address=loginEmpl.getEmpAddress();
+//                phone=loginEmpl.getEmpPhone();
                 mainEmployee.show();
+                id = loginEmpl.getEmpID();
+                email = loginEmpl.getEmpEmail();
+                name = loginEmpl.getEmpName();
+                address=loginEmpl.getEmpAddress();
+                phone=loginEmpl.getEmpPhone();
+
             }
             else{
                 JOptionPane.showMessageDialog(null, "Login fail!");
