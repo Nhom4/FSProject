@@ -241,6 +241,7 @@ public class VendorPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             // TODO add your handling code here:
+            validateFieldAdd();
             String vendorName = txtVendorName.getText();
             String address = txtVendorAddress.getText();
             String phone = txtVendorPhone.getText();
@@ -248,8 +249,13 @@ public class VendorPanel extends javax.swing.JPanel {
             String email = txtVendorEmail.getText();
             vendorBUS.addVendor(vendorName, address, phone, fax, email);
             reloadData();
-        }catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY")) {
+                JOptionPane.showMessageDialog(null, "Error: Duplicate Customer name", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

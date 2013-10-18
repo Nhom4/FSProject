@@ -40,6 +40,13 @@ public class VendorDAO extends ConnectionTool {
     }
     public void addVendor(Vendor vendor) throws ClassNotFoundException, Exception {
        initConnection();
+       String error = "";
+            PreparedStatement pstmt = conn.prepareStatement("select * from Vendor where vVenName = ?");
+            pstmt.setString(1, vendor.getVendorName());
+            if (pstmt.executeQuery().next()) {
+                error += "Error: Duplicate Vendor name\n";
+            }
+            if (error.equals("")) {
        CallableStatement cs = conn.prepareCall("{call prcInsertVendor(?,?,?,?,?)}");
        cs.setString(1, vendor.getVendorName());
        cs.setString(2, vendor.getVendorAddress());
@@ -47,6 +54,9 @@ public class VendorDAO extends ConnectionTool {
        cs.setString(4, vendor.getVendorFax());
        cs.setString(5, vendor.getVendorEmail());
        cs.executeUpdate();
+       } else {
+                throw new Exception(error);
+            }
        closeConnection();
     }
       public void updateVendor(Vendor vendor) throws ClassNotFoundException, Exception {
