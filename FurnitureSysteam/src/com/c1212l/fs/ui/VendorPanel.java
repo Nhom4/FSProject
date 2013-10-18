@@ -30,6 +30,7 @@ public class VendorPanel extends javax.swing.JPanel {
     public VendorPanel() {
         initComponents();
         reloadData();
+        txtVendorID.setEnabled(false);
     }
 
     /**
@@ -63,6 +64,7 @@ public class VendorPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         lblVendorManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblVendorManager.setText("Vendor Manager");
@@ -131,6 +133,13 @@ public class VendorPanel extends javax.swing.JPanel {
             }
         });
 
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,7 +195,9 @@ public class VendorPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(110, 110, 110)))))
+                                .addGap(27, 27, 27)
+                                .addComponent(btnReset)
+                                .addGap(10, 10, 10)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -224,8 +235,9 @@ public class VendorPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
-                .addGap(0, 105, Short.MAX_VALUE))
+                    .addComponent(btnDelete)
+                    .addComponent(btnReset))
+                .addGap(0, 77, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -306,11 +318,22 @@ public class VendorPanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtVendorID.setText("");
+        txtVendorName.setText("");
+        txtVendorAddress.setText("");
+        txtVendorPhone.setText("");
+        txtVendorFax.setText("");
+        txtVendorEmail.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
+
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cmbSearch;
     private javax.swing.JScrollPane jScrollPane1;

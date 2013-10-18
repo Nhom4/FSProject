@@ -154,31 +154,28 @@ public class LoginFrame extends javax.swing.JFrame {
             Login loginAdmin = loginBUS.getAdmin(username, password);
             Employee loginEmpl = loginBUS.getEmployee(username, password);
             if (loginAdmin.getEmail()!= null) {
+                this.dispose();
+                Main main = new Main();
+                
+                main.show();
                 id = loginAdmin.getId();
                 email = loginAdmin.getEmail();
                 name = loginAdmin.getName();
                 address=loginAdmin.getAddress();
                 phone=loginAdmin.getPhone();
-                this.dispose();
-                Main main = new Main(); 
-                main.show();
                 
             }
             else if(loginEmpl.getEmpEmail()!=null){
                 this.dispose();
                 MainEmployee mainEmployee = new MainEmployee();
-//                id = loginEmpl.getEmpID();
-//                email = loginEmpl.getEmpEmail();
-//                name = loginEmpl.getEmpName();
-//                address=loginEmpl.getEmpAddress();
-//                phone=loginEmpl.getEmpPhone();
+                
                 mainEmployee.show();
+                
                 id = loginEmpl.getEmpID();
                 email = loginEmpl.getEmpEmail();
                 name = loginEmpl.getEmpName();
                 address=loginEmpl.getEmpAddress();
                 phone=loginEmpl.getEmpPhone();
-
             }
             else{
                 JOptionPane.showMessageDialog(null, "Login fail!");
@@ -249,7 +246,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
         private LoginBUS loginBUS = new LoginBUS();
-        public static String email,name,phone,id,address ;
+        protected static String email,name,phone,id,address ;
     private void validateFieldAdd() throws Exception {
         if (txtEmail.getText().equals("")) {
             throw new Exception("Please enter Email");

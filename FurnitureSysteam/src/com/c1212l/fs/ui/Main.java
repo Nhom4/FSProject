@@ -544,6 +544,6 @@ private void loadInfomationAdmin()
     lblNameAdm.setText(LoginFrame.name);
     lblAddressAdm.setText(LoginFrame.address);
     lblPhoneAdm.setText(LoginFrame.phone);
-    JOptionPane.showMessageDialog(this, LoginFrame.id);
+//    JOptionPane.showMessageDialog(this, LoginFrame.id);
 }
 }

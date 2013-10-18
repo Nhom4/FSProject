@@ -6,7 +6,9 @@ package com.c1212l.fs.ui;
 
 import com.c1212l.fs.bean.Category;
 import com.c1212l.fs.bean.Customer;
+import com.c1212l.fs.bean.Vendor;
 import com.c1212l.fs.bll.CategoryBUS;
+import com.c1212l.fs.dal.CategoryDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -14,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,6 +31,7 @@ public class CategoryManager extends javax.swing.JPanel {
     public CategoryManager() {
         initComponents();
         reloadData();
+        txtCategoryID.setEnabled(false);
     }
 
     /**
@@ -53,6 +57,7 @@ public class CategoryManager extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         lblCategoryManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblCategoryManager.setText("Category Manager");
@@ -113,6 +118,14 @@ public class CategoryManager extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/logout-32x32.png"))); // NOI18N
+        jButton1.setText("Reset");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,11 +162,13 @@ public class CategoryManager extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(29, 29, 29)
                                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(89, 89, 89)
+                                        .addGap(77, 77, 77)
                                         .addComponent(btnUpdate)
-                                        .addGap(102, 102, 102)
-                                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 187, Short.MAX_VALUE)))
+                                        .addGap(88, 88, 88)
+                                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1)))))
+                        .addGap(48, 48, 48)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -181,8 +196,9 @@ public class CategoryManager extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
-                    .addComponent(btnAdd))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(btnAdd)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -193,25 +209,27 @@ public class CategoryManager extends javax.swing.JPanel {
             String categoryName = txtCategoryName.getText();
             categoryBUS.addCategory(categoryName);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             // TODO add your handling code here:
+            CategoryDAO categoryDAO= new CategoryDAO();
             String categoryID = txtCategoryID.getText();
             String categoryName = txtCategoryName.getText();
             categoryBUS.updateCategory(categoryID, categoryName);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+             }catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY")) {
+                JOptionPane.showMessageDialog(null, "Error: Duplicate product name", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+       }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -220,10 +238,8 @@ public class CategoryManager extends javax.swing.JPanel {
             String categoryID = txtCategoryID.getText();
             categoryBUS.deleteCustomer(categoryID);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -252,6 +268,12 @@ public class CategoryManager extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       txtCategoryName.setText("");
+       txtCategoryID.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
 
     
@@ -260,6 +282,7 @@ public class CategoryManager extends javax.swing.JPanel {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cmbSearch;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCategoryManager;
@@ -345,4 +368,5 @@ public class CategoryManager extends javax.swing.JPanel {
             throw new Exception("Category Name is not valid");
         }
     }
+
 }

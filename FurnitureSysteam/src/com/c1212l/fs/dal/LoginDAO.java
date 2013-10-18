@@ -45,7 +45,7 @@ public class LoginDAO extends ConnectionTool {
             employee.setEmpPassword(rs.getString("cEmpPassword"));
             employee.setEmpAddress(rs.getString("vEmpAddress"));
             employee.setEmpName(rs.getString("vEmpName"));
-            employee.setEmpPhone(rs.getString("cEmpEmail"));
+            employee.setEmpPhone(rs.getString("cEmpPhone"));
         }
         closeConnection();
         return employee;
