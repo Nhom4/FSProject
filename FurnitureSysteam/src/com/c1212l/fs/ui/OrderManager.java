@@ -4,9 +4,11 @@
  */
 package com.c1212l.fs.ui;
 
+import com.c1212l.fs.bean.Customer;
 import com.c1212l.fs.bean.Order;
 import com.c1212l.fs.bean.OrderDetail;
 import com.c1212l.fs.bean.Product;
+import com.c1212l.fs.bll.CustomerBUS;
 import com.c1212l.fs.bll.OrderBUS;
 import com.c1212l.fs.bll.OrderDetailBUS;
 import com.c1212l.fs.bll.ProductBUS;
@@ -60,7 +62,6 @@ public class OrderManager extends javax.swing.JPanel {
         lblStatus = new javax.swing.JLabel();
         lblEmpID = new javax.swing.JLabel();
         txtOrdID = new javax.swing.JTextField();
-        txtCusID = new javax.swing.JTextField();
         txtTotalPrice = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
         txtEmpID = new javax.swing.JTextField();
@@ -85,8 +86,9 @@ public class OrderManager extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        txtDate = new javax.swing.JFormattedTextField();
         btnReset = new javax.swing.JButton();
+        cmbCusID = new javax.swing.JComboBox();
+        txtDate = new com.toedter.calendar.JDateChooser();
 
         lblOrderManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblOrderManager.setText("Order Manager");
@@ -198,6 +200,11 @@ public class OrderManager extends javax.swing.JPanel {
         btnDeleteDetail.setText("Delete");
 
         cmbProID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProIDActionPerformed(evt);
+            }
+        });
 
         btnReset2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
         btnReset2.setText("Reset");
@@ -302,18 +309,18 @@ public class OrderManager extends javax.swing.JPanel {
             }
         });
 
-        txtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/M/d"))));
-        txtDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateActionPerformed(evt);
-            }
-        });
-
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
+            }
+        });
+
+        cmbCusID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCusID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCusIDActionPerformed(evt);
             }
         });
 
@@ -347,20 +354,11 @@ public class OrderManager extends javax.swing.JPanel {
                                             .addComponent(lblTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(lblEmpID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblOrdID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtOrdID, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblCusID)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtCusID, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                            .addComponent(txtTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                            .addComponent(txtEmpID, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -368,7 +366,15 @@ public class OrderManager extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                            .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblOrdID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblCusID))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtOrdID, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                            .addComponent(cmbCusID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -396,12 +402,12 @@ public class OrderManager extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCusID)
-                            .addComponent(txtCusID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbCusID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDate)
                             .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTotalPrice)
                             .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -449,7 +455,7 @@ public class OrderManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             validateFieldAdd();
-            String cusID = txtCusID.getText();
+            String cusID = cmbCusID.getSelectedItem().toString();
             Date date = Date.valueOf(txtDate.getText());
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
@@ -459,6 +465,7 @@ public class OrderManager extends javax.swing.JPanel {
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -466,7 +473,7 @@ public class OrderManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             String ordID = txtOrdID.getText();
-            String cusID = txtCusID.getText();
+            String cusID = cmbCusID.getSelectedItem().toString();
             Date date = Date.valueOf(txtDate.getText());
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
@@ -514,8 +521,8 @@ public class OrderManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         int row = tblOrder.rowAtPoint(evt.getPoint());
         txtOrdID.setText(tblOrder.getValueAt(row, 0).toString());
-        txtCusID.setText(tblOrder.getValueAt(row, 1).toString());
-        txtDate.setText(tblOrder.getValueAt(row, 2).toString());
+        cmbCusID.setSelectedItem(tblOrder.getValueAt(row, 1).toString());
+        txtDate.setDate(tblOrder.getValueAt(row, 2).toString());
         txtTotalPrice.setText(tblOrder.getValueAt(row, 3).toString());
         txtStatus.setText(tblOrder.getValueAt(row, 4).toString());
         txtEmpID.setText(tblOrder.getValueAt(row, 5).toString());
@@ -549,10 +556,6 @@ public class OrderManager extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
-
     private void txtEmpIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpIDActionPerformed
         // TODO add your handling code here:
         
@@ -560,8 +563,6 @@ public class OrderManager extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtCusID.setText("");
-        txtDate.setText("");
         txtTotalPrice.setText("");
         txtPrice.setText("");
         txtStatus.setText("");
@@ -576,6 +577,14 @@ public class OrderManager extends javax.swing.JPanel {
         cmbProID.setSelectedItem(false);
     }//GEN-LAST:event_btnReset2ActionPerformed
 
+    private void cmbCusIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCusIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCusIDActionPerformed
+
+    private void cmbProIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProIDActionPerformed
+
     
 
     
@@ -588,6 +597,7 @@ public class OrderManager extends javax.swing.JPanel {
     private javax.swing.JButton btnReset2;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateDetail;
+    private javax.swing.JComboBox cmbCusID;
     private javax.swing.JComboBox cmbProID;
     private javax.swing.JComboBox cmbSearch;
     private javax.swing.JPanel jPanel1;
@@ -610,8 +620,7 @@ public class OrderManager extends javax.swing.JPanel {
     private javax.swing.JLabel lblVAT;
     private javax.swing.JTable tblOrdDetail;
     private javax.swing.JTable tblOrder;
-    private javax.swing.JTextField txtCusID;
-    private javax.swing.JFormattedTextField txtDate;
+    private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtEmpID;
     private javax.swing.JTextField txtOrdID;
     private javax.swing.JTextField txtOrdIDDetail;
@@ -653,6 +662,7 @@ public class OrderManager extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
+            initCmbCusID();
             initCmbSearch();
             txtEmpID.setText(LoginFrame.id);
             
@@ -666,8 +676,8 @@ public class OrderManager extends javax.swing.JPanel {
     }
     private void initTextField() {
         txtOrdID.setText("");
-        txtCusID.setText("");
-        txtDate.setText("");
+ 
+      
         txtTotalPrice.setText("");
         txtStatus.setText("");
     }
@@ -752,9 +762,6 @@ public class OrderManager extends javax.swing.JPanel {
         }
     }
     private void validateFieldAdd() throws Exception {
-        if (txtDate.getText().equals("")) {
-            throw new Exception("Please enter Date");
-        }
         if (txtTotalPrice.getText().equals("")) {
             throw new Exception("Please enter Total Price");
         }
@@ -773,4 +780,22 @@ public class OrderManager extends javax.swing.JPanel {
             throw new Exception("Please enter VAT ");
         }
     }
+    
+    private void initCmbCusID() {
+        try {
+            cmbCusID.removeAllItems();
+            cmbCusID.addItem(new KeyValue(-1, ""));
+            CustomerBUS customerBUS = new CustomerBUS();
+            ArrayList<Customer> arrCus = customerBUS.getAllCustomer();
+            for (int i=0;i<arrCus.size();i++) {
+                Customer customer = arrCus.get(i);
+                cmbCusID.addItem(new KeyValue(i, customer.getCustomerID()));
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
 }

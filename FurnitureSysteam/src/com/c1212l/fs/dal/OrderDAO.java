@@ -38,14 +38,20 @@ public class OrderDAO extends ConnectionTool {
     }
     
     public void addOrder(Order order) throws ClassNotFoundException, Exception {
-            initConnection();
-            CallableStatement cs = conn.prepareCall("{call prcInsertOrder(?,?,?,?,?)}");
-            cs.setString(1, order.getOrdID());
+            initConnection();            
+            CallableStatement cs = conn.prepareCall("{call prcInsertOrders(?,?,?,?,?)}");
+            /*cs.setString(1, order.getOrdID());
             cs.setString(2, order.getCusID());
             cs.setDate(3, order.getOrdDate());
             cs.setInt(4, order.getOrdTotalPrice());
             cs.setString(6, order.getStatus());
             cs.setString(7, order.getEmpID());
+            * */
+            cs.setDate(1, order.getOrdDate());
+            cs.setString(2, order.getCusID());
+            cs.setInt(3, order.getOrdTotalPrice());
+            cs.setString(4, order.getStatus());
+            cs.setString(5, order.getEmpID());
             cs.executeUpdate();
             closeConnection();
     }
