@@ -60,8 +60,8 @@ public class CustomerManager extends javax.swing.JPanel {
         lblGender = new javax.swing.JLabel();
         txtPhoneNumber = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        cmbGender = new javax.swing.JComboBox();
         btnDelete = new javax.swing.JButton();
+        cmbGender = new javax.swing.JComboBox();
 
         lblCustomerManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblCustomerManager.setText("Customer Manager");
@@ -176,9 +176,9 @@ public class CustomerManager extends javax.swing.JPanel {
                                     .addComponent(lblGender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtEmail)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                                     .addComponent(txtPhoneNumber)
-                                    .addComponent(cmbGender, 0, 249, Short.MAX_VALUE))))
+                                    .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -271,11 +271,11 @@ public class CustomerManager extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomerMouseClicked
-        // TODO add your handling code here:
         int row = tblCustomer.rowAtPoint(evt.getPoint());
+        initCmbGender();
         txtCustomerID.setText(tblCustomer.getValueAt(row, 0).toString());
         txtCustomerName.setText(tblCustomer.getValueAt(row, 1).toString());
-        cmbGender.setSelectedItem(new KeyValue(0, tblCustomer.getValueAt(row, 2).toString()));
+        cmbGender.setSelectedItem(new KeyValue(0,tblCustomer.getValueAt(row, 2).toString()));
         txtAddress.setText(tblCustomer.getValueAt(row, 3).toString());
         txtPhoneNumber.setText(tblCustomer.getValueAt(row, 4).toString());
         txtEmail.setText(tblCustomer.getValueAt(row, 5).toString());
@@ -365,13 +365,12 @@ public class CustomerManager extends javax.swing.JPanel {
     }
     private void initCmbGender() {
         cmbGender.removeAllItems();
-        cmbGender.addItem(new KeyValue(1, "Male"));
-        cmbGender.addItem(new KeyValue(0, "Female"));
+        cmbGender.addItem(new KeyValue(0,"Male"));
+        cmbGender.addItem(new KeyValue(1,"Female"));
     }
         private void initTextField() {
         txtCustomerID.setText("");
         txtCustomerName.setText("");
-        txtCustomerID.setText("");
         txtEmail.setText("");
         txtAddress.setText("");
         txtPhoneNumber.setText("");;

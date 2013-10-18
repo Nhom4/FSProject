@@ -435,9 +435,8 @@ public class CustomerPanel extends javax.swing.JPanel {
     }
     private void initCmbGender() {
         cmbGender.removeAllItems();
-        cmbGender.addItem(new KeyValue(-1, ""));
-        cmbGender.addItem(new KeyValue(1, "Male"));
-        cmbGender.addItem(new KeyValue(0, "Female"));
+        cmbGender.addItem("Male");
+        cmbGender.addItem("Female");
     }
         private void initTextField() {
         txtCustomerID.setText("");

@@ -27,7 +27,7 @@ public class TestEmployee extends javax.swing.JFrame {
     private void initComponents() {
 
         employeePanel1 = new com.c1212l.fs.ui.EmployeePanel();
-        employeePanel2 = new com.c1212l.fs.ui.EmployeePanel();
+        employeeManager1 = new com.c1212l.fs.ui.EmployeeManager();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,15 +37,15 @@ public class TestEmployee extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(employeePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(employeeManager1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(employeePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(employeeManager1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -86,7 +86,7 @@ public class TestEmployee extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.c1212l.fs.ui.EmployeeManager employeeManager1;
     private com.c1212l.fs.ui.EmployeePanel employeePanel1;
-    private com.c1212l.fs.ui.EmployeePanel employeePanel2;
     // End of variables declaration//GEN-END:variables
 }

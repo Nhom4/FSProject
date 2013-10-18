@@ -243,7 +243,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
         private LoginBUS loginBUS = new LoginBUS();
-        protected static String email,name,phone,id,address ;
+        public static String email,name,phone,id,address ;
     private void validateFieldAdd() throws Exception {
         if (txtEmail.getText().equals("")) {
             throw new Exception("Please enter Email");
