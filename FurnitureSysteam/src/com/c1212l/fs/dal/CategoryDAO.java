@@ -7,6 +7,7 @@ package com.c1212l.fs.dal;
 import com.c1212l.fs.bean.Category;
 import com.c1212l.fs.bean.Permission;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,9 +34,19 @@ public class CategoryDAO extends ConnectionTool{
     }
        public void addCategory(Category category) throws ClassNotFoundException, Exception {
             initConnection();
+            String error = "";
+            PreparedStatement pstmt = conn.prepareStatement("select * from Category where vCatName = ?");
+            pstmt.setString(1, category.getCategoryName());
+            if (pstmt.executeQuery().next()) {
+                error += "Error: Duplicate product name\n";
+            }
+            if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcInsertCategory(?)}");
             cs.setString(1, category.getCategoryName() );
             cs.executeUpdate();
+            } else {
+                throw new Exception(error);
+            }
             closeConnection();
     }
        public void updateCategory(Category category) throws ClassNotFoundException, Exception {

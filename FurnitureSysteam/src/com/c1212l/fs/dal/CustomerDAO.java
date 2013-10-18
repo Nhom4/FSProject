@@ -37,6 +37,13 @@ public class CustomerDAO extends ConnectionTool{
     }
        public void addCustomer(Customer customer) throws ClassNotFoundException, Exception {
             initConnection();
+            String error = "";
+            PreparedStatement pstmt = conn.prepareStatement("select * from Customer where vCusName = ?");
+            pstmt.setString(1, customer.getCustomerName());
+            if (pstmt.executeQuery().next()) {
+                error += "Error: Duplicate Customer name\n";
+            }
+            if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcInsertCustomer(?,?,?,?,?)}");
             cs.setString(1, customer.getCustomerName());
             cs.setString(2, customer.getGender());
@@ -44,6 +51,9 @@ public class CustomerDAO extends ConnectionTool{
             cs.setString(4, customer.getPhone());
             cs.setString(5,customer.getEmail());
             cs.executeUpdate();
+            } else {
+                throw new Exception(error);
+            }
             closeConnection();
     }
        public void updateCustomer(Customer customer) throws ClassNotFoundException, Exception {
