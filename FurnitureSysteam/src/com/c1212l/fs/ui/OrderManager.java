@@ -64,7 +64,6 @@ public class OrderManager extends javax.swing.JPanel {
         lblEmpID = new javax.swing.JLabel();
         txtOrdID = new javax.swing.JTextField();
         txtTotalPrice = new javax.swing.JTextField();
-        txtStatus = new javax.swing.JTextField();
         txtEmpID = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -90,6 +89,7 @@ public class OrderManager extends javax.swing.JPanel {
         btnReset = new javax.swing.JButton();
         cmbCusID = new javax.swing.JComboBox();
         txtDate = new com.toedter.calendar.JDateChooser();
+        cmbStatus = new javax.swing.JComboBox();
 
         lblOrderManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblOrderManager.setText("Order Manager");
@@ -325,6 +325,13 @@ public class OrderManager extends javax.swing.JPanel {
             }
         });
 
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbStatusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -356,10 +363,10 @@ public class OrderManager extends javax.swing.JPanel {
                                             .addComponent(lblEmpID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                             .addComponent(txtTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                             .addComponent(txtEmpID, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cmbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +422,7 @@ public class OrderManager extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblStatus)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEmpID)
@@ -585,6 +592,10 @@ public class OrderManager extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProIDActionPerformed
 
+    private void cmbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbStatusActionPerformed
+
     
 
     
@@ -600,6 +611,7 @@ public class OrderManager extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbCusID;
     private javax.swing.JComboBox cmbProID;
     private javax.swing.JComboBox cmbSearch;
+    private javax.swing.JComboBox cmbStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -627,7 +639,6 @@ public class OrderManager extends javax.swing.JPanel {
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtTotalPrice;
     private javax.swing.JTextField txtVAT;
     // End of variables declaration//GEN-END:variables
