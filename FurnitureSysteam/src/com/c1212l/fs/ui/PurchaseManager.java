@@ -78,12 +78,12 @@ public class PurchaseManager extends javax.swing.JPanel {
         cmbProID = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        txtStatus = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtEmpID = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         txtDate = new com.toedter.calendar.JDateChooser();
+        cmbStatus = new javax.swing.JComboBox();
 
         lblPurchaseManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblPurchaseManager.setText("Purchase Manager");
@@ -198,6 +198,11 @@ public class PurchaseManager extends javax.swing.JPanel {
         btnDeleteDetail.setText("Delete");
 
         cmbProID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProIDActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
         jButton2.setText("Reset");
@@ -302,6 +307,8 @@ public class PurchaseManager extends javax.swing.JPanel {
             }
         });
 
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -345,10 +352,10 @@ public class PurchaseManager extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtTotalPrice, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtStatus)
                                     .addComponent(txtEmpID, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPurID, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))))
+                                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                    .addComponent(cmbStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -383,7 +390,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -535,6 +542,10 @@ public class PurchaseManager extends javax.swing.JPanel {
         txtVAT.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cmbProIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProIDActionPerformed
+
    
     
     
@@ -548,6 +559,7 @@ public class PurchaseManager extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdateDetail;
     private javax.swing.JComboBox cmbProID;
     private javax.swing.JComboBox cmbSearch;
+    private javax.swing.JComboBox cmbStatus;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -576,7 +588,6 @@ public class PurchaseManager extends javax.swing.JPanel {
     private javax.swing.JTextField txtPurIDDetail;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtTotalPrice;
     private javax.swing.JTextField txtVAT;
     // End of variables declaration//GEN-END:variables

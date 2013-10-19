@@ -136,6 +136,8 @@ public class OrderManager extends javax.swing.JPanel {
 
         txtOrdID.setEnabled(false);
 
+        txtTotalPrice.setEnabled(false);
+
         txtEmpID.setEnabled(false);
         txtEmpID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,7 +469,7 @@ public class OrderManager extends javax.swing.JPanel {
             Date date = MyUtil.getDate(txtDate);
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
-            String Status = txtStatus.getText();
+            String Status = null;
             String empID = txtEmpID.getText();
             orderBUS.addOrder(cusID, date, TotalPrice, Status, empID);
             reloadData();
@@ -485,7 +487,7 @@ public class OrderManager extends javax.swing.JPanel {
             Date date = MyUtil.getDate(txtDate);
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
-            String Status = txtStatus.getText();
+            String Status = null;
             String empID = txtEmpID.getText();
             orderBUS.updateOrder(ordID, cusID, date, TotalPrice, Status, empID);
             reloadData();
@@ -531,7 +533,6 @@ public class OrderManager extends javax.swing.JPanel {
         cmbCusID.setSelectedItem(tblOrder.getValueAt(row, 1).toString());
 //        txtDate.setDate(tblOrder.getValueAt(row, 2).toString());
         txtTotalPrice.setText(tblOrder.getValueAt(row, 3).toString());
-        txtStatus.setText(tblOrder.getValueAt(row, 4).toString());
         txtEmpID.setText(tblOrder.getValueAt(row, 5).toString());
     }//GEN-LAST:event_tblOrderMouseClicked
 
@@ -572,7 +573,6 @@ public class OrderManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtTotalPrice.setText("");
         txtPrice.setText("");
-        txtStatus.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnReset2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset2ActionPerformed
@@ -690,7 +690,6 @@ public class OrderManager extends javax.swing.JPanel {
  
       
         txtTotalPrice.setText("");
-        txtStatus.setText("");
     }
     private void initCmbSearch() {
         cmbSearch.removeAllItems();
@@ -773,12 +772,7 @@ public class OrderManager extends javax.swing.JPanel {
         }
     }
     private void validateFieldAdd() throws Exception {
-        if (txtTotalPrice.getText().equals("")) {
-            throw new Exception("Please enter Total Price");
-        }
-        if (txtStatus.getText().equals("")) {
-            throw new Exception("Please enter status");
-        }
+
     }
     private void validateFieldAddOrderDetail() throws Exception {
         if (txtQuantity.getText().equals("")) {
