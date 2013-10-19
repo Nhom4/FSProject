@@ -62,9 +62,9 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="txtTotalPrice" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtEmpID" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtEmployee" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtPurID" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtDate" alignment="1" pref="195" max="32767" attributes="0"/>
+                                  <Component id="dcPurchaseDate" alignment="1" pref="197" max="32767" attributes="0"/>
                                   <Component id="cmbStatus" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -101,7 +101,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblDate" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDate" min="-2" max="-2" attributes="0"/>
+                          <Component id="dcPurchaseDate" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -116,7 +116,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmpID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmployee" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -267,7 +267,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtQuantity" max="32767" attributes="0"/>
-                                      <Component id="cmbProID" max="32767" attributes="0"/>
+                                      <Component id="cmbProduct" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -315,7 +315,7 @@
                       <Component id="lblProIDDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblVAT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtVAT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbProID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbProduct" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -430,7 +430,7 @@
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbProID">
+        <Component class="javax.swing.JComboBox" name="cmbProduct">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -442,7 +442,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbProIDActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbProductActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
@@ -476,10 +476,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Employee ID :"/>
+        <Property name="text" type="java.lang.String" value="Employee :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEmpID">
+    <Component class="javax.swing.JTextField" name="txtEmployee">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -495,7 +495,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="txtDate">
+    <Component class="com.toedter.calendar.JDateChooser" name="dcPurchaseDate">
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbStatus">
       <Properties>

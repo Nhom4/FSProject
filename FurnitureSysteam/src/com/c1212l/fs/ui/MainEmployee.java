@@ -4,6 +4,11 @@
  */
 package com.c1212l.fs.ui;
 
+import com.c1212l.fs.bean.Employee;
+import com.c1212l.fs.dal.EmployeeDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +21,15 @@ public class MainEmployee extends javax.swing.JFrame {
      * Creates new form Main
      */
     public MainEmployee() {
-        initComponents();
-        loadInfomationEmployee();
+        try {
+            initComponents();
+            loadData();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
     }
     
     /**
@@ -144,7 +156,7 @@ public class MainEmployee extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator1)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -160,7 +172,7 @@ public class MainEmployee extends javax.swing.JFrame {
                                     .addComponent(lblNameEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblAddressEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblPhoneEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -513,13 +525,27 @@ public class MainEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel lblPhoneEmp;
     private javax.swing.JPanel pnMain;
     // End of variables declaration//GEN-END:variables
-
-    private void loadInfomationEmployee()
-{
-    lblIDEmp.setText(LoginFrame.id);
-    lblNameEmp.setText(LoginFrame.name);
-    lblAddressEmp.setText(LoginFrame.address);
-    lblPhoneEmp.setText(LoginFrame.phone);
-//    JOptionPane.showMessageDialog(this, LoginFrame.id);
-}
+    private Employee employee;
+    public Employee getEmployee() {
+        return employee;
+    }
+        public void setEmployee(Employee employee) {
+        try {
+            this.employee = employee;
+            loadData();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        private void loadData() throws SQLException, ClassNotFoundException {   
+        if(employee != null){
+            employee = new EmployeeDAO().getEmployeeById(employee .getEmpID());
+            lblIDEmp.setText(employee .getEmpID());
+            lblNameEmp.setText(employee .getEmpName());
+            lblAddressEmp.setText(employee .getEmpAddress());
+            lblPhoneEmp.setText(employee.getEmpPhone());
+        }
+    }  
 }

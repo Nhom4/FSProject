@@ -4,8 +4,10 @@
  */
 package com.c1212l.fs.ui;
 
+import com.c1212l.fs.bean.Admin;
 import com.c1212l.fs.bean.Employee;
-import com.c1212l.fs.bean.Login;
+import com.c1212l.fs.bean.Order;
+import com.c1212l.fs.bean.Purchase;
 import com.c1212l.fs.bll.LoginBUS;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -151,31 +153,22 @@ public class LoginFrame extends javax.swing.JFrame {
             validateFieldAdd();  
             String username = txtEmail.getText();
             String password = new String(txtPassword.getPassword());
-            Login loginAdmin = loginBUS.getAdmin(username, password);
-            Employee loginEmpl = loginBUS.getEmployee(username, password);
-            if (loginAdmin.getEmail()!= null) {
-                this.dispose();
-                Main main = new Main();
-                
-                main.show();
-                id = loginAdmin.getId();
-                email = loginAdmin.getEmail();
-                name = loginAdmin.getName();
-                address=loginAdmin.getAddress();
-                phone=loginAdmin.getPhone();
-                
-            }
-            else if(loginEmpl.getEmpEmail()!=null){
-                this.dispose();
+            Admin loginAdmin = loginBUS.getAdmin(username,password);
+            Employee loginEmpl = loginBUS.getEmployee(username,password);
+              if (loginAdmin.getEmail()!= null) {
+               Main main = new Main();
+               main.setAdmin(loginAdmin);
+               main.setVisible(true);
+               this.setVisible(false);
+             }
+            else if(loginEmpl.getEmpEmail()!= null){
                 MainEmployee mainEmployee = new MainEmployee();
-                
-                mainEmployee.show();
-                
-                id = loginEmpl.getEmpID();
-                email = loginEmpl.getEmpEmail();
+                mainEmployee.setEmployee(loginEmpl);
+                id =loginEmpl.getEmpID();
                 name = loginEmpl.getEmpName();
-                address=loginEmpl.getEmpAddress();
-                phone=loginEmpl.getEmpPhone();
+//                mainEmployee.setEmployeeMain(loginEmpl);
+                mainEmployee.setVisible(true);
+                this.setVisible(false);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Login fail!");
@@ -245,8 +238,9 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
+
         private LoginBUS loginBUS = new LoginBUS();
-        protected static String email,name,phone,id,address ;
+        protected static String id,name;
     private void validateFieldAdd() throws Exception {
         if (txtEmail.getText().equals("")) {
             throw new Exception("Please enter Email");

@@ -103,12 +103,16 @@ public class EmployeeDAO extends ConnectionTool {
         try {
             initConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Employee where cEmpID = " + employeeID);
+            ResultSet rs = stmt.executeQuery("select * from Employee where cEmpID = " + "'" + employeeID + "'");
             Employee employee = null;
             if (rs.next()) {
                 employee = new Employee();
                 employee.setEmpID(rs.getString("cEmpID"));
                 employee.setEmpName(rs.getString("vEmpName"));
+                employee.setEmpAddress(rs.getString("vEmpAddress"));
+                employee.setEmpPhone(rs.getString("cEmpPhone"));
+                employee.setEmpEmail(rs.getString("cEmpEmail"));
+                employee.setEmpPassword(rs.getString("cEmpPassword"));
             }
             closeConnection();
             return employee;

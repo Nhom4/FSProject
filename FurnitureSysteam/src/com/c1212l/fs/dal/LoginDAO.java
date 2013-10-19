@@ -4,51 +4,51 @@
  */
 package com.c1212l.fs.dal;
 
-import com.c1212l.fs.bean.Login;
+import com.c1212l.fs.bean.Admin;
 import com.c1212l.fs.bean.Employee;
-import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 /**
  *
- * @author Thuy_Sociu
+ * @author Luu Bi
  */
 public class LoginDAO extends ConnectionTool {
-    public Login getLogin(String email,String password) throws ClassNotFoundException, SQLException {
+
+    public Admin getAdmin(String email, String password) throws ClassNotFoundException, SQLException {
         initConnection();
-        Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("Select * From Adm where cAdmEmail="+"'"+email+"'and cAdmPassword="+"'"+password+"'");
-        Login login = new Login();
-        while (rs.next()) {
-            login.setId(rs.getString("cAdmID"));
-            login.setEmail(rs.getString("cAdmEmail"));
-            login.setPassword(rs.getString("cAdmPassword"));
-            login.setAddress(rs.getString("vAdmAddress"));
-            login.setName(rs.getString("vAdmName"));
-            login.setPhone(rs.getString("cAdmPhone"));
+        Admin admin = new Admin();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("Select * From Adm where cAdmEmail =" + "'" + email + "' and cAdmPassword =" + "'" + password + "'");
+        if (rs.next()) {
+               admin.setAdminID(rs.getInt("cAdmID"));
+               admin.setEmail(rs.getString("cAdmEmail"));
+               admin.setAdminName(rs.getString("vAdmName"));
+               admin.setAdminAddress(rs.getString("vAdmAddress"));
+               admin.setAdminPhone(rs.getString("cAdmPhone"));
         }
         closeConnection();
-        return login;
+        return admin;
     }
-        public Employee getEmployee(String email,String password) throws ClassNotFoundException, SQLException {
+
+    public Employee getEmployee(String email, String password) throws ClassNotFoundException, SQLException {
         initConnection();
-        Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("Select * From Employee where cEmpEmail = "+"'"+email+"'and cEmpPassword="+"'"+password+"'");
         Employee employee = new Employee();
-        while (rs.next()) {
-            employee.setEmpID(rs.getString("cEmpID"));
-            employee.setEmpEmail(rs.getString("cEmpEmail"));
-            employee.setEmpPassword(rs.getString("cEmpPassword"));
-            employee.setEmpAddress(rs.getString("vEmpAddress"));
-            employee.setEmpName(rs.getString("vEmpName"));
-            employee.setEmpPhone(rs.getString("cEmpPhone"));
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("Select * From Employee where cEmpEmail =" + "'" + email + "' and cEmpPassword =" + "'" + password + "'");
+        if (rs.next()) {
+                employee.setEmpEmail(rs.getString("cEmpEmail"));
+                employee.setEmpPassword(rs.getString("cEmpPassword"));
+                employee.setEmpID(rs.getString("cEmpID"));
+                employee.setEmpName(rs.getString("vEmpName"));
+                employee.setEmpAddress(rs.getString("vEmpAddress"));
+                employee.setEmpPhone(rs.getString("cEmpPhone"));
+                employee.setEmpEmail(rs.getString("cEmpEmail"));
+                employee.setEmpPassword(rs.getString("cEmpPassword"));
         }
         closeConnection();
         return employee;
     }
 }
-

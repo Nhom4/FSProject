@@ -3,9 +3,11 @@
  * and open the template in the editor.
  */
 package com.c1212l.fs.ui;
-
-import com.c1212l.fs.bean.Login;
-import com.c1212l.fs.bean.Employee;
+import com.c1212l.fs.bean.Admin;
+import com.c1212l.fs.dal.AdminDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,9 +20,12 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        initComponents();
-        loadInfomationAdmin();
-
+            try {
+            initComponents();
+            loadData();
+        } catch (Exception ex) {
+            JOptionPane.showConfirmDialog(null, ex.getMessage());
+        }
     }
     
     /**
@@ -465,7 +470,7 @@ public class Main extends javax.swing.JFrame {
         if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(this, "You sure you want to logout your account?", "Message", JOptionPane.OK_CANCEL_OPTION)) {
         this.dispose();
         LoginFrame login = new LoginFrame();
-        login.show();
+        login.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
     }
     /**
@@ -538,12 +543,29 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniLogout;
     private javax.swing.JPanel pnMain;
     // End of variables declaration//GEN-END:variables
-private void loadInfomationAdmin()
-{
-    lblIDAdm.setText(LoginFrame.id);
-    lblNameAdm.setText(LoginFrame.name);
-    lblAddressAdm.setText(LoginFrame.address);
-    lblPhoneAdm.setText(LoginFrame.phone);
-//    JOptionPane.showMessageDialog(this, LoginFrame.id);
-}
+
+   private Admin admin;
+  public Admin getAdmin() {
+        return admin;
+  }
+   public void setAdmin(Admin admin) {
+    try {
+       this.admin = admin;
+            loadData();
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+        private void loadData() throws SQLException, ClassNotFoundException {
+            if (admin != null) {
+                 admin = new AdminDAO().getAdminById(admin.getAdminID());
+                 lblIDAdm.setText(""+admin.getAdminID());
+                 lblNameAdm.setText(admin.getAdminName());
+                 lblAddressAdm.setText(admin.getAdminAddress());
+                 lblPhoneAdm.setText(admin.getAdminPhone());
+            }
+    }    
 }

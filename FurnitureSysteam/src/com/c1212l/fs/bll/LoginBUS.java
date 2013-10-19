@@ -4,15 +4,14 @@
  */
 package com.c1212l.fs.bll;
 
+import com.c1212l.fs.bean.Admin;
 import com.c1212l.fs.bean.Employee;
-import com.c1212l.fs.bean.Login;
-import com.c1212l.fs.dal.EmployeeDAO;
 import com.c1212l.fs.dal.LoginDAO;
 import java.sql.SQLException;
 
 /**
  *
- * @author Thuy_Sociu
+ * @author Luu Bi
  */
 public class LoginBUS {
     
@@ -22,11 +21,12 @@ public class LoginBUS {
         loginDAO = new LoginDAO();
     }
 
-    public Login getAdmin(String email, String password) throws ClassNotFoundException, SQLException {
-        return loginDAO.getLogin(email, password);
+    public Admin getAdmin(String email, String password) throws ClassNotFoundException, SQLException {
+        return loginDAO.getAdmin(email, password);
+
     }
 
-    public Employee getEmployee(String email,String password) throws ClassNotFoundException, SQLException {
-        return loginDAO.getEmployee(email, password) ; 
+    public Employee getEmployee(String email, String password) throws ClassNotFoundException, SQLException {
+        return loginDAO.getEmployee(email, password);
     }
 }
