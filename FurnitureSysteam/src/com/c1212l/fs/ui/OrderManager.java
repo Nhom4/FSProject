@@ -13,6 +13,7 @@ import com.c1212l.fs.bll.OrderBUS;
 import com.c1212l.fs.bll.OrderDetailBUS;
 import com.c1212l.fs.bll.ProductBUS;
 import com.c1212l.fs.util.KeyValue;
+import com.c1212l.fs.util.MyUtil;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -456,7 +457,7 @@ public class OrderManager extends javax.swing.JPanel {
         try {
             validateFieldAdd();
             String cusID = cmbCusID.getSelectedItem().toString();
-            Date date = Date.valueOf(txtDate.getText());
+            Date date = MyUtil.getDate(txtDate);
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
             String Status = txtStatus.getText();
@@ -474,17 +475,16 @@ public class OrderManager extends javax.swing.JPanel {
         try {
             String ordID = txtOrdID.getText();
             String cusID = cmbCusID.getSelectedItem().toString();
-            Date date = Date.valueOf(txtDate.getText());
+            Date date = MyUtil.getDate(txtDate);
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
             String Status = txtStatus.getText();
             String empID = txtEmpID.getText();
             orderBUS.updateOrder(ordID, cusID, date, TotalPrice, Status, empID);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -522,7 +522,7 @@ public class OrderManager extends javax.swing.JPanel {
         int row = tblOrder.rowAtPoint(evt.getPoint());
         txtOrdID.setText(tblOrder.getValueAt(row, 0).toString());
         cmbCusID.setSelectedItem(tblOrder.getValueAt(row, 1).toString());
-        txtDate.setDate(tblOrder.getValueAt(row, 2).toString());
+//        txtDate.setDate(tblOrder.getValueAt(row, 2).toString());
         txtTotalPrice.setText(tblOrder.getValueAt(row, 3).toString());
         txtStatus.setText(tblOrder.getValueAt(row, 4).toString());
         txtEmpID.setText(tblOrder.getValueAt(row, 5).toString());
