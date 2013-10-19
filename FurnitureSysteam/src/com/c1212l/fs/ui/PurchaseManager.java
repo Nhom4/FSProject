@@ -11,6 +11,7 @@ import com.c1212l.fs.bll.ProductBUS;
 import com.c1212l.fs.bll.PurDetailBUS;
 import com.c1212l.fs.bll.PurchaseBUS;
 import com.c1212l.fs.util.KeyValue;
+import com.c1212l.fs.util.MyUtil;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -57,7 +58,6 @@ public class PurchaseManager extends javax.swing.JPanel {
         lblDate = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
         txtPurID = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
         txtTotalPrice = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -83,6 +83,7 @@ public class PurchaseManager extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtEmpID = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtDate = new com.toedter.calendar.JDateChooser();
 
         lblPurchaseManager.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblPurchaseManager.setText("Purchase Manager");
@@ -344,10 +345,10 @@ public class PurchaseManager extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtTotalPrice, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtStatus)
                                     .addComponent(txtEmpID, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPurID, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(txtPurID, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -371,11 +372,11 @@ public class PurchaseManager extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPurID)
                             .addComponent(txtPurID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblDate)
                             .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTotalPrice)
                             .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -404,7 +405,7 @@ public class PurchaseManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             validateFieldAdd();
-            Date date = Date.valueOf(txtDate.getText());
+            Date date = MyUtil.getDate(txtDate);
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
             String Status = txtStatus.getText();
@@ -438,7 +439,7 @@ public class PurchaseManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             String purID = txtPurID.getText();
-             Date date = Date.valueOf(txtDate.getText());
+             Date date = MyUtil.getDate(txtDate);
            // int Quantity = Integer.valueOf(txtQuantity.getText());
             int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
             String Status = txtStatus.getText();
@@ -485,7 +486,7 @@ public class PurchaseManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         int row = tblPurchase.rowAtPoint(evt.getPoint());
         txtPurID.setText(tblPurchase.getValueAt(row, 0).toString());
-        txtDate.setText(tblPurchase.getValueAt(row, 1).toString());
+//        txtDate.setText(tblPurchase.getValueAt(row, 1).toString());
         txtTotalPrice.setText(tblPurchase.getValueAt(row, 2).toString());
         txtStatus.setText(tblPurchase.getValueAt(row, 3).toString());
         txtEmpID.setText(tblPurchase.getValueAt(row, 4).toString());
@@ -522,7 +523,6 @@ public class PurchaseManager extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         txtPurID.setText("");
-        txtDate.setText("");
         txtTotalPrice.setText("");
         txtStatus.setText("");
         txtEmpID.setText("");
@@ -569,7 +569,7 @@ public class PurchaseManager extends javax.swing.JPanel {
     private javax.swing.JLabel lblVAT;
     private javax.swing.JTable tblPurDetail;
     private javax.swing.JTable tblPurchase;
-    private javax.swing.JTextField txtDate;
+    private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtEmpID;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtPurID;
@@ -622,7 +622,6 @@ public class PurchaseManager extends javax.swing.JPanel {
     }
     private void initTextField() {
         txtPurID.setText("");
-        txtDate.setText("");
         txtTotalPrice.setText("");
         txtStatus.setText("");
     }
@@ -708,9 +707,7 @@ public class PurchaseManager extends javax.swing.JPanel {
         }
     }
     private void validateFieldAdd() throws Exception {
-        if (txtDate.getText().equals("")) {
-            throw new Exception("Please enter Date");
-        }
+
         if (txtTotalPrice.getText().equals("")) {
             throw new Exception("Please enter Total Price");
         }
