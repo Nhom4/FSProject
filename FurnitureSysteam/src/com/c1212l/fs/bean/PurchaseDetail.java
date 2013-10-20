@@ -4,6 +4,7 @@
  */
 package com.c1212l.fs.bean;
 
+import com.c1212l.fs.dal.ProductDAO;
 import java.util.Vector;
 
 /**
@@ -73,7 +74,8 @@ public class PurchaseDetail {
     public Vector getVector() {
         Vector result = new Vector();
         result.add(purID);
-        result.add(proID);
+        Product product = new ProductDAO().getProductById(proID);
+        result.add(product.getProductName());
         result.add(purQuantity);
         result.add(purPrice);
         result.add(VAT);

@@ -4,6 +4,7 @@
  */
 package com.c1212l.fs.bean;
 
+import com.c1212l.fs.dal.EmployeeDAO;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -64,7 +65,7 @@ public class Purchase {
         result.add(purID);
         result.add(purDate);
         result.add(purTotalPrice);
-              switch(Status){
+        switch(Status){
             case 1:
                 result.add("Approve");
                 break;
@@ -75,7 +76,8 @@ public class Purchase {
                 result.add("Waiting approve");
                 break;
         }      
-        result.add(empID);
+        Employee employee = new EmployeeDAO().getEmployeeById(empID);
+        result.add(employee.getEmpName());
         return result;
     }
     

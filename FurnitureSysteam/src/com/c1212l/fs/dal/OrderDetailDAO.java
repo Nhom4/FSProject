@@ -70,7 +70,7 @@ public class OrderDetailDAO extends ConnectionTool {
         closeConnection();
     }
     
-   public Product getProductID (String productName) throws ClassNotFoundException,SQLException
+   public Product getProductID (String productName ) throws ClassNotFoundException,SQLException
      {
          initConnection();
          Statement stt = conn.createStatement();

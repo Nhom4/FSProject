@@ -4,6 +4,8 @@
  */
 package com.c1212l.fs.bean;
 
+import com.c1212l.fs.dal.CategoryDAO;
+import com.c1212l.fs.dal.ProductDAO;
 import java.util.Vector;
 
 /**
@@ -56,12 +58,11 @@ public class OrderDetail {
     public void setVAT(int VAT) {
         this.VAT = VAT;
     }
-    
-    
      public Vector getVector() {
         Vector result = new Vector();
-        result.add(ordID);
-        result.add(proID);
+        result.add(ordID);      
+        Product product = new ProductDAO().getProductById(proID);
+        result.add(product.getProductName());
         result.add(ordQuantity);
         result.add(ordPrice);
         result.add(VAT);

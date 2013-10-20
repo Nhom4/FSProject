@@ -23,10 +23,6 @@ public class MainEmployee extends javax.swing.JFrame {
     public MainEmployee() {
         try {
             initComponents();
-            Home home = new Home();
-            pnMain.removeAll();
-            pnMain.add(home);
-            pnMain.updateUI();
             loadData();
         } catch (SQLException ex) {
             Logger.getLogger(MainEmployee.class.getName()).log(Level.SEVERE, null, ex);
@@ -398,7 +394,7 @@ public class MainEmployee extends javax.swing.JFrame {
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
         // TODO add your handling code here:
-        CustomerManagerEmp customer = new CustomerManagerEmp();
+        CustomerManager customer = new CustomerManager();
         pnMain.removeAll();
         pnMain.add(customer);
         pnMain.updateUI();
@@ -406,7 +402,7 @@ public class MainEmployee extends javax.swing.JFrame {
 
     private void btnCatalogeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogeActionPerformed
         // TODO add your handling code here:
-        CategoryManagerEmp category = new CategoryManagerEmp();
+        CategoryManager category = new CategoryManager();
         pnMain.removeAll();
         pnMain.add(category);
         pnMain.updateUI();
@@ -414,7 +410,7 @@ public class MainEmployee extends javax.swing.JFrame {
 
     private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
         // TODO add your handling code here:
-        ProductManangerEmp product = new ProductManangerEmp();
+        ProductMananger product = new ProductMananger();
         pnMain.removeAll();
         pnMain.add(product);
         pnMain.updateUI();
@@ -422,7 +418,7 @@ public class MainEmployee extends javax.swing.JFrame {
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         // TODO add your handling code here:
-        OrderManagerEmp order = new OrderManagerEmp();
+        OrderManager order = new OrderManager();
         pnMain.removeAll();
         pnMain.add(order);
         pnMain.updateUI();
@@ -430,7 +426,7 @@ public class MainEmployee extends javax.swing.JFrame {
 
     private void btnVendorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendorActionPerformed
         // TODO add your handling code here:
-        VendorPanelEmp vendor = new VendorPanelEmp();
+        VendorPanel vendor = new VendorPanel();
         pnMain.removeAll();
         pnMain.add(vendor);
         pnMain.updateUI();
@@ -438,7 +434,7 @@ public class MainEmployee extends javax.swing.JFrame {
 
     private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
         // TODO add your handling code here:
-        PurchaseManagerEmp purchase = new PurchaseManagerEmp();
+        PurchaseManager purchase = new PurchaseManager();
         pnMain.removeAll();
         pnMain.add(purchase);
         pnMain.updateUI();

@@ -303,7 +303,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="btnDeleteDetail" min="-2" pref="96" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnResetDetail" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="btnReset2" min="-2" pref="98" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -346,7 +346,7 @@
                       <Component id="btnAddDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnUpdateDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDeleteDetail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnResetDetail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnReset2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -466,7 +466,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbProductActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnResetDetail">
+        <Component class="javax.swing.JButton" name="btnReset2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/com/c1212l/fs/image/undo.png"/>
@@ -474,7 +474,7 @@
             <Property name="text" type="java.lang.String" value="Reset"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetDetailActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReset2ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

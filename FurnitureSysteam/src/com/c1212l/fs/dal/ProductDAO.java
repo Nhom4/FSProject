@@ -94,7 +94,7 @@ public class ProductDAO extends ConnectionTool {
         try {
             initConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Product where cProID = " + productID);
+            ResultSet rs = stmt.executeQuery("select * from Product where iInventory > 0 and  cProID = " +"'" +productID+"'");
             Product product = null;
             if (rs.next()) {
                 product = new Product();

@@ -27,6 +27,7 @@ public class PurDetailsDAO extends ConnectionTool {
         while(rs.next()){
             PurchaseDetail purdetails = new PurchaseDetail();
             purdetails.setPurID(rs.getString("cPurID"));
+            purdetails.setProID(rs.getString("cProID"));
             purdetails.setPurQuantity(rs.getInt("iPurQuantity"));
             purdetails.setPurPrice(rs.getInt("iPurPrice"));
             purdetails.setVAT(rs.getInt("iVAT"));

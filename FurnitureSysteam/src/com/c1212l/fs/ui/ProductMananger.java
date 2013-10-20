@@ -350,9 +350,9 @@ public class ProductMananger extends javax.swing.JPanel {
                      loadSearchProductName();
                  }
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ProductMananger.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductMananger.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_txtSearchKeyReleased
 
@@ -439,9 +439,9 @@ public class ProductMananger extends javax.swing.JPanel {
             fillData(productBUS.getAllProduct());
             initTextField();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductMananger.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductMananger.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
      private void initTextField() {
@@ -459,9 +459,9 @@ public class ProductMananger extends javax.swing.JPanel {
                 cmbCategory.addItem(new KeyValue(i, category.getCategoryName()));
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CategoryManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CategoryManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -257,7 +257,7 @@ public class VendorPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             // TODO add your handling code here:
-            validateFieldAdd();  
+//            validateFieldAdd();  
                 String vendorID = txtVendorID.getText();
                 String vendorName = txtVendorName.getText();
                 String vendorAddress = txtVendorAddress.getText();

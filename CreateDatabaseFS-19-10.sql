@@ -13,7 +13,7 @@ use FS
 create table Product
 (
 	cProID char(6) primary key not null,
-	vProName varchar(50) unique not null,
+	vProName varchar(50) not null unique,
 	vProDetails varchar(500) not null,
 	cVenID char(6) not null,
 	cCatID char(6) not null,
@@ -23,17 +23,17 @@ create table Product
 create table Category
 (
 	cCatID char(6) primary key not null,
-	vCatName varchar(50) unique not null
+	vCatName varchar(50) not null unique
 )
 
 create table Vendor
 (
 	cVenID char(6) primary key not null,
-	vVenName varchar(50) unique not null,
+	vVenName varchar(50) not null unique,
 	vVenAddress varchar(100) not null,
-	cVenPhone char(15) not null,
-	cVenFax char(15) not null,
-	cVenEmail char(50) unique not null
+	cVenPhone char(15) not null unique,
+	cVenFax char(15) not null unique,
+	cVenEmail char(50) not null unique
 )
 
 create table Employee
@@ -41,8 +41,8 @@ create table Employee
 	cEmpID char(6) primary key not null,
 	vEmpName varchar(50) not null,
 	vEmpAddress varchar(100) not null,
-	cEmpPhone char(15) not null,
-	cEmpEmail char(50) unique not null,
+	cEmpPhone char(15) not null unique,
+	cEmpEmail char(50) not null unique,
 	cEmpPassword char(50) not null
 )
 
@@ -51,25 +51,25 @@ create table Adm
 	cAdmID int identity primary key  not null,
 	vAdmName varchar(50) not null,
 	vAdmAddress varchar(100) not null,
-	cAdmPhone char(15) not null,
-	cAdmEmail char(50) unique not null,
+	cAdmPhone char(15) not null unique,
+	cAdmEmail char(50) not null unique,
 	cAdmPassword char(50) not null
 )
 
 create table Customer
 (
 	cCusID char(6) primary key not null,
-	vCusName varchar(50) not null,
+	vCusName varchar(50) not null unique,
 	cCusSex char(6) not null,
 	vCusAddress varchar(100) not null,
-	cCusPhone char(15) not null,
-	cCusEmail char(50) not null
+	cCusPhone char(15) not null unique,
+	cCusEmail char(50) not null unique
 )
 
 create table Purchase
 (
 	cPurID char(6) primary key not null,
-	dPurDate datetime not null,
+	dPurDate date not null,
 	iPurTotalPrice int default 0,
 	cStatus int not null,
 	cEmpID char(6) not null
@@ -89,7 +89,7 @@ create table Orders
 (
 	cOrdID char(6) primary key not null,
 	cCusID char(6) not null,
-	dOrdDate datetime not null,
+	dOrdDate date not null,
 	iOrdTotalPrice int default 0,
 	cStatus int not null,
 	cEmpID char(6) not null
@@ -846,9 +846,7 @@ begin
 	where (datepart(yy,ord.dOrdDate) between @dYear1 and @dYear2) group by pr.cProID, pr.vProName
 end
 
-select*from Adm
 
-insert into Adm values ('Admin1', 'Ha Noi', 0976208172, 'dongtv@gmail.com', '12345')
 
 
 /*
@@ -874,3 +872,4 @@ exec prcReportPurchase_Months '2','7'
 
 */
 Select * from Purchase
+select * from Product where iInventory = 0 and  cProID = 'PR0001'
