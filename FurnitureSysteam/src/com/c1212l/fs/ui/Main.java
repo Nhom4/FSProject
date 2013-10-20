@@ -22,6 +22,10 @@ public class Main extends javax.swing.JFrame {
     public Main() {
             try {
             initComponents();
+            Home home = new Home();
+            pnMain.removeAll();
+            pnMain.add(home);
+            pnMain.updateUI();
             loadData();
         } catch (Exception ex) {
             JOptionPane.showConfirmDialog(null, ex.getMessage());

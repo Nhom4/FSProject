@@ -321,9 +321,9 @@ public class CategoryManager extends javax.swing.JPanel {
             fillData(categoryBUS.getAllCategory());
             initTextField();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoryManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoryManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
      private void initTextField() {

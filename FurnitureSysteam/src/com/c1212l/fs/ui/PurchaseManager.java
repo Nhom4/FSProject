@@ -746,9 +746,9 @@ public class PurchaseManager extends javax.swing.JPanel {
                 cmbProduct.addItem(new KeyValue(i, product.getProductName()));
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductMananger.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductMananger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void validateFieldAdd() throws Exception {

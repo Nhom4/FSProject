@@ -387,9 +387,9 @@ public class CustomerManager extends javax.swing.JPanel {
             fillData(customerBUS.getAllCustomer());
             initTextField();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void initCmbGender() {

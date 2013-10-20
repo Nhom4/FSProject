@@ -395,9 +395,9 @@ public class EmployeeManager extends javax.swing.JPanel {
             fillData(employeeBUS.getAllEmployee());
             initTextField();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
      private void initTextField() {
