@@ -210,12 +210,7 @@ public class CategoryManager extends javax.swing.JPanel {
             categoryBUS.addCategory(categoryName);
             reloadData();
         } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY")) {
-                JOptionPane.showMessageDialog(null, "Error: Duplicate category name", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-            }
+               JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -229,7 +224,7 @@ public class CategoryManager extends javax.swing.JPanel {
             reloadData();
              }catch (Exception ex) {
             if (ex.getMessage().contains("UNIQUE KEY")) {
-                JOptionPane.showMessageDialog(null, "Error: Duplicate product name", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error: Duplicate category name", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();

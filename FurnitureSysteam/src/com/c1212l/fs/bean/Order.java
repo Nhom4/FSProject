@@ -4,6 +4,9 @@
  */
 package com.c1212l.fs.bean;
 
+import com.c1212l.fs.dal.CategoryDAO;
+import com.c1212l.fs.dal.CustomerDAO;
+import com.c1212l.fs.dal.EmployeeDAO;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -16,7 +19,7 @@ public class Order {
     private String cusID;
     private Date ordDate;
     private int ordTotalPrice;
-    private String Status;
+    private int Status;
     private String empID;
 
     public String getOrdID() {
@@ -51,11 +54,11 @@ public class Order {
         this.ordTotalPrice = ordTotalPrice;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return Status;
     }
 
-    public void setStatus(String Status) {
+    public void setStatus(int Status) {
         this.Status = Status;
     }
 
@@ -67,15 +70,26 @@ public class Order {
         this.empID = empID;
     }
     
-     public Vector getVector() {
+  public Vector getVector() {
         Vector result = new Vector();
         result.add(ordID);
-        result.add(cusID);
+        Customer customer = new CustomerDAO().getCustomerById(cusID);
+        result.add(customer.getCustomerName());
         result.add(ordDate);
         result.add(ordTotalPrice);
-        result.add(Status);
-        result.add(empID);
+        switch(Status){
+            case 1:
+                result.add("Approve");
+                break;
+            case 2:
+                result.add("Disapprove");
+                break;
+            case 3:
+                result.add("Waiting approve");
+                break;
+        }      
+        Employee employee = new EmployeeDAO().getEmployeeById(empID);
+        result.add(employee.getEmpName());
         return result;
     }
-    
 }

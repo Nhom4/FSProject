@@ -15,22 +15,8 @@ public class Purchase {
     private String purID;
     private Date purDate;
     private int purTotalPrice;
-    private String Status;
+    private int Status;
     private String empID;
-
-    public Purchase(String purID, Date purDate, int purTotalPrice, String Status, String empID) {
-        this.purID = purID;
-        this.purDate = purDate;
-        this.purTotalPrice = purTotalPrice;
-        this.Status = Status;
-        this.empID = empID;
-        
-    }
-
-    public Purchase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String getPurID() {
         return purID;
     }
@@ -44,7 +30,7 @@ public class Purchase {
     }
 
 
-    public String getStatus() {
+    public int getStatus() {
         return Status;
     }
 
@@ -65,7 +51,7 @@ public class Purchase {
     }
 
 
-    public void setStatus(String Status) {
+    public void setStatus(int Status) {
         this.Status = Status;
     }
 
@@ -78,7 +64,17 @@ public class Purchase {
         result.add(purID);
         result.add(purDate);
         result.add(purTotalPrice);
-        result.add(Status);
+              switch(Status){
+            case 1:
+                result.add("Approve");
+                break;
+            case 2:
+                result.add("Disapprove");
+                break;
+            case 3:
+                result.add("Waiting approve");
+                break;
+        }      
         result.add(empID);
         return result;
     }

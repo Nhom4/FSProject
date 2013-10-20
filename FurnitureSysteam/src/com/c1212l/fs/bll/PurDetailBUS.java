@@ -4,6 +4,8 @@
  */
 package com.c1212l.fs.bll;
 
+import com.c1212l.fs.bean.Category;
+import com.c1212l.fs.bean.Product;
 import com.c1212l.fs.bean.PurchaseDetail;
 import com.c1212l.fs.dal.PurDetailsDAO;
 import java.sql.SQLException;
@@ -22,7 +24,7 @@ public class PurDetailBUS {
         return purDetailDAO.getAllPurDetails();
     }
     
-    public void addPurchaseDetail(String purID, String proID, int purQuantity, int purPrice, int VAT) throws ClassNotFoundException, Exception{
+    public void addPurchaseDetail( String purID,String proID, int purQuantity, int purPrice, int VAT) throws ClassNotFoundException, Exception{
         PurchaseDetail purchasedetail = new PurchaseDetail();
         purchasedetail.setPurID(purID);
         purchasedetail.setProID(proID);
@@ -39,14 +41,17 @@ public class PurDetailBUS {
         purchasedetail.setPurQuantity(purQuantity);
         purchasedetail.setPurPrice(purPrice);
         purchasedetail.setVAT(VAT);
-        purDetailDAO.addPurDetail(purchasedetail);
+        purDetailDAO.updatePurDetail(purchasedetail);
     }
     
-    public void deletePurchaseDetail(String purID) throws ClassNotFoundException, Exception{
+    public void deletePurchaseDetail(String purID,String proID) throws ClassNotFoundException, Exception{
         PurchaseDetail purchasedetail = new PurchaseDetail();
         purchasedetail.setPurID(purID);
+        purchasedetail.setProID(proID);
         purDetailDAO.deletePurDetail(purchasedetail);
     }
-    
+      public Product getProductID(String productName) throws ClassNotFoundException,Exception{
+            return purDetailDAO.getProductID(productName);
+     }
 
 }

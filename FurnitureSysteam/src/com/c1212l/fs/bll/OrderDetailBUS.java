@@ -6,6 +6,7 @@ package com.c1212l.fs.bll;
 
 import com.c1212l.fs.bean.Order;
 import com.c1212l.fs.bean.OrderDetail;
+import com.c1212l.fs.bean.Product;
 import com.c1212l.fs.dal.OrderDetailDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,14 +43,17 @@ public class OrderDetailBUS {
         orderdetail.setOrdQuantity(ordQuantity);
         orderdetail.setOrdPrice(ordPrice);
         orderdetail.setVAT(VAT);
-        orderDetailDAO.addOrderDetail(orderdetail);
+        orderDetailDAO.updateOrderDetail(orderdetail);
     }
     
-    public void deleteOrderDetail(String ordID) throws ClassNotFoundException, Exception{
+    public void deleteOrderDetail(String ordID,String proID) throws ClassNotFoundException, Exception{
         OrderDetail orderdetail = new OrderDetail();
         orderdetail.setOrdID(ordID);
+        orderdetail.setProID(proID);
         orderDetailDAO.deleteOrderDetail(orderdetail);
     }
-    
+         public Product getProductID(String productName) throws ClassNotFoundException,Exception{
+            return orderDetailDAO.getProductID(productName);
+     }
    
 }

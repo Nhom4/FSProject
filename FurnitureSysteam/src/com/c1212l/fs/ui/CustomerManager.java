@@ -270,12 +270,7 @@ public class CustomerManager extends javax.swing.JPanel {
             customerBUS.addCustomer(customerName, gender, address, phone, email);
             reloadData();
         } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY")) {
-                JOptionPane.showMessageDialog(null, "Error: Duplicate Customer name", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-            }
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -287,10 +282,8 @@ public class CustomerManager extends javax.swing.JPanel {
                  customerBUS.deleteCustomer(customerID);
                  reloadData();
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

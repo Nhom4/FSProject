@@ -4,6 +4,7 @@
  */
 package com.c1212l.fs.ui;
 
+import com.c1212l.fs.bean.Category;
 import com.c1212l.fs.bean.Employee;
 import com.c1212l.fs.bean.Product;
 import com.c1212l.fs.bean.Purchase;
@@ -66,7 +67,7 @@ public class PurchaseManager extends javax.swing.JPanel {
         tblPurDetail = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
         lblPurIDDetail = new javax.swing.JLabel();
-        txtPurIDDetail = new javax.swing.JTextField();
+        txtPurDetailID = new javax.swing.JTextField();
         lblProIDDetail = new javax.swing.JLabel();
         lblQuantity = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
@@ -142,6 +143,8 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         txtPurID.setEnabled(false);
 
+        txtTotalPrice.setEditable(false);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Purchase Detail"));
 
         tblPurDetail.setModel(new javax.swing.table.DefaultTableModel(
@@ -164,7 +167,7 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         lblPurIDDetail.setText("Purchase ID :");
 
-        txtPurIDDetail.setEnabled(false);
+        txtPurDetailID.setEnabled(false);
 
         lblProIDDetail.setText("Product ID :");
 
@@ -198,6 +201,11 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         btnDeleteDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/delete-24x24.png"))); // NOI18N
         btnDeleteDetail.setText("Delete");
+        btnDeleteDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteDetailActionPerformed(evt);
+            }
+        });
 
         cmbProduct.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +236,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblPurIDDetail)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtPurIDDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtPurDetailID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,7 +273,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPurIDDetail)
-                    .addComponent(txtPurIDDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPurDetailID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPrice)
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -415,9 +423,12 @@ public class PurchaseManager extends javax.swing.JPanel {
         try {
             validateFieldAdd();
             Date date = MyUtil.getDate(dcPurchaseDate);
-           // int Quantity = Integer.valueOf(txtQuantity.getText());
-            int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
-            String empID = txtEmployee.getText();
+            System.out.println(date);
+            int status = ((KeyValue) cmbStatus.getSelectedItem()).getKey();
+            System.out.println(status);
+            String empID = LoginFrame.id;
+            System.out.println(empID);
+            purchaseBUS.addPurchase(date, status, empID);
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
@@ -435,7 +446,11 @@ public class PurchaseManager extends javax.swing.JPanel {
             int Quantity = Integer.valueOf(txtQuantity.getText());
             int Price = Integer.valueOf(txtPrice.getText());
             int VAT = Integer.valueOf(txtVAT.getText());
-            purDetailBUS.addPurchaseDetail(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, Quantity, Price, VAT);
+            Product product = purDetailBUS.getProductID(cmbProduct.getSelectedItem().toString());
+            String purID = txtPurDetailID.getText();
+            String productID = product.getProductID();
+            purDetailBUS.addPurchaseDetail(purID, productID, Quantity, Price, VAT);
+            reloadDataDetail();
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
@@ -447,12 +462,13 @@ public class PurchaseManager extends javax.swing.JPanel {
       try {
             validateFieldAdd();
            // int Quantity = Integer.valueOf(txtQuantity.getText());
-            int TotalPrice = Integer.valueOf(txtTotalPrice.getText());
-            String empID = LoginFrame.id;
             Date purchaseDate = MyUtil.getDate(dcPurchaseDate);
-            System.out.println(purchaseDate);
+            int status = ((KeyValue) cmbStatus.getSelectedItem()).getKey();
+            String purID = txtPurID.getText();
+            String empID = txtEmployee.getText();
+            purchaseBUS.updatePurchase(purID, purchaseDate, status,empID);
             reloadData();
-        } catch (Exception ex) {
+          } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -463,26 +479,30 @@ public class PurchaseManager extends javax.swing.JPanel {
             String purID = txtPurID.getText();
             purchaseBUS.deletePurchase(purID);
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateDetailActionPerformed
         // TODO add your handling code here:
         try {
-            String purIDDetail = txtPurIDDetail.getText();
+            String purDetailID = txtPurDetailID.getText();
+            Product product = purDetailBUS.getProductID(cmbProduct.getSelectedItem().toString());
+            String productID = product.getProductID();
             int Quantity = Integer.valueOf(txtQuantity.getText());
             int Price = Integer.valueOf(txtPrice.getText());
             int VAT = Integer.valueOf(txtVAT.getText());
-            purDetailBUS.updatePurchaseDetail(purIDDetail, TOOL_TIP_TEXT_KEY, Quantity, Price, VAT);
+            purDetailBUS.updatePurchaseDetail(purDetailID, productID, Quantity, Price, VAT);
+            reloadDataDetail();
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(PurchaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY")) {
+                JOptionPane.showMessageDialog(null, "Error: Duplicate purDetail", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
         }
     }//GEN-LAST:event_btnUpdateDetailActionPerformed
 
@@ -490,16 +510,19 @@ public class PurchaseManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         int row = tblPurchase.rowAtPoint(evt.getPoint());
         txtPurID.setText(tblPurchase.getValueAt(row, 0).toString());
+        txtPurDetailID.setText(tblPurchase.getValueAt(row, 0).toString());
+        dcPurchaseDate.setDate(Date.valueOf(tblPurchase.getValueAt(row, 1).toString()));
 //        txtDate.setText(tblPurchase.getValueAt(row, 1).toString());
         txtTotalPrice.setText(tblPurchase.getValueAt(row, 2).toString());
+        cmbStatus.setSelectedItem(new KeyValue(0, tblPurchase.getValueAt(row,1).toString()));
         txtEmployee.setText(tblPurchase.getValueAt(row, 4).toString());
     }//GEN-LAST:event_tblPurchaseMouseClicked
 
     private void tblPurDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPurDetailMouseClicked
         // TODO add your handling code here:
         int row = tblPurDetail.rowAtPoint(evt.getPoint());
-        txtPurID.setText(tblPurDetail.getValueAt(row, 0).toString());
-        cmbProduct.setSelectedItem(tblPurDetail.getValueAt(row, 1).toString());
+        txtPurDetailID.setText(tblPurDetail.getValueAt(row, 0).toString());
+//        cmbProduct.setSelectedItem(new KeyValue(0,tblPurDetail.getValueAt(row,1).toString()));
         txtQuantity.setText(tblPurDetail.getValueAt(row, 2).toString());
         txtPrice.setText(tblPurDetail.getValueAt(row, 3).toString());
         txtVAT.setText(tblPurDetail.getValueAt(row, 4).toString());
@@ -541,6 +564,22 @@ public class PurchaseManager extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProductActionPerformed
 
+    private void btnDeleteDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDetailActionPerformed
+        // TODO add your handling code here:
+         try {
+            String purID = txtPurDetailID.getText();
+             System.out.println(purID);
+            Product product = purDetailBUS.getProductID(cmbProduct.getSelectedItem().toString());
+            String productID = product.getProductID();
+             System.out.println(productID);
+            purchaseDetailBUS.deletePurchaseDetail(purID,productID);
+            reloadData();
+            reloadDataDetail();
+       } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteDetailActionPerformed
+
    
     
     
@@ -579,8 +618,8 @@ public class PurchaseManager extends javax.swing.JPanel {
     private javax.swing.JTable tblPurchase;
     private javax.swing.JTextField txtEmployee;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtPurDetailID;
     private javax.swing.JTextField txtPurID;
-    private javax.swing.JTextField txtPurIDDetail;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTotalPrice;
@@ -618,6 +657,7 @@ public class PurchaseManager extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
+            initCmbApprove();
             txtEmployee.setText(LoginFrame.name);
             initCmbSearch();
             fillData(purchaseBUS.getAllPurchase());
@@ -679,7 +719,7 @@ public class PurchaseManager extends javax.swing.JPanel {
     private void reloadDataDetail() {
         try {
             initTableDetail();
-            initCmbProID();
+            initCmbProduct();
             initCmbSearch();
             fillDataDetail(purDetailBUS.getAllPurDetails());
             initTextField();
@@ -690,16 +730,15 @@ public class PurchaseManager extends javax.swing.JPanel {
         }
     }
     private void initTextFieldDetail() {
-        txtPurIDDetail.setText("");   
+        txtPurDetailID.setText("");   
         txtQuantity.setText("");
         txtPrice.setText("");
         txtVAT.setText("");
     }
     
-    private void initCmbProID() {
+    private void initCmbProduct() {
         try {
             cmbProduct.removeAllItems();
-            cmbProduct.addItem(new KeyValue(-1, ""));
             ProductBUS productBUS = new ProductBUS();
             ArrayList<Product> arrProduct = productBUS.getAllProduct();
             for (int i=0;i<arrProduct.size();i++) {
@@ -746,4 +785,10 @@ public class PurchaseManager extends javax.swing.JPanel {
             txtEmployee.setText(employee.getEmpName());
         }
        }
+         private void initCmbApprove() {
+        cmbStatus.removeAllItems();
+        cmbStatus.addItem(new KeyValue(2, "Approve"));
+        cmbStatus.addItem(new KeyValue(0, "Disapprove"));
+        cmbStatus.addItem(new KeyValue(1, "Waiting Approve"));
+    }
 }

@@ -5,6 +5,7 @@
 package com.c1212l.fs.dal;
 
 import com.c1212l.fs.bean.Customer;
+import com.c1212l.fs.bean.Product;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,6 +44,16 @@ public class CustomerDAO extends ConnectionTool{
             if (pstmt.executeQuery().next()) {
                 error += "Error: Duplicate Customer name\n";
             }
+             pstmt = conn.prepareStatement("select * from Customer where cCusPhone = ?");
+            pstmt.setString(1, customer.getPhone());
+            if (pstmt.executeQuery().next()) {
+                error += "Error: Duplicate Customer phone\n";
+            }
+            pstmt = conn.prepareStatement("select * from Customer where cCusEmail = ?");
+            pstmt.setString(1, customer.getEmail());
+            if (pstmt.executeQuery().next()) {
+                error += "Error: Duplicate Customer email\n";
+            }
             if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcInsertCustomer(?,?,?,?,?)}");
             cs.setString(1, customer.getCustomerName());
@@ -70,9 +81,19 @@ public class CustomerDAO extends ConnectionTool{
     }
      public void deleteCustomer(Customer customer) throws ClassNotFoundException, Exception {
         initConnection();
+          String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from Orders where  cCusID = ?");
+        pstmt.setString(1, customer.getCustomerID());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: This customer made at least one Orders\n";
+        }
+         if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcDeleteCustomer(?)}");
             cs.setString(1, customer.getCustomerID());
             cs.executeUpdate();
+           } else {
+            throw new Exception(error);
+        }
         closeConnection();
     }
      
@@ -113,4 +134,21 @@ public class CustomerDAO extends ConnectionTool{
         closeConnection();
         return result;
     }
+       public Customer getCustomerById(String customerID) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from Customer where cCusID = " +"'"+ customerID+"'");
+            Customer customer = null;
+            if (rs.next()) {
+                customer = new Customer();
+                customer.setCustomerID(rs.getString("cCusID"));
+                customer.setCustomerName(rs.getString("vCusName"));
+            }
+            closeConnection();
+            return customer;
+        } catch (Exception ex) {
+            return null;
+        }
+     }
 }

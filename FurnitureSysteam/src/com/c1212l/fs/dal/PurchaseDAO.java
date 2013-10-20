@@ -4,12 +4,9 @@
  */
 package com.c1212l.fs.dal;
 
-import com.c1212l.fs.bean.Category;
-import com.c1212l.fs.bean.Employee;
 import com.c1212l.fs.bean.Permission;
 import com.c1212l.fs.bean.Product;
 import com.c1212l.fs.bean.Purchase;
-import com.c1212l.fs.bean.Vendor;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +19,6 @@ import java.util.ArrayList;
  * @author KimDong
  */
 public class PurchaseDAO extends ConnectionTool {
-    private Purchase Purchase;
     public ArrayList<Purchase> getAllPurchase() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stt = conn.createStatement();
@@ -31,64 +27,57 @@ public class PurchaseDAO extends ConnectionTool {
         while (rs.next()) {
             Purchase purchase = new Purchase();
             purchase.setPurID(rs.getString("cPurID"));
-            purchase.setPurDate(rs.getDate("cPerDate"));
-            purchase.setPurTotalPrice(rs.getInt("vPurTotalPrice"));
-            purchase.setStatus(rs.getString("cStatus"));
+            purchase.setPurDate(rs.getDate("dPurDate"));
+            purchase.setPurTotalPrice(rs.getInt("iPurTotalPrice"));
+            purchase.setStatus(rs.getInt("cStatus"));
             purchase.setEmpID(rs.getString("cEmpID"));
-            result.add(Purchase);
+            result.add(purchase);
         }
         closeConnection();
         return result;
     }
     public void addPurchase(Purchase purchase) throws ClassNotFoundException, Exception {
             initConnection();
-            String error = "";
-            PreparedStatement pstmt = conn.prepareStatement("select * from Purchase where cPurTotalPrice = ?");
-            pstmt.setInt(1, purchase.getPurTotalPrice());
-            if (pstmt.executeQuery().next()) {
-                error += "Error: Duplicate total price number\n";
-            }
-            pstmt = conn.prepareStatement("select * from Purchase where cStatus = ?");
-            pstmt.setString(1, purchase.getStatus());
-            if (pstmt.executeQuery().next()) {
-                error += "Error: Duplicate purchase status\n";
-            }
-            if (error.equals("")) {
-                CallableStatement cs = conn.prepareCall("{call prcInsertPurchase(?,?,?,?,?)}");
-                cs.setString(1,purchase.getPurID());
-                cs.setDate(2,purchase.getPurDate());
-                cs.setInt(3,purchase.getPurTotalPrice());
-                cs.setString(4,purchase.getStatus());
-                cs.setString(5,purchase.getEmpID());
+//            String error = "";
+//            PreparedStatement pstmt = conn.prepareStatement("select * from Purchase where cPurTotalPrice = ?");
+//            pstmt.setInt(1, purchase.getPurTotalPrice());
+//            if (pstmt.executeQuery().next()) {
+//                error += "Error: Duplicate total price number\n";
+//            }
+//          PreparedStatement  pstmt = conn.prepareStatement("select * from Purchase where cStatus = ?");
+//            pstmt.setString(1, purchase.getStatus());
+//            if (pstmt.executeQuery().next()) {
+//                error += "Error: Duplicate purchase status\n";
+//            }
+//            if (error.equals("")) {
+                CallableStatement cs = conn.prepareCall("{call prcInsertPurchase(?,?,?)}");
+                cs.setDate(1,purchase.getPurDate());
+                cs.setInt(2,purchase.getStatus());
+                cs.setString(3,purchase.getEmpID());
                 cs.executeUpdate();
-            } else {
-                throw new Exception(error);
-            }
+//            } else {
+//                throw new Exception(error);
+//            }
             closeConnection();
     }
     public void updatePurchase(Purchase purchase) throws ClassNotFoundException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call prcUpdatePurchase(?,?,?,?,?)}");
+        CallableStatement cs = conn.prepareCall("{call prcUpdatePurchase(?,?,?)}");
                 cs.setString(1,purchase.getPurID());
                 cs.setDate(2,purchase.getPurDate());
-                cs.setInt(3,purchase.getPurTotalPrice());
-                cs.setString(4,purchase.getStatus());
-                cs.setString(5,purchase.getEmpID());
+//                cs.setInt(3,purchase.getPurTotalPrice());
+                cs.setInt(3,purchase.getStatus());
+                cs.setString(4,purchase.getEmpID());
                 cs.executeUpdate();
         closeConnection();
     }
     public void deletePurchase(Purchase  purchase) throws ClassNotFoundException, Exception {
         initConnection();
         String error = "";
-        PreparedStatement pstmt = conn.prepareStatement("select * from Purchase where  cEmpID = ?");
-        pstmt.setString(1,purchase.getPurID());
-        if (pstmt.executeQuery().next()) {
-            error += "Error: This employee made at least one purchase\n";
-        }
-        pstmt = conn.prepareStatement("select * from Purchase where  cEmpID = ?");
+        PreparedStatement pstmt = conn.prepareStatement("select * from PurDetails where  cPurID = ?");
         pstmt.setString(1, purchase.getPurID());
          if (pstmt.executeQuery().next()) {
-             error+="Error: This product made at least one orders";
+             error+="Error: This purchase made at least one purchasedetails";
          }
         if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcDeletePurchase(?)}");
@@ -141,13 +130,27 @@ public class PurchaseDAO extends ConnectionTool {
             purchase.setPurID(rs.getString("cPurID"));
             purchase.setPurDate(rs.getDate("dPurDate"));
             purchase.setPurTotalPrice(rs.getInt("iPurTotalPrice"));
-            purchase.setStatus(rs.getString("cStatus"));
+            purchase.setStatus(rs.getInt("cStatus"));
             purchase.setEmpID(rs.getString("cEmpID"));
             result.add(purchase);
         }
         closeConnection();
         return result;
     }
+   public Product getCustomerID (String customerName) throws ClassNotFoundException,SQLException
+     {
+         initConnection();
+         Statement stt = conn.createStatement();
+         ResultSet rs = stt.executeQuery("Select * from Customer where vCusName="+"'"+customerName+"'");
+         Product product = new Product();
+         while(rs.next())
+         {
+              product.setProductID(rs.getString("cCusID"));
+         }
+         closeConnection();
+         return product;
+                 
+     }  
 }
 
 

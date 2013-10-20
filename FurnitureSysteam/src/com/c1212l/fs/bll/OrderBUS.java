@@ -4,7 +4,10 @@
  */
 package com.c1212l.fs.bll;
 
+import com.c1212l.fs.bean.Customer;
+import com.c1212l.fs.bean.Employee;
 import com.c1212l.fs.bean.Order;
+import com.c1212l.fs.bean.Product;
 import com.c1212l.fs.dal.OrderDAO;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -23,25 +26,23 @@ public class OrderBUS {
         return orderDAO.getAllOrder();
     }
     
-    public void addOrder(String cusID,Date ordDate,int ordTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void addOrder(String cusID,Date ordDate,int Status, String empID) throws ClassNotFoundException, Exception{
         Order order = new Order();
         order.setCusID(cusID);
         order.setOrdDate(ordDate);
-        order.setOrdTotalPrice(ordTotalPrice);
         order.setStatus(Status);
         order.setEmpID(empID);
         orderDAO.addOrder(order);
     }
     
-    public void updateOrder(String ordID,String cusID,Date ordDate,int ordTotalPrice,String Status, String empID) throws ClassNotFoundException, Exception{
+    public void updateOrder(String ordID,String cusID,Date ordDate,int Status, String empID) throws ClassNotFoundException, Exception{
         Order order = new Order();
         order.setOrdID(ordID);
         order.setCusID(cusID);
         order.setOrdDate(ordDate);
-        order.setOrdTotalPrice(ordTotalPrice);
         order.setStatus(Status);
         order.setEmpID(empID);
-        orderDAO.addOrder(order);
+        orderDAO.updateOrder(order);
     }
     
     public void deleteOrder(String ordID) throws ClassNotFoundException, Exception{
@@ -52,5 +53,8 @@ public class OrderBUS {
     
     public ArrayList<Order> searchOrderID(String orderID) throws ClassNotFoundException, SQLException {
         return orderDAO.searchPurchaseID(orderID);
+    }
+    public Customer getCustomerID(String customerName) throws ClassNotFoundException,Exception{
+            return orderDAO.getCustomerID(customerName);
     }
 }

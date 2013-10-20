@@ -249,13 +249,8 @@ public class VendorPanel extends javax.swing.JPanel {
             String email = txtVendorEmail.getText();
             vendorBUS.addVendor(vendorName, address, phone, fax, email);
             reloadData();
-        } catch (Exception ex) {
-            if (ex.getMessage().contains("UNIQUE KEY")) {
-                JOptionPane.showMessageDialog(null, "Error: Duplicate Customer name", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-            }
+          } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -271,10 +266,13 @@ public class VendorPanel extends javax.swing.JPanel {
                 String vendorEmail = txtVendorEmail.getText();
                 vendorBUS.updateVendor(vendorID, vendorName, vendorAddress, vendorPhone, vendorFax, vendorEmail);
                 reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+              if (ex.getMessage().contains("UNIQUE KEY")) {
+                JOptionPane.showMessageDialog(null, "Error: Duplicate Customer name", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();     
+        }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -285,10 +283,8 @@ public class VendorPanel extends javax.swing.JPanel {
                  vendorBUS.deleteVendor(vendorID);
                  reloadData();
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(VendorPanel.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

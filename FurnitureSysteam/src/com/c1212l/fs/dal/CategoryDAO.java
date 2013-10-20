@@ -59,9 +59,19 @@ public class CategoryDAO extends ConnectionTool{
     }
      public void deleteCategory(Category category) throws ClassNotFoundException, Exception {
         initConnection();
+           String error = "";
+           PreparedStatement pstmt = conn.prepareStatement("select * from Product where  cCatID = ?");
+           pstmt.setString(1, category.getCategoryID());
+           if (pstmt.executeQuery().next()) {
+                error += "Error: This category made at least one product\n";
+           }
+            if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call prcDeleteCategory(?)}");
             cs.setString(1,category.getCategoryID());
             cs.executeUpdate();
+              } else {
+            throw new Exception(error);
+        }
         closeConnection();
     }
     public Category getCategoryById(String categoryID) {

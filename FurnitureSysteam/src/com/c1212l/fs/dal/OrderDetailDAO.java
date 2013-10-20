@@ -6,6 +6,7 @@ package com.c1212l.fs.dal;
 
 import com.c1212l.fs.bean.Order;
 import com.c1212l.fs.bean.OrderDetail;
+import com.c1212l.fs.bean.Product;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class OrderDetailDAO extends ConnectionTool {
     
     public void addOrderDetail(OrderDetail orderdetail) throws ClassNotFoundException, Exception {
             initConnection();
-            CallableStatement cs = conn.prepareCall("{call prcInsertOrderDetail(?,?,?,?,?)}");
+            CallableStatement cs = conn.prepareCall("{call prcInsertOrdDetails(?,?,?,?,?)}");
             cs.setString(1, orderdetail.getOrdID());
             cs.setString(2, orderdetail.getProID());
             cs.setInt(3, orderdetail.getOrdQuantity());
@@ -50,7 +51,7 @@ public class OrderDetailDAO extends ConnectionTool {
     
     public void updateOrderDetail(OrderDetail orderdetail) throws ClassNotFoundException, Exception {
             initConnection();
-            CallableStatement cs = conn.prepareCall("{call prcUpdateOrderDetail(?,?,?,?,?)}");
+            CallableStatement cs = conn.prepareCall("{call prcUpdateOrdDetails(?,?,?,?,?)}");
             cs.setString(1, orderdetail.getOrdID());
             cs.setString(2, orderdetail.getProID());
             cs.setInt(3, orderdetail.getOrdQuantity());
@@ -62,13 +63,27 @@ public class OrderDetailDAO extends ConnectionTool {
     
     public void deleteOrderDetail(OrderDetail orderdetail) throws ClassNotFoundException, Exception {
         initConnection();
-            CallableStatement cs = conn.prepareCall("{call prcDeleteOrderDetail(?)}");
+            CallableStatement cs = conn.prepareCall("{call prcDeleteOrdDetails(?,?)}");
             cs.setString(1, orderdetail.getOrdID());
+            cs.setString(2, orderdetail.getProID());
             cs.executeUpdate();
         closeConnection();
     }
     
-  
+   public Product getProductID (String productName) throws ClassNotFoundException,SQLException
+     {
+         initConnection();
+         Statement stt = conn.createStatement();
+         ResultSet rs = stt.executeQuery("Select * from Product where vProName="+"'"+productName+"'");
+         Product product = new Product();
+         while(rs.next())
+         {
+              product.setProductID(rs.getString("cProID"));
+         }
+         closeConnection();
+         return product;
+                 
+     }
     
     
 }
