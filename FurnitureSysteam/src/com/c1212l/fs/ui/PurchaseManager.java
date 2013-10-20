@@ -79,12 +79,12 @@ public class PurchaseManager extends javax.swing.JPanel {
         btnUpdateDetail = new javax.swing.JButton();
         btnDeleteDetail = new javax.swing.JButton();
         cmbProduct = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
+        btnResetDetail = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtEmployee = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         dcPurchaseDate = new com.toedter.calendar.JDateChooser();
         cmbStatus = new javax.swing.JComboBox();
 
@@ -214,11 +214,11 @@ public class PurchaseManager extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
-        jButton2.setText("Reset");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnResetDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
+        btnResetDetail.setText("Reset");
+        btnResetDetail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnResetDetailActionPerformed(evt);
             }
         });
 
@@ -260,7 +260,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnDeleteDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnResetDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(22, 22, 22)))
                 .addContainerGap())
         );
@@ -291,7 +291,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                     .addComponent(btnAddDetail)
                     .addComponent(btnUpdateDetail)
                     .addComponent(btnDeleteDetail)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnResetDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -309,11 +309,11 @@ public class PurchaseManager extends javax.swing.JPanel {
 
         txtEmployee.setEnabled(false);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
-        jButton1.setText("Reset");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/c1212l/fs/image/undo.png"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -347,7 +347,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -412,7 +412,7 @@ public class PurchaseManager extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDelete)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -546,19 +546,18 @@ public class PurchaseManager extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         txtPurID.setText("");
         txtTotalPrice.setText("");
-        txtEmployee.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnResetDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetDetailActionPerformed
         // TODO add your handling code here:
         txtQuantity.setText("");
         txtPrice.setText("");
         txtVAT.setText("");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnResetDetailActionPerformed
 
     private void cmbProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductActionPerformed
         // TODO add your handling code here:
@@ -589,14 +588,14 @@ public class PurchaseManager extends javax.swing.JPanel {
     private javax.swing.JButton btnAddDetail;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeleteDetail;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnResetDetail;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateDetail;
     private javax.swing.JComboBox cmbProduct;
     private javax.swing.JComboBox cmbSearch;
     private javax.swing.JComboBox cmbStatus;
     private com.toedter.calendar.JDateChooser dcPurchaseDate;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
